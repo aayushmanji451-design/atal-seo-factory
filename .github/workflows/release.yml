@@ -1,0 +1,15 @@
+name: Release (disabled skeleton)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-disabled:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release is intentionally disabled
+        run: echo "Release packaging will be added only after acceptance gates pass."

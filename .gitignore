@@ -1,0 +1,23 @@
+# Composer dependencies.
+/vendor/
+
+# Local test and analysis caches.
+/.phpunit.cache/
+/.phpunit.result.cache
+/var/
+/.local-tools/
+
+# Environment files and credentials.
+.env
+.env.*
+!.env.example
+
+# Generated logs and release packages.
+*.log
+/release/*.zip
+
+# Editor and operating-system files.
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
