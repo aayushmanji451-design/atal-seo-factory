@@ -1,0 +1,56 @@
+atal-seo-factory/
+├── AGENTS.md
+├── README.md
+├── composer.json
+├── phpunit.xml.dist
+├── phpstan.neon
+├── phpcs.xml.dist
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── release.yml
+├── data/
+│   ├── master/
+│   │   ├── 01-ATAL-INSTITUTE-COURSE-MASTER.json
+│   │   ├── 02-ATAL-DIPLOMA-COURSE-MASTER.json
+│   │   ├── 03-SYLLABUS-MASTER.json
+│   │   ├── 04-COURSE-URL-MAP.json
+│   │   ├── 05-IMAGE-ASSET-MAP.json
+│   │   ├── 07-SEARCH-INTENT-TAXONOMY.json
+│   │   ├── 08-INTERNAL-LINK-MAP.json
+│   │   ├── 09-BLOCKED-CLAIMS.json
+│   │   └── 11-TEST-FIXTURES.json
+│   └── schemas/
+├── docs/
+│   ├── environment/
+│   ├── architecture/
+│   ├── migration/
+│   └── acceptance/
+├── assets/
+│   ├── source/
+│   │   ├── institute/
+│   │   └── diploma/
+│   └── templates/
+├── packages/
+│   └── contracts/
+├── plugins/
+│   ├── atal-seo-factory-core/
+│   │   ├── atal-seo-factory-core.php
+│   │   ├── src/
+│   │   │   ├── Domain/
+│   │   │   ├── Application/
+│   │   │   ├── Infrastructure/
+│   │   │   └── Admin/
+│   │   ├── assets/
+│   │   └── templates/
+│   └── atal-diploma-receiver/
+│       ├── atal-diploma-receiver.php
+│       └── src/
+├── tests/
+│   ├── Unit/
+│   ├── Integration/
+│   ├── Contract/
+│   └── Fixtures/
+├── tools/
+├── legacy-evidence/
+└── release/
