@@ -1,0 +1,11 @@
+parameters:
+    level: max
+    phpVersion: 80100
+    paths:
+        - packages/contracts/src
+        - plugins/atal-seo-factory-core/src
+        - plugins/atal-diploma-receiver/src
+        - tests
+    bootstrapFiles:
+        - tests/bootstrap.php
+    tmpDir: var/phpstan
