@@ -1,0 +1,220 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "default_action": "BLOCK_AND_REQUIRE_HUMAN_REVIEW",
+  "claims": [
+    {
+      "claim_key": "doctor_title",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "doctor title",
+        "Dr. title",
+        "become a doctor"
+      ],
+      "reason": "Unsupported professional-title claim"
+    },
+    {
+      "claim_key": "medical_or_clinical_practice_authority",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "independent medical practice",
+        "clinical practice authority",
+        "practice eligible"
+      ],
+      "reason": "Unsupported practice-authority claim"
+    },
+    {
+      "claim_key": "clinic_authority",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "open a clinic",
+        "clinic licence",
+        "clinic permission"
+      ],
+      "reason": "Unsupported clinic-authority claim"
+    },
+    {
+      "claim_key": "licence_or_registration",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "medical licence",
+        "professional licence",
+        "automatic registration",
+        "registered practitioner"
+      ],
+      "reason": "Unsupported licence or registration claim"
+    },
+    {
+      "claim_key": "government_authority",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "government approved course",
+        "government certified",
+        "all India valid",
+        "statutory authority"
+      ],
+      "reason": "Recognition requires an approved current source"
+    },
+    {
+      "claim_key": "guaranteed_job_or_admission",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "guaranteed job",
+        "100% placement",
+        "assured appointment",
+        "guaranteed admission"
+      ],
+      "reason": "Unsupported guarantee"
+    },
+    {
+      "claim_key": "diagnosis_treatment_or_cure",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "diagnose disease",
+        "treat patients",
+        "cure disease",
+        "treatment protocol"
+      ],
+      "reason": "Unsupported clinical-outcome claim"
+    },
+    {
+      "claim_key": "prescription_or_dispensing",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "concept",
+      "examples": [
+        "prescribe medicines",
+        "dispense essential drugs",
+        "dosage authority"
+      ],
+      "reason": "Unsupported prescription or dispensing authority"
+    },
+    {
+      "claim_key": "invented_syllabus",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "data_contract",
+      "examples": [
+        "plausible modules without approved source",
+        "copied syllabus from another course",
+        "SEO-generated paper list"
+      ],
+      "reason": "Syllabus content requires an approved course-specific source"
+    },
+    {
+      "claim_key": "identity_mix",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "data_contract",
+      "examples": [
+        "Institute course published as Diploma",
+        "Diploma course published as Institute certificate"
+      ],
+      "reason": "Cross-site identity collision"
+    },
+    {
+      "claim_key": "alias_as_active_identity",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "data_contract",
+      "examples": [
+        "alias receives a second course_key",
+        "option published as a separate family"
+      ],
+      "reason": "Aliases and options cannot create competing active identities"
+    },
+    {
+      "claim_key": "incomplete_catalog_drop",
+      "target_sites": [
+        "atal_institute",
+        "atal_diploma"
+      ],
+      "match_type": "data_contract",
+      "examples": [
+        "active course silently omitted",
+        "catalog count below approved cardinality"
+      ],
+      "reason": "Approved catalog cardinality is 29 Institute plus 14 Diploma"
+    },
+    {
+      "claim_key": "negative_disclaimer_wording",
+      "target_sites": [
+        "atal_institute"
+      ],
+      "match_type": "exact_or_close_phrase",
+      "examples": [
+        "practice के लिए नहीं",
+        "clinic नहीं खोल सकते",
+        "doctor नहीं बन सकते"
+      ],
+      "reason": "Locked Institute editorial rule prohibits this negative wording"
+    },
+    {
+      "claim_key": "institute_disclaimer_section",
+      "target_sites": [
+        "atal_institute"
+      ],
+      "match_type": "structure",
+      "examples": [
+        "Disclaimer",
+        "Important Disclaimer"
+      ],
+      "reason": "ATAL Institute normal posts must not contain a disclaimer section"
+    },
+    {
+      "claim_key": "missing_eligibility_invention",
+      "target_sites": [
+        "atal_institute"
+      ],
+      "match_type": "data_contract",
+      "examples": [
+        "Who can apply",
+        "Eligibility",
+        "minimum qualification"
+      ],
+      "reason": "ATAL Institute normal-post eligibility behavior is OMIT"
+    }
+  ]
+}

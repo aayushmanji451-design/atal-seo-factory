@@ -1,0 +1,161 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "rules": {
+    "one_primary_intent_per_article": true,
+    "intent_must_match_course_target_site": true,
+    "multi_option_family_requires_option_key_for_option_specific_facts": true,
+    "missing_syllabus_blocks_only_syllabus_intents": true,
+    "missing_assessment_blocks_only_assessment_intents": true
+  },
+  "intents": [
+    {
+      "intent_key": "course_overview",
+      "label": "Course overview",
+      "required_contracts": [
+        "course_master",
+        "course_url"
+      ],
+      "required_facts": [
+        "canonical_name",
+        "duration",
+        "fee"
+      ],
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "fees",
+      "label": "Fees and payment information",
+      "required_contracts": [
+        "course_master"
+      ],
+      "required_facts": [
+        "fee.amount",
+        "fee.currency",
+        "fee.source_refs"
+      ],
+      "option_rule": "option_key required for multi-option Institute families",
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "duration",
+      "label": "Duration and timeline",
+      "required_contracts": [
+        "course_master"
+      ],
+      "required_facts": [
+        "duration.display",
+        "duration.source_refs"
+      ],
+      "option_rule": "option_key required for multi-option Institute families",
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "eligibility",
+      "label": "Eligibility",
+      "required_contracts": [
+        "course_master"
+      ],
+      "required_facts": [
+        "eligibility.publication_behavior"
+      ],
+      "site_rules": {
+        "atal_institute": "BLOCK_NORMAL_POST",
+        "atal_diploma": "REQUIRE_COURSE_CRITERIA"
+      },
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "syllabus",
+      "label": "Syllabus, subjects, papers, or modules",
+      "required_contracts": [
+        "course_master",
+        "syllabus_master"
+      ],
+      "required_facts": [
+        "syllabus.status",
+        "syllabus.source_refs"
+      ],
+      "required_status": "AVAILABLE_APPROVED_REFERENCE",
+      "allowed_when_syllabus_missing": false,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "assessment",
+      "label": "Assessment, examination, marks, or passing rules",
+      "required_contracts": [
+        "course_master",
+        "syllabus_master"
+      ],
+      "required_facts": [
+        "assessment.status",
+        "assessment.source_refs"
+      ],
+      "allowed_statuses": [
+        "APPROVED_POLICY",
+        "AVAILABLE_IN_APPROVED_REFERENCE"
+      ],
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": false
+    },
+    {
+      "intent_key": "admission",
+      "label": "Admission process",
+      "required_contracts": [
+        "course_master",
+        "course_url"
+      ],
+      "required_facts": [
+        "canonical_name",
+        "target_site",
+        "eligibility.publication_behavior"
+      ],
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "documents",
+      "label": "Documents and records",
+      "required_contracts": [
+        "course_master"
+      ],
+      "required_facts": [
+        "canonical_name",
+        "target_site"
+      ],
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    },
+    {
+      "intent_key": "same_site_comparison",
+      "label": "Comparison between canonical courses on one site",
+      "required_contracts": [
+        "course_master",
+        "course_url"
+      ],
+      "required_facts": [
+        "canonical_name",
+        "duration",
+        "fee",
+        "target_site"
+      ],
+      "constraints": [
+        "all compared target_site values must match",
+        "aliases resolve before comparison",
+        "options remain within their parent family"
+      ],
+      "allowed_when_syllabus_missing": true,
+      "allowed_when_assessment_missing": true
+    }
+  ]
+}

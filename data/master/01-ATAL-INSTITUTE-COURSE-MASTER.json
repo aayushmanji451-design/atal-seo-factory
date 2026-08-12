@@ -1,0 +1,2527 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "target_site": "atal_institute",
+  "catalog_summary": {
+    "active_course_families": 29,
+    "active_options": 49,
+    "source_rows": 51,
+    "duplicate_source_rows_merged": 1,
+    "alias_source_rows_merged": 1
+  },
+  "site_identity": {
+    "canonical_name": "ATAL Institute",
+    "canonical_domain": "atalinstitute.com",
+    "seo_adapter": "rank_math",
+    "default_course_hub": "https://atalinstitute.com/all-courses/",
+    "normal_post_eligibility_behavior": "OMIT"
+  },
+  "source_register": [
+    {
+      "source_id": "src.phase1.current_approval",
+      "type": "approved_decision",
+      "title": "Phase 1 canonical decisions confirmed 2026-08-11",
+      "authority": "controlling"
+    },
+    {
+      "source_id": "src.policy.agents_locked_rules",
+      "type": "repository_policy",
+      "path": "AGENTS.md",
+      "authority": "controlling"
+    },
+    {
+      "source_id": "src.institute.compliance_audit",
+      "type": "local_workbook",
+      "path": "C:/Users/aayus/Downloads/ATAL_Institute_Final_Compliance_Audit_2026.xlsx",
+      "authority": "supporting_catalog_evidence"
+    },
+    {
+      "source_id": "src.institute.approved_source_pack",
+      "type": "local_source_pack",
+      "paths": [
+        "C:/Users/aayus/Downloads/ATAL-Course-Brochure-2026.pdf",
+        "C:/Users/aayus/Downloads/ATAL-Institute-Certificate-Course-Brochure-2026-Final.pdf",
+        "C:/Users/aayus/Downloads/ATAL-Institute-Premium-Certificate-Course-Brochure-2026.pdf"
+      ],
+      "authority": "approved_reference"
+    }
+  ],
+  "courses": [
+    {
+      "course_key": "institute_basic_health_care",
+      "target_site": "atal_institute",
+      "canonical_name": "Basic Health Care",
+      "aliases": [
+        "Certificate in Basic Health Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "certificate_basic_health_care",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 14999,
+        "currency": "INR",
+        "display": "₹14,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_basic_health_care",
+          "canonical_name": "Certificate in Basic Health Care",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_hospital_management",
+      "target_site": "atal_institute",
+      "canonical_name": "Hospital Management",
+      "aliases": [
+        "Certificate in Hospital Management"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "certificate_hospital_management",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 14999,
+        "currency": "INR",
+        "display": "₹14,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_hospital_management",
+          "canonical_name": "Certificate in Hospital Management",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_first_aid_care",
+      "target_site": "atal_institute",
+      "canonical_name": "First Aid Care",
+      "aliases": [
+        "Certificate in First Aid Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "certificate_first_aid_care",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 14999,
+        "currency": "INR",
+        "display": "₹14,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_first_aid_care",
+          "canonical_name": "Certificate in First Aid Care",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_natural_pharmacy",
+      "target_site": "atal_institute",
+      "canonical_name": "Natural Pharmacy",
+      "aliases": [
+        "Certificate in Natural Pharmacy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "certificate_natural_pharmacy",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 14999,
+        "currency": "INR",
+        "display": "₹14,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_natural_pharmacy",
+          "canonical_name": "Certificate in Natural Pharmacy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_pg_basic_health_care",
+      "target_site": "atal_institute",
+      "canonical_name": "PG Certificate – Basic Health Care",
+      "aliases": [
+        "PG Certificate - Basic Health Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "pg_certificate_basic_health_care",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 19999,
+        "currency": "INR",
+        "display": "₹19,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "pg_certificate_basic_health_care",
+          "canonical_name": "PG Certificate – Basic Health Care",
+          "level": "PG_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 19999,
+            "currency": "INR",
+            "display": "₹19,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            48
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_pg_hospital_management",
+      "target_site": "atal_institute",
+      "canonical_name": "PG Certificate – Hospital Management",
+      "aliases": [
+        "PG Certificate - Hospital Management"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "pg_certificate_hospital_management",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 19999,
+        "currency": "INR",
+        "display": "₹19,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "pg_certificate_hospital_management",
+          "canonical_name": "PG Certificate – Hospital Management",
+          "level": "PG_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 19999,
+            "currency": "INR",
+            "display": "₹19,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_pg_dietetics_nutrition_management",
+      "target_site": "atal_institute",
+      "canonical_name": "PG Certificate – Dietetics & Nutrition Management",
+      "aliases": [
+        "Dietetics & Nutrition Management",
+        "PG Certificate - Dietetics & Nutrition Management"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "pg_certificate_dietetics_nutrition_management",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 19999,
+        "currency": "INR",
+        "display": "₹19,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "pg_certificate_dietetics_nutrition_management",
+          "canonical_name": "PG Certificate – Dietetics & Nutrition Management",
+          "level": "PG_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 19999,
+            "currency": "INR",
+            "display": "₹19,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_dialysis_technology",
+      "target_site": "atal_institute",
+      "canonical_name": "Dialysis Technology",
+      "aliases": [
+        "Dialysis Care Support"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_dialysis_care_support",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 11999,
+        "currency": "INR",
+        "display": "₹11,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_dialysis_care_support",
+          "canonical_name": "Certificate in Dialysis Care Support",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 11999,
+            "currency": "INR",
+            "display": "₹11,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            24
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_dialysis_technology",
+          "canonical_name": "Advanced Certificate in Dialysis Technology",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 16999,
+            "currency": "INR",
+            "display": "₹16,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_ecg_cardiac_care",
+      "target_site": "atal_institute",
+      "canonical_name": "ECG & Cardiac Care",
+      "aliases": [
+        "ECG Technology",
+        "Cardiac Care Technology"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_ecg_technology",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_ecg_technology",
+          "canonical_name": "Certificate in ECG Technology",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            25
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_cardiac_care",
+          "canonical_name": "Advanced Certificate in Cardiac Care Technology",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_first_aid_emergency_care",
+      "target_site": "atal_institute",
+      "canonical_name": "First Aid & Emergency Care",
+      "aliases": [
+        "Emergency & Trauma Care",
+        "Advanced Certificate in Emergency & Trauma Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "advanced_certificate_emergency_trauma_care",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "1 Year",
+        "normalized_months": 12,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 15999,
+        "currency": "INR",
+        "display": "₹15,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "advanced_certificate_emergency_trauma_care",
+          "canonical_name": "Advanced Certificate in Emergency & Trauma Care",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            51
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_hospital_healthcare_administration",
+      "target_site": "atal_institute",
+      "canonical_name": "Hospital & Healthcare Administration",
+      "aliases": [
+        "Hospital Administration",
+        "Healthcare Administration"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_hospital_administration",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 9999,
+        "currency": "INR",
+        "display": "₹9,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_hospital_administration",
+          "canonical_name": "Certificate in Hospital Administration",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 9999,
+            "currency": "INR",
+            "display": "₹9,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            29
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_healthcare_administration",
+          "canonical_name": "Advanced Certificate in Healthcare Administration",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_medical_billing_coding",
+      "target_site": "atal_institute",
+      "canonical_name": "Medical Billing & Coding",
+      "aliases": [
+        "Medical Coding Operations"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_medical_billing_coding",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_medical_billing_coding",
+          "canonical_name": "Certificate in Medical Billing & Coding",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            31
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_medical_coding_operations",
+          "canonical_name": "Advanced Certificate in Medical Coding Operations",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_medical_record_front_office_management",
+      "target_site": "atal_institute",
+      "canonical_name": "Medical Record & Front Office Management",
+      "aliases": [
+        "Healthcare Office & Records",
+        "Medical Record Management",
+        "Healthcare Front Office Management"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_medical_record_management",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 9999,
+        "currency": "INR",
+        "display": "₹9,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_medical_record_management",
+          "canonical_name": "Certificate in Medical Record Management",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 9999,
+            "currency": "INR",
+            "display": "₹9,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            33
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_healthcare_front_office",
+          "canonical_name": "Advanced Certificate in Healthcare Front Office Management",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_nursing_patient_care",
+      "target_site": "atal_institute",
+      "canonical_name": "Nursing & Patient Care",
+      "aliases": [
+        "Clinical Patient Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_nursing_patient_care",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 9999,
+        "currency": "INR",
+        "display": "₹9,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_nursing_patient_care",
+          "canonical_name": "Certificate in Nursing & Patient Care",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 9999,
+            "currency": "INR",
+            "display": "₹9,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            36
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_clinical_patient_care",
+          "canonical_name": "Advanced Certificate in Clinical Patient Care",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_operation_theatre_technology",
+      "target_site": "atal_institute",
+      "canonical_name": "Operation Theatre Technology",
+      "aliases": [
+        "OT & Clinical Support"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_ot_clinical_support",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 11999,
+        "currency": "INR",
+        "display": "₹11,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_ot_clinical_support",
+          "canonical_name": "Certificate in OT & Clinical Support",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 11999,
+            "currency": "INR",
+            "display": "₹11,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            37
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_ot_clinical_support",
+          "canonical_name": "Advanced Certificate in OT & Clinical Support",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 16999,
+            "currency": "INR",
+            "display": "₹16,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_pharmacy_healthcare_support",
+      "target_site": "atal_institute",
+      "canonical_name": "Pharmacy & Healthcare Support",
+      "aliases": [
+        "Pharmacy Support",
+        "Pharmacy Assistant",
+        "Healthcare Pharmacy Support"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_pharmacy_assistant",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_pharmacy_assistant",
+          "canonical_name": "Certificate in Pharmacy Assistant",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            39
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_healthcare_pharmacy_support",
+          "canonical_name": "Advanced Certificate in Healthcare Pharmacy Support",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_phlebotomy_blood_collection",
+      "target_site": "atal_institute",
+      "canonical_name": "Phlebotomy & Blood Collection",
+      "aliases": [
+        "Blood Collection & Sample Management",
+        "Phlebotomy Technician"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_phlebotomy_technician",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_phlebotomy_technician",
+          "canonical_name": "Certificate in Phlebotomy Technician",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            40
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_blood_collection_sample_management",
+          "canonical_name": "Advanced Certificate in Blood Collection & Sample Management",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_cms_ed",
+      "target_site": "atal_institute",
+      "canonical_name": "CMS & ED Program",
+      "aliases": [
+        "CMS & ED",
+        "CMS ED",
+        "CMS and ED",
+        "Community Medical Services & Essential Drug Awareness"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "cms_ed_two_year_program",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "2 Years",
+        "normalized_months": 24,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 17000,
+        "currency": "INR",
+        "display": "₹17,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "cms_ed_two_year_program",
+          "canonical_name": "CMS & ED Program – 2 Years",
+          "level": "INSTITUTE_PROGRAM",
+          "duration": {
+            "display": "2 Years",
+            "normalized_months": 24,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.policy.agents_locked_rules",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 17000,
+            "currency": "INR",
+            "display": "₹17,000",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.policy.agents_locked_rules",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_general_duty_assistant",
+      "target_site": "atal_institute",
+      "canonical_name": "General Duty Assistant (GDA)",
+      "aliases": [
+        "GDA",
+        "General Duty Assistant"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_general_duty_assistant",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 9999,
+        "currency": "INR",
+        "display": "₹9,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_general_duty_assistant",
+          "canonical_name": "Certificate in General Duty Assistant (GDA)",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 9999,
+            "currency": "INR",
+            "display": "₹9,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            28
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_general_duty_assistant",
+          "canonical_name": "Advanced Certificate in General Duty Assistant (GDA)",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_electro_homeopathy_wellness",
+      "target_site": "atal_institute",
+      "canonical_name": "Electro Homeopathy & Wellness",
+      "aliases": [
+        "Electro Homeopathy",
+        "Electro Homeopathy Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 3,
+      "primary_option_key": "certificate_electro_homeopathy_wellness",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_electro_homeopathy_wellness",
+          "canonical_name": "Certificate in Electro Homeopathy & Wellness",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            26
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_electro_homeopathy_therapy",
+          "canonical_name": "Advanced Certificate in Electro Homeopathy Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            8
+          ]
+        },
+        {
+          "option_key": "master_certificate_electro_homeopathy_wellness",
+          "canonical_name": "Master Certificate in Electro Homeopathy & Wellness Therapy",
+          "level": "MASTER_CERTIFICATE",
+          "duration": {
+            "display": "1.5 Years",
+            "normalized_months": 18,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 19999,
+            "currency": "INR",
+            "display": "₹19,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            46
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_panchakarma_ayurvedic_therapy",
+      "target_site": "atal_institute",
+      "canonical_name": "Panchakarma & Ayurvedic Therapy",
+      "aliases": [
+        "Ayurveda & Panchakarma",
+        "Panchakarma Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_panchakarma_therapy",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_panchakarma_therapy",
+          "canonical_name": "Certificate in Panchakarma Therapy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            38
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_ayurvedic_panchakarma",
+          "canonical_name": "Advanced Certificate in Ayurvedic Panchakarma Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_acupressure_wellness_therapy",
+      "target_site": "atal_institute",
+      "canonical_name": "Acupressure & Wellness Therapy",
+      "aliases": [
+        "Acupressure & Wellness",
+        "Acupressure Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_acupressure_therapy",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 9999,
+        "currency": "INR",
+        "display": "₹9,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_acupressure_therapy",
+          "canonical_name": "Certificate in Acupressure Therapy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 9999,
+            "currency": "INR",
+            "display": "₹9,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            21
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_acupressure_wellness",
+          "canonical_name": "Advanced Certificate in Acupressure & Wellness Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 14999,
+            "currency": "INR",
+            "display": "₹14,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_bone_joint_therapy",
+      "target_site": "atal_institute",
+      "canonical_name": "Bone & Joint Therapy",
+      "aliases": [
+        "Bone, Joint & Spine Care",
+        "Spine & Pain Relief Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_bone_joint_therapy",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_bone_joint_therapy",
+          "canonical_name": "Certificate in Bone & Joint Therapy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            23
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_spine_pain_relief",
+          "canonical_name": "Advanced Certificate in Spine & Pain Relief Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_neuro_therapy_rehabilitation",
+      "target_site": "atal_institute",
+      "canonical_name": "Neuro Therapy & Rehabilitation",
+      "aliases": [
+        "Neuro Therapy",
+        "Neuro Rehabilitation Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_neuro_therapy",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_neuro_therapy",
+          "canonical_name": "Certificate in Neuro Therapy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            35
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_neuro_rehabilitation",
+          "canonical_name": "Advanced Certificate in Neuro Rehabilitation Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            15,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_physiotherapy_rehabilitation",
+      "target_site": "atal_institute",
+      "canonical_name": "Physiotherapy & Rehabilitation",
+      "aliases": [
+        "Physiotherapy Assistance",
+        "Physiotherapy Rehabilitation"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 3,
+      "primary_option_key": "certificate_physiotherapy_assistance",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_physiotherapy_assistance",
+          "canonical_name": "Certificate in Physiotherapy Assistance",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            41
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_physiotherapy_rehabilitation",
+          "canonical_name": "Advanced Certificate in Physiotherapy Rehabilitation",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            18
+          ]
+        },
+        {
+          "option_key": "master_certificate_physiotherapy_rehabilitation",
+          "canonical_name": "Master Certificate in Physiotherapy & Rehabilitation Therapy",
+          "level": "MASTER_CERTIFICATE",
+          "duration": {
+            "display": "1.5 Years",
+            "normalized_months": 18,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 19999,
+            "currency": "INR",
+            "display": "₹19,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_yoga_naturopathy_therapy",
+      "target_site": "atal_institute",
+      "canonical_name": "Yoga & Naturopathy Therapy",
+      "aliases": [
+        "Yoga & Naturopathy",
+        "Yoga Therapy",
+        "Naturopathy Therapy"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_yoga_therapy",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 8999,
+        "currency": "INR",
+        "display": "₹8,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_yoga_therapy",
+          "canonical_name": "Certificate in Yoga Therapy",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 8999,
+            "currency": "INR",
+            "display": "₹8,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            42
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_naturopathy_therapy",
+          "canonical_name": "Advanced Certificate in Naturopathy Therapy",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 13999,
+            "currency": "INR",
+            "display": "₹13,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_bems",
+      "target_site": "atal_institute",
+      "canonical_name": "BEMS Program",
+      "aliases": [
+        "BEMS",
+        "Bachelor of Electro Homeopathic Medicine and Surgery",
+        "Electro Homeopathy & Wellness Program – 4.5 Years"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "bems_four_and_half_year_program",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "4.5 Years",
+        "normalized_months": 54,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 88000,
+        "currency": "INR",
+        "display": "₹88,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "bems_four_and_half_year_program",
+          "canonical_name": "BEMS Program",
+          "level": "INSTITUTE_PROGRAM",
+          "duration": {
+            "display": "4.5 Years",
+            "normalized_months": 54,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 88000,
+            "currency": "INR",
+            "display": "₹88,000",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_cch",
+      "target_site": "atal_institute",
+      "canonical_name": "Certificate in Community Health (CCH)",
+      "aliases": [
+        "CCH",
+        "Certificate in Community Health",
+        "Community Health Certificate",
+        "Therapy and Specialised Certificate"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 1,
+      "primary_option_key": "cch_program",
+      "fact_scope": "SINGLE_OPTION",
+      "duration": {
+        "display": "18 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 16999,
+        "currency": "INR",
+        "display": "₹16,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "cch_program",
+          "canonical_name": "Certificate in Community Health (CCH)",
+          "level": "INSTITUTE_PROGRAM",
+          "duration": {
+            "display": "18 Months",
+            "normalized_months": 18,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 16999,
+            "currency": "INR",
+            "display": "₹16,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            20,
+            50
+          ]
+        }
+      ]
+    },
+    {
+      "course_key": "institute_medical_laboratory_technology",
+      "target_site": "atal_institute",
+      "canonical_name": "Medical Laboratory Technology",
+      "aliases": [
+        "Medical Lab Technology",
+        "Clinical Lab Technology"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "ATAL Institute",
+      "credential_family": "institute_course_family",
+      "catalog_unit": "COURSE_FAMILY",
+      "family_option_count": 2,
+      "primary_option_key": "certificate_medical_lab_technology",
+      "fact_scope": "PRIMARY_OPTION_WITH_EXPLICIT_ALTERNATIVES",
+      "duration": {
+        "display": "6 Months",
+        "normalized_months": 6,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "fee": {
+        "amount": 10999,
+        "currency": "INR",
+        "display": "₹10,999",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.institute.compliance_audit"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "OMIT",
+        "criteria": [],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules"
+        ]
+      },
+      "options": [
+        {
+          "option_key": "certificate_medical_lab_technology",
+          "canonical_name": "Certificate in Medical Lab Technology",
+          "level": "CERTIFICATE",
+          "duration": {
+            "display": "6 Months",
+            "normalized_months": 6,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 10999,
+            "currency": "INR",
+            "display": "₹10,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            32
+          ]
+        },
+        {
+          "option_key": "advanced_certificate_clinical_lab_technology",
+          "canonical_name": "Advanced Certificate in Clinical Lab Technology",
+          "level": "ADVANCED_CERTIFICATE",
+          "duration": {
+            "display": "1 Year",
+            "normalized_months": 12,
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "fee": {
+            "amount": 15999,
+            "currency": "INR",
+            "display": "₹15,999",
+            "source_refs": [
+              "src.phase1.current_approval",
+              "src.institute.compliance_audit"
+            ]
+          },
+          "source_record_ids": [
+            5
+          ]
+        }
+      ]
+    }
+  ]
+}

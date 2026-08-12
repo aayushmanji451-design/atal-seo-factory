@@ -1,0 +1,635 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "target_site": "atal_diploma",
+  "catalog_summary": {
+    "active_course_identities": 14,
+    "diploma_level": 9,
+    "pg_diploma_level": 5
+  },
+  "site_identity": {
+    "canonical_name": "Atal Diploma",
+    "canonical_domain": "ataldiploma.com",
+    "seo_adapter": "aioseo",
+    "default_course_hub": "https://ataldiploma.com/",
+    "eligibility_behavior": "COURSE_BY_COURSE"
+  },
+  "source_register": [
+    {
+      "source_id": "src.phase1.current_approval",
+      "type": "approved_decision",
+      "title": "Phase 1 canonical decisions confirmed 2026-08-11",
+      "authority": "controlling"
+    },
+    {
+      "source_id": "src.policy.agents_locked_rules",
+      "type": "repository_policy",
+      "path": "AGENTS.md",
+      "authority": "controlling"
+    },
+    {
+      "source_id": "src.diploma.course_pages",
+      "type": "first_party_web",
+      "url": "https://ataldiploma.com/",
+      "observed_at": "2026-08-11",
+      "authority": "supporting"
+    },
+    {
+      "source_id": "src.university.syllabus_index",
+      "type": "official_university_web",
+      "url": "https://abvhv.edu.in/study-centre-course/syllabus",
+      "observed_at": "2026-08-11",
+      "authority": "supporting"
+    }
+  ],
+  "courses": [
+    {
+      "course_key": "diploma_first_aid_treatment",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in First Aid Treatment",
+      "aliases": [
+        "First Aid Treatment Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 25800,
+        "currency": "INR",
+        "display": "₹25,800",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_basic_health_care",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Basic Health Care",
+      "aliases": [
+        "Basic Health Care Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_electro_homeopathy",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Electro Homeopathy",
+      "aliases": [
+        "Electro Homeopathy Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_dnys",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Naturopathy & Yoga (DNYS)",
+      "aliases": [
+        "DNYS",
+        "Naturopathy & Yoga Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_hospital_management",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Hospital Management",
+      "aliases": [
+        "Hospital Management Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 25000,
+        "currency": "INR",
+        "display": "₹25,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.policy.agents_locked_rules",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_natural_pharma",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Natural Pharma",
+      "aliases": [
+        "Natural Pharma Diploma",
+        "Natural Pharmacy Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Sports Injury Diagnosis & Management",
+      "aliases": [
+        "Sports Injury Diagnosis & Management Diploma",
+        "Sports Injury Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_industrial_safety",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Industrial Safety",
+      "aliases": [
+        "Industrial Safety Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_fire_safety_hazard_management",
+      "target_site": "atal_diploma",
+      "canonical_name": "Diploma in Fire Safety & Hazard Management",
+      "aliases": [
+        "Fire Safety Diploma",
+        "Fire Safety and Hazard Management Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "12th Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_pg_basic_health_care",
+      "target_site": "atal_diploma",
+      "canonical_name": "PG Diploma in Basic Health Care",
+      "aliases": [
+        "PG Diploma Basic Health Care"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_pg_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "PG_DIPLOMA",
+      "duration": {
+        "display": "1 Year 6 Months",
+        "normalized_months": 18,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "Graduation Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_pg_dietetics_public_health_nutrition",
+      "target_site": "atal_diploma",
+      "canonical_name": "PG Diploma in Dietetics & Public Health Nutrition",
+      "aliases": [
+        "PG Diploma Dietetics & Public Health Nutrition",
+        "PG Diploma in Dietetics and Public Health Nutrition"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_pg_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "PG_DIPLOMA",
+      "duration": {
+        "display": "1 Year + Internship",
+        "normalized_months": null,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "Graduation Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_pg_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "canonical_name": "PG Diploma in Sports Injury Diagnosis & Management",
+      "aliases": [
+        "PG Diploma Sports Injury Diagnosis & Management",
+        "PG Sports Injury Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_pg_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "PG_DIPLOMA",
+      "duration": {
+        "display": "1 Year + Internship",
+        "normalized_months": null,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "Graduation Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_pg_disaster_management",
+      "target_site": "atal_diploma",
+      "canonical_name": "PG Diploma in Disaster Management",
+      "aliases": [
+        "PG Diploma Disaster Management",
+        "Disaster Management PG Diploma"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_pg_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "PG_DIPLOMA",
+      "duration": {
+        "display": "1 Year + Internship",
+        "normalized_months": null,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "Graduation Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    },
+    {
+      "course_key": "diploma_pg_industrial_safety",
+      "target_site": "atal_diploma",
+      "canonical_name": "PG Diploma in Industrial Safety",
+      "aliases": [
+        "PG Diploma Industrial Safety"
+      ],
+      "course_status": "ACTIVE_CANONICAL",
+      "identity_owner": "Atal Diploma",
+      "credential_family": "university_pg_diploma",
+      "catalog_unit": "COURSE_IDENTITY",
+      "level": "PG_DIPLOMA",
+      "duration": {
+        "display": "1 Year + Internship",
+        "normalized_months": null,
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "fee": {
+        "amount": 30000,
+        "currency": "INR",
+        "display": "₹30,000",
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      },
+      "eligibility": {
+        "publication_behavior": "SHOW",
+        "criteria": [
+          "Graduation Pass"
+        ],
+        "source_refs": [
+          "src.phase1.current_approval",
+          "src.diploma.course_pages"
+        ]
+      }
+    }
+  ],
+  "inactive_identity_register": [
+    {
+      "course_key": "diploma_disaster_management",
+      "canonical_name": "Diploma in Disaster Management",
+      "target_site": "atal_diploma",
+      "course_status": "INACTIVE_NONCANONICAL_EVIDENCE",
+      "reason": "Not present in the approved 14-identity Phase 1 catalog; retained here so its removal is explicit rather than silent."
+    }
+  ]
+}
