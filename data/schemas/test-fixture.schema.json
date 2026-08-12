@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/test-fixture.schema.json",
+  "title": "ATAL canonical validation fixtures",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "catalog_snapshot", "fixtures"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "catalog_snapshot": {
+      "type": "object",
+      "required": ["institute_course_keys", "diploma_course_keys"],
+      "properties": {
+        "institute_course_keys": {
+          "type": "array",
+          "minItems": 29,
+          "maxItems": 29,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^institute_[a-z0-9_]+$" }
+        },
+        "diploma_course_keys": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^diploma_[a-z0-9_]+$" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["fixture_key", "validation_area", "input", "expected"],
+        "properties": {
+          "fixture_key": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "validation_area": {
+            "type": "string",
+            "enum": [
+              "locked_fact",
+              "eligibility",
+              "identity",
+              "intent_gate",
+              "source_reference",
+              "internal_link",
+              "catalog_completeness"
+            ]
+          },
+          "input": { "type": "object" },
+          "expected": { "type": "object" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

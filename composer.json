@@ -28,10 +28,12 @@
         "phpcs": "@php vendor/bin/phpcs --standard=phpcs.xml.dist",
         "phpstan": "@php vendor/bin/phpstan analyse --configuration=phpstan.neon --no-progress",
         "phpunit": "@php vendor/bin/phpunit --configuration=phpunit.xml.dist",
+        "validate-knowledge": "@php tools/validate-knowledge.php",
         "test": [
             "@phpcs",
             "@phpstan",
-            "@phpunit"
+            "@phpunit",
+            "@validate-knowledge"
         ]
     },
     "config": {

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/image-asset.schema.json",
+  "title": "ATAL image asset map",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "asset_policy", "site_templates", "records"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "asset_policy": {
+      "type": "object",
+      "required": [
+        "asset_mode",
+        "publish_requires_attached_media",
+        "allow_cross_site_asset_reuse",
+        "allow_student_or_patient_identity",
+        "allow_authority_logos_or_seals",
+        "allow_clinical_procedure_depiction",
+        "required_aspect_ratio",
+        "required_alt_text_template"
+      ],
+      "properties": {
+        "asset_mode": { "type": "string", "const": "APPROVED_GENERATION_SPEC" },
+        "publish_requires_attached_media": { "type": "boolean", "const": true },
+        "allow_cross_site_asset_reuse": { "type": "boolean", "const": false },
+        "allow_student_or_patient_identity": { "type": "boolean", "const": false },
+        "allow_authority_logos_or_seals": { "type": "boolean", "const": false },
+        "allow_clinical_procedure_depiction": { "type": "boolean", "const": false },
+        "required_aspect_ratio": { "type": "string", "minLength": 1 },
+        "required_alt_text_template": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "site_templates": {
+      "type": "object",
+      "required": ["atal_institute", "atal_diploma"],
+      "properties": {
+        "atal_institute": {
+          "type": "object",
+          "required": ["template_key", "brand_text", "style"],
+          "properties": {
+            "template_key": { "type": "string", "minLength": 1 },
+            "brand_text": { "type": "string", "minLength": 1 },
+            "style": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "atal_diploma": {
+          "type": "object",
+          "required": ["template_key", "brand_text", "style"],
+          "properties": {
+            "template_key": { "type": "string", "minLength": 1 },
+            "brand_text": { "type": "string", "minLength": 1 },
+            "style": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "minItems": 43,
+      "maxItems": 43,
+      "items": {
+        "type": "object",
+        "required": ["course_key", "target_site", "asset_key", "template_key", "safe_subject", "status"],
+        "properties": {
+          "course_key": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" },
+          "target_site": { "type": "string", "enum": ["atal_institute", "atal_diploma"] },
+          "asset_key": { "type": "string", "minLength": 1 },
+          "template_key": { "type": "string", "minLength": 1 },
+          "safe_subject": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "const": "APPROVED_GENERATION_SPEC" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

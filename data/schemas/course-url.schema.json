@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/course-url.schema.json",
+  "title": "ATAL course URL map",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "rules", "site_hubs", "records"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "rules": {
+      "type": "object",
+      "required": [
+        "use_individual_course_url_when_approved_and_available",
+        "fallback_to_site_hub",
+        "cross_site_course_url_fallback"
+      ],
+      "properties": {
+        "use_individual_course_url_when_approved_and_available": { "type": "boolean", "const": true },
+        "fallback_to_site_hub": { "type": "boolean", "const": true },
+        "cross_site_course_url_fallback": { "type": "boolean", "const": false }
+      },
+      "additionalProperties": false
+    },
+    "site_hubs": {
+      "type": "object",
+      "required": ["atal_institute", "atal_diploma"],
+      "properties": {
+        "atal_institute": { "type": "string", "format": "uri" },
+        "atal_diploma": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "minItems": 43,
+      "maxItems": 43,
+      "items": {
+        "type": "object",
+        "required": ["course_key", "target_site", "canonical_url", "url_type", "legacy_urls"],
+        "properties": {
+          "course_key": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" },
+          "target_site": { "type": "string", "enum": ["atal_institute", "atal_diploma"] },
+          "canonical_url": { "type": "string", "format": "uri" },
+          "url_type": { "type": "string", "enum": ["SITE_HUB_FALLBACK", "INDIVIDUAL_COURSE_PAGE"] },
+          "legacy_urls": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "format": "uri" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

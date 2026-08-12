@@ -10,6 +10,7 @@
     <file>packages</file>
     <file>plugins</file>
     <file>tests</file>
+    <file>tools</file>
 
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
@@ -24,5 +25,38 @@
 
     <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
         <exclude-pattern>*/tests/*Test.php</exclude-pattern>
+    </rule>
+
+    <!-- Runtime-neutral contracts and CLI tools do not execute inside WordPress. -->
+    <rule ref="WordPress.Security.EscapeOutput">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/tools/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_fwrite">
+        <exclude-pattern>*/packages/contracts/src/Cli/*</exclude-pattern>
+        <exclude-pattern>*/tools/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.json_encode_json_encode">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+    </rule>
+
+    <!-- PHPCS does not understand PHPStan list/shape annotations on array parameters. -->
+    <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+    </rule>
+
+    <!-- Inline PHPStan @var assertions are intentionally one-line docblocks. -->
+    <rule ref="Generic.Commenting.DocComment.MissingShort">
+        <exclude-pattern>*/packages/contracts/*</exclude-pattern>
     </rule>
 </ruleset>
