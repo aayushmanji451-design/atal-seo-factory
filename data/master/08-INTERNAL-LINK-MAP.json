@@ -1,0 +1,435 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "rules": {
+    "cross_site_course_links_allowed": false,
+    "course_link_target_must_match_article_target_site": true,
+    "use_course_url_map_as_source_of_truth": true,
+    "maximum_related_course_links": 2
+  },
+  "utility_links": {
+    "atal_institute": [
+      {
+        "link_key": "institute_course_hub",
+        "url": "https://atalinstitute.com/all-courses/"
+      },
+      {
+        "link_key": "institute_student_login",
+        "url": "https://atalinstitute.com/login/?mode=student"
+      }
+    ],
+    "atal_diploma": [
+      {
+        "link_key": "diploma_home",
+        "url": "https://ataldiploma.com/"
+      },
+      {
+        "link_key": "diploma_registration",
+        "url": "https://ataldiploma.com/student-registration/"
+      },
+      {
+        "link_key": "diploma_syllabus",
+        "url": "https://ataldiploma.com/new-syllabus-2025/"
+      },
+      {
+        "link_key": "diploma_previous_papers",
+        "url": "https://ataldiploma.com/previous-year-papers/"
+      }
+    ]
+  },
+  "records": [
+    {
+      "course_key": "institute_basic_health_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_pg_basic_health_care",
+        "institute_nursing_patient_care"
+      ]
+    },
+    {
+      "course_key": "institute_hospital_management",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_hospital_healthcare_administration",
+        "institute_pg_hospital_management"
+      ]
+    },
+    {
+      "course_key": "institute_first_aid_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_first_aid_emergency_care",
+        "institute_general_duty_assistant"
+      ]
+    },
+    {
+      "course_key": "institute_natural_pharmacy",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_pharmacy_healthcare_support",
+        "institute_electro_homeopathy_wellness"
+      ]
+    },
+    {
+      "course_key": "institute_pg_basic_health_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_basic_health_care",
+        "institute_pg_dietetics_nutrition_management"
+      ]
+    },
+    {
+      "course_key": "institute_pg_hospital_management",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_hospital_management",
+        "institute_hospital_healthcare_administration"
+      ]
+    },
+    {
+      "course_key": "institute_pg_dietetics_nutrition_management",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_basic_health_care",
+        "institute_natural_pharmacy"
+      ]
+    },
+    {
+      "course_key": "institute_dialysis_technology",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_nursing_patient_care",
+        "institute_operation_theatre_technology"
+      ]
+    },
+    {
+      "course_key": "institute_ecg_cardiac_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_dialysis_technology",
+        "institute_first_aid_emergency_care"
+      ]
+    },
+    {
+      "course_key": "institute_first_aid_emergency_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_first_aid_care",
+        "institute_general_duty_assistant"
+      ]
+    },
+    {
+      "course_key": "institute_hospital_healthcare_administration",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_hospital_management",
+        "institute_medical_record_front_office_management"
+      ]
+    },
+    {
+      "course_key": "institute_medical_billing_coding",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_medical_record_front_office_management",
+        "institute_hospital_healthcare_administration"
+      ]
+    },
+    {
+      "course_key": "institute_medical_record_front_office_management",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_medical_billing_coding",
+        "institute_hospital_healthcare_administration"
+      ]
+    },
+    {
+      "course_key": "institute_nursing_patient_care",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_general_duty_assistant",
+        "institute_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "institute_operation_theatre_technology",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_nursing_patient_care",
+        "institute_dialysis_technology"
+      ]
+    },
+    {
+      "course_key": "institute_pharmacy_healthcare_support",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_natural_pharmacy",
+        "institute_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "institute_phlebotomy_blood_collection",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_medical_laboratory_technology",
+        "institute_nursing_patient_care"
+      ]
+    },
+    {
+      "course_key": "institute_cms_ed",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_cch",
+        "institute_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "institute_general_duty_assistant",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_nursing_patient_care",
+        "institute_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "institute_electro_homeopathy_wellness",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_bems",
+        "institute_natural_pharmacy"
+      ]
+    },
+    {
+      "course_key": "institute_panchakarma_ayurvedic_therapy",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_yoga_naturopathy_therapy",
+        "institute_acupressure_wellness_therapy"
+      ]
+    },
+    {
+      "course_key": "institute_acupressure_wellness_therapy",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_panchakarma_ayurvedic_therapy",
+        "institute_bone_joint_therapy"
+      ]
+    },
+    {
+      "course_key": "institute_bone_joint_therapy",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_physiotherapy_rehabilitation",
+        "institute_neuro_therapy_rehabilitation"
+      ]
+    },
+    {
+      "course_key": "institute_neuro_therapy_rehabilitation",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_physiotherapy_rehabilitation",
+        "institute_bone_joint_therapy"
+      ]
+    },
+    {
+      "course_key": "institute_physiotherapy_rehabilitation",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_neuro_therapy_rehabilitation",
+        "institute_bone_joint_therapy"
+      ]
+    },
+    {
+      "course_key": "institute_yoga_naturopathy_therapy",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_panchakarma_ayurvedic_therapy",
+        "institute_acupressure_wellness_therapy"
+      ]
+    },
+    {
+      "course_key": "institute_bems",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_electro_homeopathy_wellness",
+        "institute_cch"
+      ]
+    },
+    {
+      "course_key": "institute_cch",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_cms_ed",
+        "institute_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "institute_medical_laboratory_technology",
+      "target_site": "atal_institute",
+      "primary_link_key": "institute_course_hub",
+      "related_course_keys": [
+        "institute_phlebotomy_blood_collection",
+        "institute_ecg_cardiac_care"
+      ]
+    },
+    {
+      "course_key": "diploma_first_aid_treatment",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_basic_health_care",
+        "diploma_fire_safety_hazard_management"
+      ]
+    },
+    {
+      "course_key": "diploma_basic_health_care",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_first_aid_treatment",
+        "diploma_pg_basic_health_care"
+      ]
+    },
+    {
+      "course_key": "diploma_electro_homeopathy",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_natural_pharma",
+        "diploma_dnys"
+      ]
+    },
+    {
+      "course_key": "diploma_dnys",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_natural_pharma",
+        "diploma_electro_homeopathy"
+      ]
+    },
+    {
+      "course_key": "diploma_hospital_management",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_basic_health_care",
+        "diploma_first_aid_treatment"
+      ]
+    },
+    {
+      "course_key": "diploma_natural_pharma",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_dnys",
+        "diploma_electro_homeopathy"
+      ]
+    },
+    {
+      "course_key": "diploma_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_pg_sports_injury_diagnosis_management",
+        "diploma_first_aid_treatment"
+      ]
+    },
+    {
+      "course_key": "diploma_industrial_safety",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_fire_safety_hazard_management",
+        "diploma_pg_industrial_safety"
+      ]
+    },
+    {
+      "course_key": "diploma_fire_safety_hazard_management",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_industrial_safety",
+        "diploma_pg_disaster_management"
+      ]
+    },
+    {
+      "course_key": "diploma_pg_basic_health_care",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_basic_health_care",
+        "diploma_pg_dietetics_public_health_nutrition"
+      ]
+    },
+    {
+      "course_key": "diploma_pg_dietetics_public_health_nutrition",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_pg_basic_health_care",
+        "diploma_pg_sports_injury_diagnosis_management"
+      ]
+    },
+    {
+      "course_key": "diploma_pg_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_sports_injury_diagnosis_management",
+        "diploma_pg_dietetics_public_health_nutrition"
+      ]
+    },
+    {
+      "course_key": "diploma_pg_disaster_management",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_fire_safety_hazard_management",
+        "diploma_pg_industrial_safety"
+      ]
+    },
+    {
+      "course_key": "diploma_pg_industrial_safety",
+      "target_site": "atal_diploma",
+      "primary_link_key": "course_url_map",
+      "related_course_keys": [
+        "diploma_industrial_safety",
+        "diploma_pg_disaster_management"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "rules": {
+    "use_individual_course_url_when_approved_and_available": true,
+    "fallback_to_site_hub": true,
+    "cross_site_course_url_fallback": false
+  },
+  "site_hubs": {
+    "atal_institute": "https://atalinstitute.com/all-courses/",
+    "atal_diploma": "https://ataldiploma.com/"
+  },
+  "records": [
+    {
+      "course_key": "institute_basic_health_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_hospital_management",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_first_aid_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_natural_pharmacy",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_pg_basic_health_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_pg_hospital_management",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_pg_dietetics_nutrition_management",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_dialysis_technology",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_ecg_cardiac_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_first_aid_emergency_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_hospital_healthcare_administration",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_medical_billing_coding",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_medical_record_front_office_management",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_nursing_patient_care",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_operation_theatre_technology",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_pharmacy_healthcare_support",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_phlebotomy_blood_collection",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_cms_ed",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": [
+        "https://atalinstitute.com/courses/cms-ed-program-2-years/"
+      ]
+    },
+    {
+      "course_key": "institute_general_duty_assistant",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_electro_homeopathy_wellness",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_panchakarma_ayurvedic_therapy",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_acupressure_wellness_therapy",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_bone_joint_therapy",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_neuro_therapy_rehabilitation",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_physiotherapy_rehabilitation",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_yoga_naturopathy_therapy",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_bems",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_cch",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "institute_medical_laboratory_technology",
+      "target_site": "atal_institute",
+      "canonical_url": "https://atalinstitute.com/all-courses/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_first_aid_treatment",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A5%E0%A4%AE%E0%A4%BF%E0%A4%95-%E0%A4%9A%E0%A4%BF%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%BE-%E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_basic_health_care",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/diploma-in-basic-health-care-%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%E0%A4%AD%E0%A5%82%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%8D%E0%A4%AF-%E0%A4%B8%E0%A4%82/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_electro_homeopathy",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%87%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%8B-%E0%A4%B9%E0%A5%8B%E0%A4%AE%E0%A5%8D%E0%A4%AF%E0%A5%8B%E0%A4%AA%E0%A5%88%E0%A4%A5%E0%A5%80-%E0%A4%A1%E0%A4%BF%E0%A4%AA/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_dnys",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%AF%E0%A5%8B%E0%A4%97-%E0%A4%94%E0%A4%B0-%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%95%E0%A5%83%E0%A4%A4%E0%A4%BF%E0%A4%95-%E0%A4%9A%E0%A4%BF%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A5%8D%E0%A4%B8/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_hospital_management",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%85%E0%A4%B8%E0%A5%8D%E0%A4%AA%E0%A4%A4%E0%A4%BE%E0%A4%B2-%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AC%E0%A4%82%E0%A4%A7%E0%A4%A8-%E0%A4%A1%E0%A4%BF%E0%A4%AA%E0%A5%8D%E0%A4%B2%E0%A5%8B%E0%A4%AE%E0%A4%BE/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_natural_pharma",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%95%E0%A5%83%E0%A4%A4%E0%A4%BF%E0%A4%95-%E0%A4%AB%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A4%BE-%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%AA%E0%A4%BE/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_industrial_safety",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_fire_safety_hazard_management",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_pg_basic_health_care",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%E0%A4%AD%E0%A5%82%E0%A4%A4-%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%8D%E0%A4%AF-%E0%A4%B8%E0%A4%82%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7/",
+      "url_type": "INDIVIDUAL_COURSE_PAGE",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_pg_dietetics_public_health_nutrition",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_pg_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_pg_disaster_management",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    },
+    {
+      "course_key": "diploma_pg_industrial_safety",
+      "target_site": "atal_diploma",
+      "canonical_url": "https://ataldiploma.com/",
+      "url_type": "SITE_HUB_FALLBACK",
+      "legacy_urls": []
+    }
+  ]
+}

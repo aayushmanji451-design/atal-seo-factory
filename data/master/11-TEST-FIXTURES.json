@@ -1,0 +1,419 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "catalog_snapshot": {
+    "institute_course_keys": [
+      "institute_basic_health_care",
+      "institute_hospital_management",
+      "institute_first_aid_care",
+      "institute_natural_pharmacy",
+      "institute_pg_basic_health_care",
+      "institute_pg_hospital_management",
+      "institute_pg_dietetics_nutrition_management",
+      "institute_dialysis_technology",
+      "institute_ecg_cardiac_care",
+      "institute_first_aid_emergency_care",
+      "institute_hospital_healthcare_administration",
+      "institute_medical_billing_coding",
+      "institute_medical_record_front_office_management",
+      "institute_nursing_patient_care",
+      "institute_operation_theatre_technology",
+      "institute_pharmacy_healthcare_support",
+      "institute_phlebotomy_blood_collection",
+      "institute_cms_ed",
+      "institute_general_duty_assistant",
+      "institute_electro_homeopathy_wellness",
+      "institute_panchakarma_ayurvedic_therapy",
+      "institute_acupressure_wellness_therapy",
+      "institute_bone_joint_therapy",
+      "institute_neuro_therapy_rehabilitation",
+      "institute_physiotherapy_rehabilitation",
+      "institute_yoga_naturopathy_therapy",
+      "institute_bems",
+      "institute_cch",
+      "institute_medical_laboratory_technology"
+    ],
+    "diploma_course_keys": [
+      "diploma_first_aid_treatment",
+      "diploma_basic_health_care",
+      "diploma_electro_homeopathy",
+      "diploma_dnys",
+      "diploma_hospital_management",
+      "diploma_natural_pharma",
+      "diploma_sports_injury_diagnosis_management",
+      "diploma_industrial_safety",
+      "diploma_fire_safety_hazard_management",
+      "diploma_pg_basic_health_care",
+      "diploma_pg_dietetics_public_health_nutrition",
+      "diploma_pg_sports_injury_diagnosis_management",
+      "diploma_pg_disaster_management",
+      "diploma_pg_industrial_safety"
+    ]
+  },
+  "fixtures": [
+    {
+      "fixture_key": "cms_ed_locked_values_pass",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "target_site": "atal_institute",
+        "duration": "2 Years",
+        "fee_amount": 17000
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "cms_ed_wrong_duration_fail",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "duration": "6 Months",
+        "fee_amount": 17000
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "locked_duration_mismatch"
+      }
+    },
+    {
+      "fixture_key": "cms_ed_wrong_fee_fail",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "duration": "2 Years",
+        "fee_amount": 16999
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "locked_fee_mismatch"
+      }
+    },
+    {
+      "fixture_key": "institute_normal_eligibility_omit_pass",
+      "validation_area": "eligibility",
+      "input": {
+        "target_site": "atal_institute",
+        "content_type": "normal_post",
+        "publication_behavior": "OMIT",
+        "eligibility_heading_present": false
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "institute_normal_eligibility_heading_fail",
+      "validation_area": "eligibility",
+      "input": {
+        "target_site": "atal_institute",
+        "content_type": "normal_post",
+        "publication_behavior": "OMIT",
+        "eligibility_heading_present": true
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "institute_eligibility_must_be_omitted"
+      }
+    },
+    {
+      "fixture_key": "diploma_first_aid_fee_pass",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "diploma_first_aid_treatment",
+        "fee_amount": 25800
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "diploma_hospital_management_fee_pass",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "diploma_hospital_management",
+        "fee_amount": 25000
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "diploma_general_fee_pass",
+      "validation_area": "locked_fact",
+      "input": {
+        "course_key": "diploma_fire_safety_hazard_management",
+        "fee_amount": 30000
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "diploma_basic_health_eligibility_pass",
+      "validation_area": "eligibility",
+      "input": {
+        "course_key": "diploma_basic_health_care",
+        "criteria": [
+          "12th Pass"
+        ]
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "diploma_dnys_eligibility_pass",
+      "validation_area": "eligibility",
+      "input": {
+        "course_key": "diploma_dnys",
+        "criteria": [
+          "12th Pass"
+        ]
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "pg_diploma_eligibility_pass",
+      "validation_area": "eligibility",
+      "input": {
+        "course_key": "diploma_pg_basic_health_care",
+        "criteria": [
+          "Graduation Pass"
+        ]
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "cross_site_identity_fail",
+      "validation_area": "identity",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "target_site": "atal_diploma"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "course_target_site_mismatch"
+      }
+    },
+    {
+      "fixture_key": "alias_resolves_single_record_pass",
+      "validation_area": "identity",
+      "input": {
+        "alias": "CMS ED"
+      },
+      "expected": {
+        "valid": true,
+        "course_key": "institute_cms_ed",
+        "active_record_count": 1
+      }
+    },
+    {
+      "fixture_key": "cms_missing_syllabus_overview_allowed",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "intent_key": "course_overview"
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "cms_missing_syllabus_intent_blocked",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "intent_key": "syllabus"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "approved_syllabus_missing"
+      }
+    },
+    {
+      "fixture_key": "cms_assessment_still_allowed",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "institute_cms_ed",
+        "intent_key": "assessment"
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "cch_fee_allowed_while_syllabus_missing",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "institute_cch",
+        "intent_key": "fees"
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "cch_assessment_blocked",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "institute_cch",
+        "intent_key": "assessment"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "approved_assessment_missing"
+      }
+    },
+    {
+      "fixture_key": "industrial_safety_overview_allowed",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "diploma_industrial_safety",
+        "intent_key": "course_overview"
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "industrial_safety_syllabus_blocked",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "diploma_industrial_safety",
+        "intent_key": "syllabus"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "approved_syllabus_missing"
+      }
+    },
+    {
+      "fixture_key": "pg_disaster_assessment_allowed",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "diploma_pg_disaster_management",
+        "intent_key": "assessment"
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "pg_disaster_syllabus_blocked",
+      "validation_area": "intent_gate",
+      "input": {
+        "course_key": "diploma_pg_disaster_management",
+        "intent_key": "syllabus"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "approved_syllabus_missing"
+      }
+    },
+    {
+      "fixture_key": "fee_duration_sources_required",
+      "validation_area": "source_reference",
+      "input": {
+        "require_fee_source_refs": true,
+        "require_duration_source_refs": true,
+        "include_institute_options": true
+      },
+      "expected": {
+        "valid": true,
+        "checked_all_courses": true
+      }
+    },
+    {
+      "fixture_key": "cross_site_internal_link_fail",
+      "validation_area": "internal_link",
+      "input": {
+        "article_target_site": "atal_institute",
+        "linked_course_key": "diploma_basic_health_care"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "cross_site_course_link"
+      }
+    },
+    {
+      "fixture_key": "institute_catalog_cardinality_pass",
+      "validation_area": "catalog_completeness",
+      "input": {
+        "expected_families": 29,
+        "expected_options": 49
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "diploma_catalog_cardinality_pass",
+      "validation_area": "catalog_completeness",
+      "input": {
+        "expected_identities": 14,
+        "expected_diploma_level": 9,
+        "expected_pg_level": 5
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "total_catalog_cardinality_pass",
+      "validation_area": "catalog_completeness",
+      "input": {
+        "expected_active_identities": 43
+      },
+      "expected": {
+        "valid": true
+      }
+    },
+    {
+      "fixture_key": "medical_laboratory_family_present",
+      "validation_area": "catalog_completeness",
+      "input": {
+        "course_key": "institute_medical_laboratory_technology"
+      },
+      "expected": {
+        "valid": true,
+        "family_option_count": 2
+      }
+    },
+    {
+      "fixture_key": "noncanonical_diploma_disaster_inactive",
+      "validation_area": "catalog_completeness",
+      "input": {
+        "course_key": "diploma_disaster_management"
+      },
+      "expected": {
+        "valid": false,
+        "error_key": "inactive_noncanonical_identity"
+      }
+    },
+    {
+      "fixture_key": "source_duplicate_and_alias_merge_pass",
+      "validation_area": "identity",
+      "input": {
+        "source_rows": 51,
+        "duplicate_rows_merged": 1,
+        "alias_rows_merged": 1,
+        "active_options": 49
+      },
+      "expected": {
+        "valid": true
+      }
+    }
+  ]
+}

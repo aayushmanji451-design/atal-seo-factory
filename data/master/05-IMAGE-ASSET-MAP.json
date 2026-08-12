@@ -1,0 +1,378 @@
+{
+  "contract_version": "1.1.0",
+  "generated_at": "2026-08-11",
+  "catalog_scope": {
+    "institute_active_course_families": 29,
+    "institute_active_options": 49,
+    "diploma_active_course_identities": 14,
+    "total_active_course_identities": 43
+  },
+  "asset_policy": {
+    "asset_mode": "APPROVED_GENERATION_SPEC",
+    "publish_requires_attached_media": true,
+    "allow_cross_site_asset_reuse": false,
+    "allow_student_or_patient_identity": false,
+    "allow_authority_logos_or_seals": false,
+    "allow_clinical_procedure_depiction": false,
+    "required_aspect_ratio": "16:9",
+    "required_alt_text_template": "{canonical_course_name} course information"
+  },
+  "site_templates": {
+    "atal_institute": {
+      "template_key": "atal-institute-knowledge-card-v1",
+      "brand_text": "ATAL Institute",
+      "style": "clean educational illustration, blue and teal, no medical authority symbols"
+    },
+    "atal_diploma": {
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "brand_text": "Atal Diploma",
+      "style": "clean academic illustration, navy and saffron accents, no university seal"
+    }
+  },
+  "records": [
+    {
+      "course_key": "institute_basic_health_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.basic_health_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Basic Health Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_hospital_management",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.hospital_management.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Hospital Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_first_aid_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.first_aid_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "First Aid Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_natural_pharmacy",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.natural_pharmacy.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Natural Pharmacy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_pg_basic_health_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.pg_basic_health_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "PG Certificate – Basic Health Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_pg_hospital_management",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.pg_hospital_management.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "PG Certificate – Hospital Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_pg_dietetics_nutrition_management",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.pg_dietetics_nutrition_management.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "PG Certificate – Dietetics & Nutrition Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_dialysis_technology",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.dialysis_technology.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Dialysis Technology: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_ecg_cardiac_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.ecg_cardiac_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "ECG & Cardiac Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_first_aid_emergency_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.first_aid_emergency_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "First Aid & Emergency Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_hospital_healthcare_administration",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.hospital_healthcare_administration.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Hospital & Healthcare Administration: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_medical_billing_coding",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.medical_billing_coding.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Medical Billing & Coding: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_medical_record_front_office_management",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.medical_record_front_office_management.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Medical Record & Front Office Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_nursing_patient_care",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.nursing_patient_care.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Nursing & Patient Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_operation_theatre_technology",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.operation_theatre_technology.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Operation Theatre Technology: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_pharmacy_healthcare_support",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.pharmacy_healthcare_support.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Pharmacy & Healthcare Support: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_phlebotomy_blood_collection",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.phlebotomy_blood_collection.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Phlebotomy & Blood Collection: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_cms_ed",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.cms_ed.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "CMS & ED Program: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_general_duty_assistant",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.general_duty_assistant.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "General Duty Assistant (GDA): books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_electro_homeopathy_wellness",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.electro_homeopathy_wellness.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Electro Homeopathy & Wellness: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_panchakarma_ayurvedic_therapy",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.panchakarma_ayurvedic_therapy.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Panchakarma & Ayurvedic Therapy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_acupressure_wellness_therapy",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.acupressure_wellness_therapy.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Acupressure & Wellness Therapy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_bone_joint_therapy",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.bone_joint_therapy.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Bone & Joint Therapy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_neuro_therapy_rehabilitation",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.neuro_therapy_rehabilitation.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Neuro Therapy & Rehabilitation: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_physiotherapy_rehabilitation",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.physiotherapy_rehabilitation.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Physiotherapy & Rehabilitation: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_yoga_naturopathy_therapy",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.yoga_naturopathy_therapy.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Yoga & Naturopathy Therapy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_bems",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.bems.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "BEMS Program: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_cch",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.cch.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Certificate in Community Health (CCH): books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "institute_medical_laboratory_technology",
+      "target_site": "atal_institute",
+      "asset_key": "img.institute.medical_laboratory_technology.v1",
+      "template_key": "atal-institute-knowledge-card-v1",
+      "safe_subject": "Medical Laboratory Technology: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_first_aid_treatment",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.first_aid_treatment.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in First Aid Treatment: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_basic_health_care",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.basic_health_care.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Basic Health Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_electro_homeopathy",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.electro_homeopathy.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Electro Homeopathy: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_dnys",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.dnys.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Naturopathy & Yoga (DNYS): books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_hospital_management",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.hospital_management.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Hospital Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_natural_pharma",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.natural_pharma.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Natural Pharma: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.sports_injury_diagnosis_management.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Sports Injury Diagnosis & Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_industrial_safety",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.industrial_safety.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Industrial Safety: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_fire_safety_hazard_management",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.fire_safety_hazard_management.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "Diploma in Fire Safety & Hazard Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_pg_basic_health_care",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.pg_basic_health_care.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "PG Diploma in Basic Health Care: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_pg_dietetics_public_health_nutrition",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.pg_dietetics_public_health_nutrition.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "PG Diploma in Dietetics & Public Health Nutrition: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_pg_sports_injury_diagnosis_management",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.pg_sports_injury_diagnosis_management.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "PG Diploma in Sports Injury Diagnosis & Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_pg_disaster_management",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.pg_disaster_management.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "PG Diploma in Disaster Management: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    },
+    {
+      "course_key": "diploma_pg_industrial_safety",
+      "target_site": "atal_diploma",
+      "asset_key": "img.diploma.pg_industrial_safety.v1",
+      "template_key": "atal-diploma-knowledge-card-v1",
+      "safe_subject": "PG Diploma in Industrial Safety: books, checklists, records and neutral educational icons; no clinical procedure depiction",
+      "status": "APPROVED_GENERATION_SPEC"
+    }
+  ]
+}
