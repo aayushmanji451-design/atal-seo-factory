@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/blocked-claim.schema.json",
+  "title": "ATAL blocked claims",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "default_action", "claims"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "default_action": { "type": "string", "const": "BLOCK_AND_REQUIRE_HUMAN_REVIEW" },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["claim_key", "target_sites", "match_type", "examples", "reason"],
+        "properties": {
+          "claim_key": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "target_sites": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "enum": ["atal_institute", "atal_diploma"] }
+          },
+          "match_type": { "type": "string", "minLength": 1 },
+          "examples": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "reason": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/internal-link.schema.json",
+  "title": "ATAL internal link map",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "rules", "utility_links", "records"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "rules": {
+      "type": "object",
+      "required": [
+        "cross_site_course_links_allowed",
+        "course_link_target_must_match_article_target_site",
+        "use_course_url_map_as_source_of_truth",
+        "maximum_related_course_links"
+      ],
+      "properties": {
+        "cross_site_course_links_allowed": { "type": "boolean", "const": false },
+        "course_link_target_must_match_article_target_site": { "type": "boolean", "const": true },
+        "use_course_url_map_as_source_of_truth": { "type": "boolean", "const": true },
+        "maximum_related_course_links": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "utility_links": {
+      "type": "object",
+      "required": ["atal_institute", "atal_diploma"],
+      "properties": {
+        "atal_institute": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["link_key", "url"],
+            "properties": {
+              "link_key": { "type": "string", "minLength": 1 },
+              "url": { "type": "string", "format": "uri" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "atal_diploma": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["link_key", "url"],
+            "properties": {
+              "link_key": { "type": "string", "minLength": 1 },
+              "url": { "type": "string", "format": "uri" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "minItems": 43,
+      "maxItems": 43,
+      "items": {
+        "type": "object",
+        "required": ["course_key", "target_site", "primary_link_key", "related_course_keys"],
+        "properties": {
+          "course_key": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" },
+          "target_site": { "type": "string", "enum": ["atal_institute", "atal_diploma"] },
+          "primary_link_key": { "type": "string", "minLength": 1 },
+          "related_course_keys": {
+            "type": "array",
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

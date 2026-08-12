@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/search-intent.schema.json",
+  "title": "ATAL search intent taxonomy",
+  "type": "object",
+  "required": ["contract_version", "generated_at", "catalog_scope", "rules", "intents"],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": { "type": "object" },
+    "rules": {
+      "type": "object",
+      "required": [
+        "one_primary_intent_per_article",
+        "intent_must_match_course_target_site",
+        "multi_option_family_requires_option_key_for_option_specific_facts",
+        "missing_syllabus_blocks_only_syllabus_intents",
+        "missing_assessment_blocks_only_assessment_intents"
+      ],
+      "properties": {
+        "one_primary_intent_per_article": { "type": "boolean", "const": true },
+        "intent_must_match_course_target_site": { "type": "boolean", "const": true },
+        "multi_option_family_requires_option_key_for_option_specific_facts": { "type": "boolean", "const": true },
+        "missing_syllabus_blocks_only_syllabus_intents": { "type": "boolean", "const": true },
+        "missing_assessment_blocks_only_assessment_intents": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false
+    },
+    "intents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "intent_key",
+          "label",
+          "required_contracts",
+          "required_facts",
+          "allowed_when_syllabus_missing",
+          "allowed_when_assessment_missing"
+        ],
+        "properties": {
+          "intent_key": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "label": { "type": "string", "minLength": 1 },
+          "required_contracts": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "required_facts": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "option_rule": { "type": "string", "minLength": 1 },
+          "site_rules": {
+            "type": "object",
+            "required": ["atal_institute", "atal_diploma"],
+            "properties": {
+              "atal_institute": { "type": "string", "minLength": 1 },
+              "atal_diploma": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          "required_status": { "type": "string", "minLength": 1 },
+          "allowed_statuses": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "constraints": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "allowed_when_syllabus_missing": { "type": "boolean" },
+          "allowed_when_assessment_missing": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

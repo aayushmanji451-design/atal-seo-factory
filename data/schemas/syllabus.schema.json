@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/syllabus.schema.json",
+  "title": "ATAL syllabus master",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "generated_at",
+    "catalog_scope",
+    "policy",
+    "source_register",
+    "records",
+    "open_missing_data_blocks"
+  ],
+  "properties": {
+    "contract_version": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "catalog_scope": {
+      "type": "object",
+      "required": [
+        "institute_active_course_families",
+        "institute_active_options",
+        "diploma_active_course_identities",
+        "total_active_course_identities"
+      ],
+      "properties": {
+        "institute_active_course_families": { "type": "integer", "const": 29 },
+        "institute_active_options": { "type": "integer", "const": 49 },
+        "diploma_active_course_identities": { "type": "integer", "const": 14 },
+        "total_active_course_identities": { "type": "integer", "const": 43 }
+      },
+      "additionalProperties": false
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "course_master_survives_missing_syllabus",
+        "missing_syllabus_blocks_only",
+        "missing_assessment_blocks_only",
+        "never_infer_topics_from_generated_seo_copy"
+      ],
+      "properties": {
+        "course_master_survives_missing_syllabus": { "type": "boolean", "const": true },
+        "missing_syllabus_blocks_only": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "missing_assessment_blocks_only": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "never_infer_topics_from_generated_seo_copy": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": false
+    },
+    "source_register": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_id", "type"],
+        "properties": {
+          "source_id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri" },
+          "observed_at": { "type": "string", "format": "date" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "course_key",
+          "target_site",
+          "syllabus",
+          "assessment",
+          "blocked_intents",
+          "course_master_blocked"
+        ],
+        "properties": {
+          "course_key": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" },
+          "target_site": { "type": "string", "enum": ["atal_institute", "atal_diploma"] },
+          "syllabus": {
+            "type": "object",
+            "required": ["status", "source_refs"],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["AVAILABLE_APPROVED_REFERENCE", "MISSING_APPROVED_SOURCE"]
+              },
+              "content_mode": { "type": "string", "minLength": 1 },
+              "source_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "source_url": { "type": "string", "format": "uri" },
+              "topics": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "additionalProperties": false
+          },
+          "assessment": {
+            "type": "object",
+            "required": ["status", "source_refs"],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "AVAILABLE_IN_APPROVED_REFERENCE",
+                  "APPROVED_POLICY",
+                  "MISSING_APPROVED_SOURCE"
+                ]
+              },
+              "mode": { "type": "string", "minLength": 1 },
+              "passing_percent": { "type": "integer", "minimum": 0 },
+              "source_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "additionalProperties": false
+          },
+          "blocked_intents": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "course_master_blocked": { "type": "boolean", "const": false }
+        },
+        "additionalProperties": false
+      }
+    },
+    "open_missing_data_blocks": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["block_key", "course_key", "missing"],
+        "properties": {
+          "block_key": { "type": "string", "pattern": "^missing_[a-z0-9_]+$" },
+          "course_key": { "type": "string", "pattern": "^(institute|diploma)_[a-z0-9_]+$" },
+          "missing": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

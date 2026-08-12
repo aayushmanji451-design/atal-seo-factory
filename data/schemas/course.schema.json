@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atal.local/schemas/course.schema.json",
+  "title": "ATAL canonical course master",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "generated_at",
+    "target_site",
+    "catalog_summary",
+    "site_identity",
+    "source_register",
+    "courses"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "target_site": {
+      "type": "string",
+      "enum": [
+        "atal_institute",
+        "atal_diploma"
+      ]
+    },
+    "catalog_summary": {
+      "type": "object",
+      "properties": {
+        "active_course_families": { "type": "integer", "minimum": 0 },
+        "active_options": { "type": "integer", "minimum": 0 },
+        "source_rows": { "type": "integer", "minimum": 0 },
+        "duplicate_source_rows_merged": { "type": "integer", "minimum": 0 },
+        "alias_source_rows_merged": { "type": "integer", "minimum": 0 },
+        "active_course_identities": { "type": "integer", "minimum": 0 },
+        "diploma_level": { "type": "integer", "minimum": 0 },
+        "pg_diploma_level": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "site_identity": {
+      "type": "object",
+      "required": [
+        "canonical_name",
+        "canonical_domain",
+        "seo_adapter",
+        "default_course_hub"
+      ],
+      "properties": {
+        "canonical_name": { "type": "string", "minLength": 1 },
+        "canonical_domain": { "type": "string", "minLength": 1 },
+        "seo_adapter": { "type": "string", "enum": ["rank_math", "aioseo"] },
+        "default_course_hub": { "type": "string", "format": "uri" },
+        "normal_post_eligibility_behavior": { "type": "string", "enum": ["OMIT"] },
+        "eligibility_behavior": { "type": "string", "enum": ["COURSE_BY_COURSE"] }
+      },
+      "additionalProperties": false
+    },
+    "source_register": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_id", "type", "authority"],
+        "properties": {
+          "source_id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "authority": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "paths": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "url": { "type": "string", "format": "uri" },
+          "observed_at": { "type": "string", "format": "date" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "courses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "course_key",
+          "target_site",
+          "canonical_name",
+          "aliases",
+          "course_status",
+          "identity_owner",
+          "credential_family",
+          "catalog_unit",
+          "duration",
+          "fee",
+          "eligibility"
+        ],
+        "properties": {
+          "course_key": {
+            "type": "string",
+            "pattern": "^(institute|diploma)_[a-z0-9_]+$"
+          },
+          "target_site": {
+            "type": "string",
+            "enum": ["atal_institute", "atal_diploma"]
+          },
+          "canonical_name": { "type": "string", "minLength": 1 },
+          "aliases": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "course_status": { "type": "string", "const": "ACTIVE_CANONICAL" },
+          "identity_owner": { "type": "string", "minLength": 1 },
+          "credential_family": { "type": "string", "minLength": 1 },
+          "catalog_unit": {
+            "type": "string",
+            "enum": ["COURSE_FAMILY", "COURSE_IDENTITY"]
+          },
+          "family_option_count": { "type": "integer", "minimum": 1 },
+          "primary_option_key": { "type": "string", "minLength": 1 },
+          "fact_scope": { "type": "string", "minLength": 1 },
+          "level": { "type": "string", "enum": ["DIPLOMA", "PG_DIPLOMA"] },
+          "duration": {
+            "type": "object",
+            "required": ["display", "normalized_months", "source_refs"],
+            "properties": {
+              "display": { "type": "string", "minLength": 1 },
+              "normalized_months": { "type": ["integer", "null"], "minimum": 1 },
+              "source_refs": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "additionalProperties": false
+          },
+          "fee": {
+            "type": "object",
+            "required": ["amount", "currency", "display", "source_refs"],
+            "properties": {
+              "amount": { "type": "integer", "minimum": 0 },
+              "currency": { "type": "string", "const": "INR" },
+              "display": { "type": "string", "minLength": 1 },
+              "source_refs": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "additionalProperties": false
+          },
+          "eligibility": {
+            "type": "object",
+            "required": ["publication_behavior", "criteria", "source_refs"],
+            "properties": {
+              "publication_behavior": { "type": "string", "enum": ["OMIT", "SHOW"] },
+              "criteria": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "source_refs": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            },
+            "additionalProperties": false
+          },
+          "options": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "option_key",
+                "canonical_name",
+                "level",
+                "duration",
+                "fee",
+                "source_record_ids"
+              ],
+              "properties": {
+                "option_key": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+                "canonical_name": { "type": "string", "minLength": 1 },
+                "level": { "type": "string", "minLength": 1 },
+                "duration": {
+                  "type": "object",
+                  "required": ["display", "normalized_months", "source_refs"],
+                  "properties": {
+                    "display": { "type": "string", "minLength": 1 },
+                    "normalized_months": { "type": "integer", "minimum": 1 },
+                    "source_refs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": { "type": "string", "minLength": 1 }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "fee": {
+                  "type": "object",
+                  "required": ["amount", "currency", "display", "source_refs"],
+                  "properties": {
+                    "amount": { "type": "integer", "minimum": 0 },
+                    "currency": { "type": "string", "const": "INR" },
+                    "display": { "type": "string", "minLength": 1 },
+                    "source_refs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "uniqueItems": true,
+                      "items": { "type": "string", "minLength": 1 }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "source_record_ids": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": { "type": "integer", "minimum": 1 }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "inactive_identity_register": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["course_key", "canonical_name", "target_site", "course_status", "reason"],
+        "properties": {
+          "course_key": { "type": "string", "pattern": "^diploma_[a-z0-9_]+$" },
+          "canonical_name": { "type": "string", "minLength": 1 },
+          "target_site": { "type": "string", "const": "atal_diploma" },
+          "course_status": { "type": "string", "const": "INACTIVE_NONCANONICAL_EVIDENCE" },
+          "reason": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
