@@ -7,6 +7,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/Support/WordPressStubs.php';
+
 $autoload_path = dirname( __DIR__ ) . '/vendor/autoload.php';
 
 if ( ! is_readable( $autoload_path ) ) {
