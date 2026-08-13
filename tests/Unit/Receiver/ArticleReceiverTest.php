@@ -14,6 +14,9 @@ final class ArticleReceiverTest extends ReceiverTestCase {
 		$response = $receiver->receive( $this->signed( $this->body( $this->payload() ) ), $this->payload() );
 		self::assertSame( 'accepted', $response['status'] );
 		self::assertSame( 'draft', $response['post_status'] );
+		$verification = $response['verification'] ?? null;
+		self::assertIsArray( $verification );
+		self::assertSame( 'accepted', $verification['aioseo_native'] ?? null );
 		self::assertSame( 1, $posts->writes );
 		self::assertSame( 1, $transactions->commits );
 		self::assertMatchesRegularExpression( '/^[a-f0-9]{64}$/', $this->recovery_token( $response ) ); }

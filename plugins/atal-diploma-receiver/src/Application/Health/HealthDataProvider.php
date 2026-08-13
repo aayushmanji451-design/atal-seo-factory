@@ -8,6 +8,7 @@ use Atal\DiplomaReceiver\Application\Migration\SchemaDatabaseInterface;
 use Atal\DiplomaReceiver\Config\Identifiers;
 use Atal\DiplomaReceiver\Domain\Receiver\AioseoAdapterInterface;
 use Atal\DiplomaReceiver\Infrastructure\Database\TableNames;
+use Atal\DiplomaReceiver\Plugin;
 final class HealthDataProvider {
 	public function __construct( private readonly SchemaDatabaseInterface $database, private readonly ReceiverStateStoreInterface $state, private readonly TableNames $tables, private readonly AioseoAdapterInterface $aioseo ) {}
 	/** @return array<string,mixed> */
@@ -30,7 +31,7 @@ final class HealthDataProvider {
 		$wp_memory   = defined( 'WP_MEMORY_LIMIT' ) ? constant( 'WP_MEMORY_LIMIT' ) : '';
 		$php_memory  = ini_get( 'memory_limit' );
 		return array(
-			'plugin_version'            => '0.3.0-dev',
+			'plugin_version'            => Plugin::VERSION,
 			'development_build'         => true,
 			'plugin_slug'               => Identifiers::PLUGIN_SLUG,
 			'rest_namespace'            => Identifiers::REST_NAMESPACE,

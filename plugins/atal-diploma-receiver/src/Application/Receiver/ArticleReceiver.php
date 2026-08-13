@@ -36,6 +36,7 @@ final class ArticleReceiver {
 		try {
 			$this->receipts->reserve( $request->nonce_hash(), $request->idempotency_hash(), $request->request_hash(), $article->article_key() );
 			$mutation       = $this->posts->upsert_draft( $article );
+			$seo            = $this->aioseo->write_and_verify( $mutation->post_id(), $article->aioseo() );
 			$recovery_token = bin2hex( random_bytes( 32 ) );
 			$response       = array(
 				'status'            => 'accepted',
@@ -44,6 +45,14 @@ final class ArticleReceiver {
 				'post_status'       => 'draft',
 				'created'           => $mutation->created(),
 				'idempotent_replay' => false,
+				'verification'      => array(
+					'course_key'        => $article->course_key(),
+					'title'             => $article->title(),
+					'slug'              => $article->slug(),
+					'aioseo_payload'    => 'accepted',
+					'aioseo_native'     => $seo['status'],
+					'featured_image_id' => $article->featured_image_id(),
+				),
 			);
 			$this->receipts->complete( $request->idempotency_hash(), $response, hash( 'sha256', $recovery_token ), $mutation->previous_state(), $mutation->created() );
 			$this->audit->record(

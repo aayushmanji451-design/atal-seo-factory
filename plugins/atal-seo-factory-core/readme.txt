@@ -2,14 +2,12 @@
 Contributors: atal-institute
 Requires at least: 6.9
 Requires PHP: 8.1
-Stable tag: 0.2.1-dev
+Stable tag: 0.4.0-dev
 
-Development-only Task 02 build. This skeleton provides versioned storage,
-health diagnostics, and a nonce/capability-protected Task 02 acceptance runner
-under Tools. The runner reports a 40M WP limit as a warning when the actual
-admin/PHP request has safe headroom, transactionally imports the validated
-canonical package, and proves a second dry-run produces zero writes. It does not
-generate articles, publish posts, create images, schedule work, or contact the
-Atal Diploma site.
+Development-only Task 04 build. It retains the Task 02 storage/knowledge health
+checks and adds an administrator-triggered, deterministic one-draft canary for
+ATAL Institute plus one signed one-draft canary for Atal Diploma staging. It
+requires existing mapped image attachment IDs and supports bounded rollback.
+It does not use AI, publish publicly, generate images, schedule, or run batches.
 
 The development build must not be treated as a final release.

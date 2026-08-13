@@ -88,6 +88,8 @@ if ( ! class_exists( 'WP_Error' ) ) {
 
 if ( ! class_exists( 'WP_Post' ) ) {
 	class WP_Post {
+		public int $ID = 101;
+		public string $post_type = 'post';
 		public string $post_status = 'draft';
 		public string $post_title = '';
 		public string $post_name = '';
@@ -258,6 +260,14 @@ if ( ! function_exists( 'esc_html__' ) ) {
 	}
 }
 
+if ( ! function_exists( 'esc_textarea' ) ) {
+	function esc_textarea( string $text ): string { return htmlspecialchars( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ); }
+}
+
+if ( ! function_exists( 'wp_unslash' ) ) {
+	function wp_unslash( string $value ): string { return stripslashes( $value ); }
+}
+
 if ( ! function_exists( 'site_url' ) ) {
 	function site_url( string $path = '' ): string {
 		return 'https://example.test/' . ltrim( $path, '/' );
@@ -356,6 +366,21 @@ if ( ! function_exists( 'wp_json_encode' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_strip_all_tags' ) ) {
+	function wp_strip_all_tags( string $text, bool $remove_breaks = false ): string {
+		$text = strip_tags( $text );
+		return $remove_breaks ? preg_replace( '/[\r\n\t ]+/', ' ', $text ) ?? $text : $text;
+	}
+}
+
+if ( ! function_exists( 'sanitize_text_field' ) ) {
+	function sanitize_text_field( string $text ): string { return trim( strip_tags( $text ) ); }
+}
+
+if ( ! function_exists( 'sanitize_textarea_field' ) ) {
+	function sanitize_textarea_field( string $text ): string { return trim( strip_tags( $text ) ); }
+}
+
 if ( ! function_exists( 'is_plugin_active' ) ) {
 	function is_plugin_active( string $plugin ): bool { unset( $plugin ); return false; }
 }
@@ -412,6 +437,49 @@ if ( ! function_exists( 'get_post' ) ) {
 	function get_post( int $post_id = 0 ): ?WP_Post { return 0 > $post_id?null:new WP_Post(); }
 }
 
+if ( ! function_exists( 'get_page_by_path' ) ) {
+	/** @param string|array<int|string,string> $post_type */
+	function get_page_by_path( string $page_path, string $output = 'OBJECT', string|array $post_type = 'page' ): ?WP_Post { unset( $output, $post_type ); return '' === $page_path ? new WP_Post() : null; }
+}
+
+if ( ! function_exists( 'wp_safe_remote_get' ) ) {
+	/**
+	 * @param array<string,mixed> $args Request arguments.
+	 *
+	 * @return array<string,mixed>|WP_Error
+	 */
+	function wp_safe_remote_get( string $url, array $args = array() ): array|WP_Error { unset( $args ); return '' === $url ? new WP_Error() : array( 'response' => array( 'code' => 200 ), 'body' => '{}' ); }
+}
+
+if ( ! function_exists( 'wp_safe_remote_post' ) ) {
+	/**
+	 * @param array<string,mixed> $args Request arguments.
+	 *
+	 * @return array<string,mixed>|WP_Error
+	 */
+	function wp_safe_remote_post( string $url, array $args = array() ): array|WP_Error { unset( $args ); return '' === $url ? new WP_Error() : array( 'response' => array( 'code' => 200 ), 'body' => '{}' ); }
+}
+
+if ( ! function_exists( 'is_wp_error' ) ) {
+	function is_wp_error( mixed $thing ): bool { return $thing instanceof WP_Error; }
+}
+
+if ( ! function_exists( 'wp_remote_retrieve_response_code' ) ) {
+	/** @param array<string,mixed>|WP_Error $response */
+	function wp_remote_retrieve_response_code( array|WP_Error $response ): int {
+		if ( ! is_array( $response ) ) { return 0; }
+		$metadata = $response['response'] ?? null;
+		if ( ! is_array( $metadata ) ) { return 0; }
+		$code = $metadata['code'] ?? null;
+		return is_numeric( $code ) ? (int) $code : 0;
+	}
+}
+
+if ( ! function_exists( 'wp_remote_retrieve_body' ) ) {
+	/** @param array<string,mixed>|WP_Error $response */
+	function wp_remote_retrieve_body( array|WP_Error $response ): string { return is_array( $response ) && is_string( $response['body'] ?? null ) ? $response['body'] : ''; }
+}
+
 if ( ! function_exists( 'wp_delete_post' ) ) {
 	function wp_delete_post( int $post_id = 0, bool $force_delete = false ): WP_Post|false|null { unset( $force_delete ); if ( 0 > $post_id ) { return false; } return 0===$post_id?null:new WP_Post(); }
 }
@@ -426,4 +494,8 @@ if ( ! function_exists( 'rest_get_server' ) ) {
 
 if ( ! defined( 'ARRAY_A' ) ) {
 	define( 'ARRAY_A', 'ARRAY_A' );
+}
+
+if ( ! defined( 'OBJECT' ) ) {
+	define( 'OBJECT', 'OBJECT' );
 }
