@@ -38,7 +38,21 @@ final class WordPressRuntimeEnvironment implements RuntimeEnvironmentInterface {
 		return is_string( $value ) ? $value : '';
 	}
 
+	public function wordpress_max_memory_limit(): string {
+		$value = defined( 'WP_MAX_MEMORY_LIMIT' ) ? constant( 'WP_MAX_MEMORY_LIMIT' ) : '';
+
+		return is_string( $value ) ? $value : '';
+	}
+
 	public function php_memory_limit(): string {
 		return ini_get( 'memory_limit' );
+	}
+
+	public function current_memory_usage(): int {
+		return memory_get_usage( true );
+	}
+
+	public function peak_memory_usage(): int {
+		return memory_get_peak_usage( true );
 	}
 }

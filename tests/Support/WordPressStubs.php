@@ -119,8 +119,16 @@ if ( ! function_exists( 'update_option' ) ) {
 
 if ( ! function_exists( 'add_action' ) ) {
 	/** @phpstan-impure */
-	function add_action( string $hook, callable $callback ): void {
-		AtalWordPressStubState::$calls[] = array( 'add_action', $hook, $callback );
+	function add_action( string $hook, callable $callback, int $priority = 10, int $accepted_args = 1 ): void {
+		AtalWordPressStubState::$calls[] = array( 'add_action', $hook, $callback, $priority, $accepted_args );
+	}
+}
+
+if ( ! function_exists( 'remove_action' ) ) {
+	/** @phpstan-impure */
+	function remove_action( string $hook, callable $callback, int $priority = 10 ): bool {
+		AtalWordPressStubState::$calls[] = array( 'remove_action', $hook, $callback, $priority );
+		return true;
 	}
 }
 
@@ -153,6 +161,32 @@ if ( ! function_exists( 'current_user_can' ) ) {
 	}
 }
 
+if ( ! function_exists( 'check_admin_referer' ) ) {
+	/** @phpstan-impure */
+	function check_admin_referer( string $action = '-1', string $query_arg = '_wpnonce' ): int|false {
+		AtalWordPressStubState::$calls[] = array( 'check_admin_referer', $action, $query_arg );
+		if ( '' === $action ) {
+			return false;
+		}
+		return 1;
+	}
+}
+
+if ( ! function_exists( 'wp_nonce_field' ) ) {
+	/** @phpstan-impure */
+	function wp_nonce_field( string $action = '-1', string $name = '_wpnonce', bool $referer = true, bool $display = true ): string {
+		AtalWordPressStubState::$calls[] = array( 'wp_nonce_field', $action, $name, $referer, $display );
+		return '<input type="hidden" />';
+	}
+}
+
+if ( ! function_exists( 'submit_button' ) ) {
+	/** @phpstan-impure */
+	function submit_button( string $text = '', string $type = 'primary', string $name = 'submit', bool $wrap = true ): void {
+		AtalWordPressStubState::$calls[] = array( 'submit_button', $text, $type, $name, $wrap );
+	}
+}
+
 if ( ! function_exists( 'wp_die' ) ) {
 	function wp_die( string $message ): never {
 		throw new RuntimeException( $message );
@@ -172,6 +206,12 @@ if ( ! function_exists( 'esc_html__' ) ) {
 	}
 }
 
+if ( ! function_exists( 'esc_attr' ) ) {
+	function esc_attr( string $text ): string {
+		return htmlspecialchars( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+	}
+}
+
 if ( ! function_exists( 'site_url' ) ) {
 	function site_url( string $path = '' ): string {
 		return 'https://example.test/' . ltrim( $path, '/' );
@@ -188,5 +228,23 @@ if ( ! function_exists( 'get_bloginfo' ) ) {
 	function get_bloginfo( string $show ): string {
 		unset( $show );
 		return '6.9';
+	}
+}
+
+if ( ! function_exists( 'get_post_type' ) ) {
+	function get_post_type( int $post_id ): string|false {
+		return 0 < $post_id ? 'post' : false;
+	}
+}
+
+if ( ! function_exists( 'wp_json_encode' ) ) {
+	function wp_json_encode( mixed $value, int $flags = 0, int $depth = 512 ): string|false {
+		return json_encode( $value, $flags, max( 1, $depth ) );
+	}
+}
+
+if ( ! function_exists( 'number_format_i18n' ) ) {
+	function number_format_i18n( float $number, int $decimals = 0 ): string {
+		return number_format( $number, $decimals, '.', ',' );
 	}
 }

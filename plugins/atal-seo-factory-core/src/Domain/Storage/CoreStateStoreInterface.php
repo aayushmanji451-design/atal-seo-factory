@@ -30,4 +30,6 @@ interface CoreStateStoreInterface {
 	 * @param string $fingerprint Deterministic package fingerprint.
 	 */
 	public function record_knowledge_import( string $fingerprint ): void;
+
+	public function knowledge_fingerprint(): ?string;
 }

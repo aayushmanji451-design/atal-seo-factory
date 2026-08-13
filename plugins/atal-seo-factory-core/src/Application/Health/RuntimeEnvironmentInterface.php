@@ -24,5 +24,11 @@ interface RuntimeEnvironmentInterface {
 
 	public function wordpress_memory_limit(): string;
 
+	public function wordpress_max_memory_limit(): string;
+
 	public function php_memory_limit(): string;
+
+	public function current_memory_usage(): int;
+
+	public function peak_memory_usage(): int;
 }

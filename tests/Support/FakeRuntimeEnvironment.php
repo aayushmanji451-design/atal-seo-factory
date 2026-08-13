@@ -18,7 +18,10 @@ final class FakeRuntimeEnvironment implements RuntimeEnvironmentInterface {
 
 	public function __construct(
 		private readonly string $wordpress_memory = '40M',
-		private readonly string $php_memory = '2048M'
+		private readonly string $php_memory = '2048M',
+		private readonly string $wordpress_max_memory = '2048M',
+		private readonly int $current_memory = 12582912,
+		private readonly int $peak_memory = 16777216
 	) {
 	}
 
@@ -44,5 +47,17 @@ final class FakeRuntimeEnvironment implements RuntimeEnvironmentInterface {
 
 	public function php_memory_limit(): string {
 		return $this->php_memory;
+	}
+
+	public function wordpress_max_memory_limit(): string {
+		return $this->wordpress_max_memory;
+	}
+
+	public function current_memory_usage(): int {
+		return $this->current_memory;
+	}
+
+	public function peak_memory_usage(): int {
+		return $this->peak_memory;
 	}
 }

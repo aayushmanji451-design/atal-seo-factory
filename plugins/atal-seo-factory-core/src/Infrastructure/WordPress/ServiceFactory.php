@@ -11,6 +11,7 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Admin\HealthPage;
+use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
 use Atal\SeoFactory\Application\Health\HealthDataProvider;
 use Atal\SeoFactory\Application\Import\CanonicalKnowledgeImporter;
 use Atal\SeoFactory\Application\Import\KnowledgeRecordFactory;
@@ -47,10 +48,51 @@ final class ServiceFactory {
 	}
 
 	public static function plugin(): Plugin {
+		return new Plugin(
+			static fn (): HealthPage => self::health_page(),
+			static fn (): KnowledgeCommand => self::knowledge_command()
+		);
+	}
+
+	private static function health_page(): HealthPage {
+		$database    = self::database();
+		$state       = new WordPressCoreStateStore();
+		$tables      = new TableNames( $database->table_prefix() );
+		$environment = new WordPressRuntimeEnvironment();
+		$health      = new HealthDataProvider( $database, $state, $tables, $environment );
+		$paths       = self::knowledge_paths();
+		$validator   = KnowledgeValidator::create_default();
+		$importer    = new CanonicalKnowledgeImporter(
+			$validator,
+			new KnowledgeRecordFactory(),
+			new WpdbKnowledgeRepository( $database, $tables ),
+			$database,
+			$state
+		);
+		$migrations  = new MigrationRunner(
+			array( new CoreTablesMigration( $database, $tables, new CoreTableDefinitions() ) ),
+			$state
+		);
+		$acceptance  = new AcceptanceRunner(
+			$migrations,
+			$database,
+			$state,
+			$tables,
+			$validator,
+			$importer,
+			$health,
+			new WordPressSafetyMonitor( self::wordpress_database(), $tables ),
+			$paths['master'],
+			$paths['schemas']
+		);
+
+		return new HealthPage( $health, $acceptance );
+	}
+
+	private static function knowledge_command(): KnowledgeCommand {
 		$database = self::database();
 		$state    = new WordPressCoreStateStore();
 		$tables   = new TableNames( $database->table_prefix() );
-		$health   = new HealthPage( new HealthDataProvider( $database, $state, $tables, new WordPressRuntimeEnvironment() ) );
 		$paths    = self::knowledge_paths();
 		$importer = new CanonicalKnowledgeImporter(
 			KnowledgeValidator::create_default(),
@@ -60,7 +102,7 @@ final class ServiceFactory {
 			$state
 		);
 
-		return new Plugin( $health, new KnowledgeCommand( $importer, $paths['master'], $paths['schemas'] ) );
+		return new KnowledgeCommand( $importer, $paths['master'], $paths['schemas'] );
 	}
 
 	/**
@@ -85,13 +127,17 @@ final class ServiceFactory {
 	}
 
 	private static function database(): WpdbAdapter {
+		return new WpdbAdapter( self::wordpress_database() );
+	}
+
+	private static function wordpress_database(): wpdb {
 		global $wpdb;
 
 		if ( ! $wpdb instanceof wpdb ) {
 			throw new RuntimeException( 'WordPress database is unavailable.' );
 		}
 
-		return new WpdbAdapter( $wpdb );
+		return $wpdb;
 	}
 
 	private function __construct() {

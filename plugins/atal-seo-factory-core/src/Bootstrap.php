@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Atal\SeoFactory;
 
 use Atal\SeoFactory\Infrastructure\WordPress\ServiceFactory;
+use Throwable;
 
 /**
  * Delegates lifecycle hooks to small application services.
@@ -20,7 +21,19 @@ final class Bootstrap {
 	 * Run idempotent activation work.
 	 */
 	public static function activate(): void {
-		ServiceFactory::activator()->activate();
+		try {
+			ServiceFactory::activator()->activate();
+		} catch ( Throwable $throwable ) {
+			wp_die(
+				esc_html(
+					sprintf(
+						'ATAL SEO Factory Core activation failed: %s: %s',
+						$throwable::class,
+						$throwable->getMessage()
+					)
+				)
+			);
+		}
 	}
 
 	/**

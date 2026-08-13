@@ -35,4 +35,10 @@ final class WordPressCoreStateStore implements CoreStateStoreInterface {
 		update_option( Identifiers::OPTION_KNOWLEDGE_FINGERPRINT, $fingerprint, false );
 		update_option( Identifiers::OPTION_LAST_IMPORT_AT, gmdate( 'c' ), false );
 	}
+
+	public function knowledge_fingerprint(): ?string {
+		$value = get_option( Identifiers::OPTION_KNOWLEDGE_FINGERPRINT, null );
+
+		return is_string( $value ) && '' !== $value ? $value : null;
+	}
 }
