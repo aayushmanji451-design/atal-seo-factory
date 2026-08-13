@@ -3,7 +3,7 @@
  * Plugin Name: ATAL SEO Factory Core
  * Plugin URI: https://atalinstitute.com/
  * Description: Staging-first storage and canonical knowledge foundation for ATAL Institute.
- * Version: 0.2.1-dev-task-02
+ * Version: 0.2.1-dev
  * Requires at least: 6.9
  * Requires PHP: 8.1
  * Author: ATAL Institute

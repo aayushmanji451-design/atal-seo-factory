@@ -19,7 +19,11 @@ use Throwable;
  */
 final class Plugin {
 
-	public const VERSION = '0.2.1-dev-task-02';
+	public const VERSION = '0.2.1-dev';
+
+	public static function is_development_build(): bool {
+		return str_ends_with( self::VERSION, '-dev' );
+	}
 
 	/**
 	 * Create the lightweight runtime registrar.
@@ -38,6 +42,10 @@ final class Plugin {
 	 */
 	public function boot(): void {
 		add_action( 'admin_menu', array( $this, 'register_health_page' ) );
+		if ( self::is_development_build() ) {
+			add_action( 'admin_post_' . HealthPage::RUN_ACTION, array( $this, 'run_acceptance' ) );
+			add_action( 'admin_post_' . HealthPage::DOWNLOAD_ACTION, array( $this, 'download_acceptance_report' ) );
+		}
 
 		if ( defined( 'WP_CLI' ) && WP_CLI && class_exists( '\\WP_CLI' ) ) {
 			$factory = $this->knowledge_command_factory;
@@ -53,7 +61,7 @@ final class Plugin {
 			esc_html__( 'ATAL SEO Factory Health', 'atal-seo-factory-core' ),
 			esc_html__( 'ATAL SEO Factory Health', 'atal-seo-factory-core' ),
 			'manage_options',
-			'atal-seo-factory-core-health',
+			HealthPage::PAGE_SLUG,
 			array( $this, 'render_health_page' )
 		);
 	}
@@ -67,25 +75,58 @@ final class Plugin {
 		}
 
 		try {
-			$factory = $this->health_page_factory;
-			$page    = $factory();
-			$page->render();
+			$this->health_page()->render();
 		} catch ( Throwable $throwable ) {
 			$this->render_runtime_error( $throwable );
 		}
 	}
 
+	/**
+	 * Run the nonce-protected bounded acceptance action lazily.
+	 */
+	public function run_acceptance(): void {
+		try {
+			$this->health_page()->run_acceptance();
+		} catch ( Throwable $throwable ) {
+			wp_die( esc_html( $this->runtime_error_message( $throwable ) ) );
+		}
+	}
+
+	/**
+	 * Download the latest acceptance report lazily.
+	 */
+	public function download_acceptance_report(): void {
+		try {
+			$this->health_page()->download_report();
+		} catch ( Throwable $throwable ) {
+			wp_die( esc_html( $this->runtime_error_message( $throwable ) ) );
+		}
+	}
+
+	private function health_page(): HealthPage {
+		$factory = $this->health_page_factory;
+
+		return $factory();
+	}
+
 	private function render_runtime_error( Throwable $throwable ): void {
-		$message = sprintf(
-			'Task 02 staging acceptance could not start: %s: %s',
-			$throwable::class,
-			$throwable->getMessage()
-		);
+		$message = $this->runtime_error_message( $throwable );
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html__( 'ATAL SEO Factory Core Health', 'atal-seo-factory-core' ); ?></h1>
 			<div class="notice notice-error"><p><?php echo esc_html( $message ); ?></p></div>
 		</div>
 		<?php
+	}
+
+	private function runtime_error_message( Throwable $throwable ): string {
+		$message = preg_replace(
+			'/(?:password|secret|token|authorization|stream[ _-]?key)\s*[:=]\s*\S+/i',
+			'[redacted]',
+			$throwable->getMessage()
+		);
+		$detail  = is_string( $message ) && '' !== $message ? $message : 'The bounded acceptance operation failed safely.';
+
+		return sprintf( 'Task 02 staging acceptance could not start: %s: %s', $throwable::class, $detail );
 	}
 }

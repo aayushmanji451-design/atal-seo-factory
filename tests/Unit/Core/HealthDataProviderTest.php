@@ -17,33 +17,43 @@ use Atal\Tests\Support\InMemorySchemaDatabase;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Verifies bounded, read-only health reporting and non-blocking memory guidance.
+ * Verifies bounded, read-only health reporting against actual runtime capacity.
  */
 final class HealthDataProviderTest extends TestCase {
 
-	public function test_recorded_forty_megabyte_limit_is_a_warning_not_a_blocker(): void {
+	public function test_recorded_forty_megabyte_limit_is_warning_when_actual_runtime_has_headroom(): void {
 		$database = new InMemorySchemaDatabase();
 		$tables   = new TableNames( $database->table_prefix() );
 		$database->seed_tables( $tables->all() );
 		$snapshot = ( new HealthDataProvider( $database, new InMemoryCoreStateStore(), $tables, new FakeRuntimeEnvironment() ) )->snapshot();
 
-		self::assertSame( 'WARNING', $snapshot['memory_status'] );
-		self::assertSame( '40M', $snapshot['wordpress_memory_limit'] );
-		self::assertSame( '2048M', $snapshot['wordpress_max_memory_limit'] );
-		self::assertSame( '2048M', $snapshot['php_memory_limit'] );
-		self::assertSame( 12582912, $snapshot['current_memory_usage'] );
-		self::assertSame( 16777216, $snapshot['peak_memory_usage'] );
-		self::assertStringContainsString( 'remains available', $snapshot['memory_message'] );
+		self::assertSame( 'WARNING', $snapshot['memory']['status'] );
+		self::assertSame( '40M', $snapshot['memory']['wordpress_memory_limit'] );
+		self::assertSame( '2048M', $snapshot['memory']['wordpress_max_memory_limit'] );
+		self::assertSame( '2048M', $snapshot['memory']['php_memory_limit'] );
+		self::assertSame( 20971520, $snapshot['memory']['current_usage_bytes'] );
+		self::assertSame( 25165824, $snapshot['memory']['peak_usage_bytes'] );
+		self::assertTrue( $snapshot['memory']['wordpress_admin_can_raise'] );
+		self::assertGreaterThan( 2000000000, $snapshot['memory']['actual_available_bytes'] );
 		self::assertSame( 7, $database->read_calls() );
 		self::assertSame( 0, $database->create_calls() );
 		self::assertTrue( $snapshot['read_only'] );
 	}
 
-	public function test_two_hundred_fifty_six_megabyte_limit_meets_prerequisite(): void {
+	public function test_two_hundred_fifty_six_megabyte_limit_passes_with_actual_headroom(): void {
 		$database = new InMemorySchemaDatabase();
 		$tables   = new TableNames( $database->table_prefix() );
 		$snapshot = ( new HealthDataProvider( $database, new InMemoryCoreStateStore(), $tables, new FakeRuntimeEnvironment( '256M' ) ) )->snapshot();
 
-		self::assertSame( 'PASS', $snapshot['memory_status'] );
+		self::assertSame( 'PASS', $snapshot['memory']['status'] );
+	}
+
+	public function test_actual_runtime_exhaustion_fails_even_with_high_wordpress_constant(): void {
+		$database = new InMemorySchemaDatabase();
+		$tables   = new TableNames( $database->table_prefix() );
+		$runtime  = new FakeRuntimeEnvironment( '256M', '64M', '256M', 64 * 1024 * 1024, 64 * 1024 * 1024 );
+		$snapshot = ( new HealthDataProvider( $database, new InMemoryCoreStateStore(), $tables, $runtime ) )->snapshot();
+
+		self::assertSame( 'FAIL', $snapshot['memory']['status'] );
 	}
 }

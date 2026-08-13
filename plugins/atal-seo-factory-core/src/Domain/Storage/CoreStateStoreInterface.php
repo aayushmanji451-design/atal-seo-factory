@@ -32,4 +32,8 @@ interface CoreStateStoreInterface {
 	public function record_knowledge_import( string $fingerprint ): void;
 
 	public function knowledge_fingerprint(): ?string;
+
+	public function post_reactivation_persistence_verified(): bool;
+
+	public function ensure_reactivation_baseline(): void;
 }

@@ -9,44 +9,23 @@ declare(strict_types=1);
 
 namespace Atal\SeoFactory\Application\Acceptance;
 
+use Atal\SeoFactory\Plugin;
+
 /**
- * Immutable downloadable JSON report data.
+ * Produces a bounded JSON-safe report.
  */
 final class AcceptanceReport {
 
 	/**
-	 * @param list<AcceptanceCheck>                                                                                                                  $checks         Acceptance checks.
-	 * @param array<string,mixed>                                                                                                                    $environment    Runtime and version values.
-	 * @param array{inserts:int,updates:int,unchanged:int,writes:int,planned_writes:list<array{entity_type:string,entity_key:string,action:string}>} $first_dry_run  Initial planned changes.
-	 * @param array{inserts:int,updates:int,unchanged:int,writes:int,planned_writes:list<array{entity_type:string,entity_key:string,action:string}>} $second_dry_run Post-import dry-run.
+	 * @param list<AcceptanceCheck> $checks       Individual checks.
+	 * @param string                $started_at   UTC ISO timestamp.
+	 * @param string                $completed_at UTC ISO timestamp.
 	 */
 	public function __construct(
 		private readonly array $checks,
-		private readonly array $environment,
-		private readonly array $first_dry_run,
-		private readonly array $second_dry_run
+		private readonly string $started_at,
+		private readonly string $completed_at
 	) {
-	}
-
-	/**
-	 * @return list<AcceptanceCheck>
-	 */
-	public function checks(): array {
-		return $this->checks;
-	}
-
-	/**
-	 * @return array<string,mixed>
-	 */
-	public function environment(): array {
-		return $this->environment;
-	}
-
-	/**
-	 * @return array{inserts:int,updates:int,unchanged:int,writes:int,planned_writes:list<array{entity_type:string,entity_key:string,action:string}>}
-	 */
-	public function first_dry_run(): array {
-		return $this->first_dry_run;
 	}
 
 	public function status(): string {
@@ -55,24 +34,21 @@ final class AcceptanceReport {
 			return AcceptanceCheck::FAIL;
 		}
 
-		return in_array( AcceptanceCheck::WARNING, $statuses, true ) ? 'PASS_WITH_WARNINGS' : AcceptanceCheck::PASS;
+		return in_array( AcceptanceCheck::WARNING, $statuses, true ) ? AcceptanceCheck::WARNING : AcceptanceCheck::PASS;
 	}
 
 	/**
-	 * @return array<string,mixed>
+	 * @return array{report_version:string,plugin_version:string,scope:string,status:string,started_at:string,completed_at:string,checks:list<array{check_id:string,status:string,expected:mixed,actual:mixed,message:string}>}
 	 */
 	public function to_array(): array {
 		return array(
-			'report_version' => 'task-02-acceptance-v1',
-			'generated_at'   => gmdate( 'c' ),
-			'overall_status' => $this->status(),
-			'environment'    => $this->environment,
-			'first_dry_run'  => $this->first_dry_run,
-			'second_dry_run' => $this->second_dry_run,
-			'checks'         => array_map(
-				static fn ( AcceptanceCheck $check ): array => $check->to_array(),
-				$this->checks
-			),
+			'report_version' => '1.0',
+			'plugin_version' => Plugin::VERSION,
+			'scope'          => 'task-02-staging-acceptance',
+			'status'         => $this->status(),
+			'started_at'     => $this->started_at,
+			'completed_at'   => $this->completed_at,
+			'checks'         => array_map( static fn ( AcceptanceCheck $check ): array => $check->to_array(), $this->checks ),
 		);
 	}
 }

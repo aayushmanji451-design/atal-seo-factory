@@ -21,7 +21,7 @@ final class CoreTableDefinitions {
 	 * @return array<string,string>
 	 */
 	public function sql( TableNames $tables, string $charset_collate ): array {
-		$suffix = '' === trim( $charset_collate ) ? '' : ' ' . trim( $charset_collate );
+		$suffix = ' ENGINE=InnoDB' . ( '' === trim( $charset_collate ) ? '' : ' ' . trim( $charset_collate ) );
 
 		return array(
 			'courses'      => "CREATE TABLE {$tables->courses()} (\n id bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n course_key varchar(191) NOT NULL,\n target_site varchar(64) NOT NULL,\n canonical_name varchar(255) NOT NULL,\n payload_json longtext NOT NULL,\n source_hash char(64) NOT NULL,\n contract_version varchar(32) NOT NULL,\n created_at datetime NOT NULL,\n updated_at datetime NOT NULL,\n PRIMARY KEY  (id),\n UNIQUE KEY course_key (course_key),\n KEY target_site (target_site)\n){$suffix};",

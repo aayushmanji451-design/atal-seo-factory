@@ -55,4 +55,33 @@ final class WordPressRuntimeEnvironment implements RuntimeEnvironmentInterface {
 	public function peak_memory_usage(): int {
 		return memory_get_peak_usage( true );
 	}
+
+	public function wordpress_admin_can_raise_memory(): bool {
+		return function_exists( 'wp_raise_memory_limit' )
+			&& $this->memory_bytes( $this->wordpress_max_memory_limit() ) > $this->memory_bytes( $this->wordpress_memory_limit() );
+	}
+
+	public function raise_wordpress_admin_memory(): bool {
+		if ( ! function_exists( 'wp_raise_memory_limit' ) ) {
+			return false;
+		}
+
+		return false !== wp_raise_memory_limit( 'admin' );
+	}
+
+	private function memory_bytes( string $value ): int {
+		$normalized = strtoupper( trim( $value ) );
+		if ( '-1' === $normalized ) {
+			return PHP_INT_MAX;
+		}
+
+		if ( 1 !== preg_match( '/^(\d+)([KMGT]?)B?$/', $normalized, $matches ) ) {
+			return 0;
+		}
+
+		$amount = (int) $matches[1];
+		$power  = array_search( $matches[2], array( '', 'K', 'M', 'G', 'T' ), true );
+
+		return false === $power ? 0 : $amount * ( 1024 ** $power );
+	}
 }

@@ -22,16 +22,31 @@ final class InMemoryTransactionManager implements TransactionManagerInterface {
 
 	private int $rollbacks = 0;
 
+	private ?InMemoryKnowledgeRepository $repository = null;
+
+	/** @var array{courses:array<string,\Atal\SeoFactory\Domain\Knowledge\CourseRecord>,topics:array<string,\Atal\SeoFactory\Domain\Knowledge\TopicRecord>}|null */
+	private ?array $repository_snapshot = null;
+
+	public function attach_repository( InMemoryKnowledgeRepository $repository ): void {
+		$this->repository = $repository;
+	}
+
 	public function begin(): void {
 		++$this->begins;
+		$this->repository_snapshot = null === $this->repository ? null : $this->repository->snapshot();
 	}
 
 	public function commit(): void {
 		++$this->commits;
+		$this->repository_snapshot = null;
 	}
 
 	public function rollback(): void {
 		++$this->rollbacks;
+		if ( null !== $this->repository && null !== $this->repository_snapshot ) {
+			$this->repository->restore( $this->repository_snapshot );
+		}
+		$this->repository_snapshot = null;
 	}
 
 	public function begins(): int {

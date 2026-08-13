@@ -50,6 +50,11 @@
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/Import/*</exclude-pattern>
     </rule>
 
+	<!-- Standalone build/smoke CLI tools intentionally operate before WordPress loads. -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>*/tools/*</exclude-pattern>
+	</rule>
+
     <!-- PHPCS does not understand PHPStan list/shape annotations on array parameters. -->
     <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>

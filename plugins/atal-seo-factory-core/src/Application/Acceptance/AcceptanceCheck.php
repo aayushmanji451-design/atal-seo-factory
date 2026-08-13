@@ -1,6 +1,6 @@
 <?php
 /**
- * Task 02 acceptance check result.
+ * One Task 02 staging acceptance result.
  *
  * @package AtalSeoFactory
  */
@@ -9,8 +9,10 @@ declare(strict_types=1);
 
 namespace Atal\SeoFactory\Application\Acceptance;
 
+use InvalidArgumentException;
+
 /**
- * Immutable machine-readable acceptance check.
+ * Carries a machine-readable status and sanitized evidence.
  */
 final class AcceptanceCheck {
 
@@ -23,10 +25,13 @@ final class AcceptanceCheck {
 	public function __construct(
 		private readonly string $check_id,
 		private readonly string $status,
-		private readonly string $expected,
-		private readonly string $actual,
+		private readonly mixed $expected,
+		private readonly mixed $actual,
 		private readonly string $message
 	) {
+		if ( ! in_array( $status, array( self::PASS, self::WARNING, self::FAIL ), true ) ) {
+			throw new InvalidArgumentException( 'Unsupported acceptance status.' );
+		}
 	}
 
 	public function status(): string {
@@ -34,7 +39,7 @@ final class AcceptanceCheck {
 	}
 
 	/**
-	 * @return array{check_id:string,status:string,expected:string,actual:string,message:string}
+	 * @return array{check_id:string,status:string,expected:mixed,actual:mixed,message:string}
 	 */
 	public function to_array(): array {
 		return array(

@@ -43,10 +43,25 @@ final class PluginTest extends TestCase {
 
 		self::assertSame( 0, $health_calls );
 		self::assertSame( 0, $command_calls );
-		self::assertCount( 1, AtalWordPressStubState::$calls );
-		$hook_call = AtalWordPressStubState::$calls[0];
-		self::assertIsArray( $hook_call );
-		self::assertSame( 'admin_menu', $hook_call[1] );
+		self::assertCount( 3, AtalWordPressStubState::$calls );
+		$hooks = array_map(
+			static function ( mixed $call ): string {
+				if ( ! is_array( $call ) || ! isset( $call[1] ) || ! is_string( $call[1] ) ) {
+					self::fail( 'Expected a WordPress hook-registration call.' );
+				}
+
+				return $call[1];
+			},
+			AtalWordPressStubState::$calls
+		);
+		self::assertSame(
+			array(
+				'admin_menu',
+				'admin_post_' . HealthPage::RUN_ACTION,
+				'admin_post_' . HealthPage::DOWNLOAD_ACTION,
+			),
+			$hooks
+		);
 	}
 
 	public function test_health_page_factory_failure_is_contained_and_readable(): void {

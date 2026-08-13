@@ -12,6 +12,7 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
+use Atal\SeoFactory\Application\Acceptance\KnowledgePackageInspector;
 use Atal\SeoFactory\Application\Health\HealthDataProvider;
 use Atal\SeoFactory\Application\Import\CanonicalKnowledgeImporter;
 use Atal\SeoFactory\Application\Import\KnowledgeRecordFactory;
@@ -55,38 +56,38 @@ final class ServiceFactory {
 	}
 
 	private static function health_page(): HealthPage {
-		$database    = self::database();
-		$state       = new WordPressCoreStateStore();
-		$tables      = new TableNames( $database->table_prefix() );
-		$environment = new WordPressRuntimeEnvironment();
-		$health      = new HealthDataProvider( $database, $state, $tables, $environment );
-		$paths       = self::knowledge_paths();
-		$validator   = KnowledgeValidator::create_default();
-		$importer    = new CanonicalKnowledgeImporter(
-			$validator,
+		$native_database = self::native_database();
+		$database        = new WpdbAdapter( $native_database );
+		$state           = new WordPressCoreStateStore();
+		$tables          = new TableNames( $database->table_prefix() );
+		$runtime         = new WordPressRuntimeEnvironment();
+		$health_provider = new HealthDataProvider( $database, $state, $tables, $runtime );
+		$paths           = self::knowledge_paths();
+		$importer        = new CanonicalKnowledgeImporter(
+			KnowledgeValidator::create_default(),
 			new KnowledgeRecordFactory(),
 			new WpdbKnowledgeRepository( $database, $tables ),
 			$database,
 			$state
 		);
-		$migrations  = new MigrationRunner(
+		$migrations      = new MigrationRunner(
 			array( new CoreTablesMigration( $database, $tables, new CoreTableDefinitions() ) ),
 			$state
 		);
-		$acceptance  = new AcceptanceRunner(
-			$migrations,
-			$database,
+		$acceptance      = new AcceptanceRunner(
+			$health_provider,
+			$runtime,
 			$state,
 			$tables,
-			$validator,
+			$migrations,
 			$importer,
-			$health,
-			new WordPressSafetyMonitor( self::wordpress_database(), $tables ),
+			new KnowledgePackageInspector(),
+			new WpdbAcceptanceProbe( $native_database ),
 			$paths['master'],
 			$paths['schemas']
 		);
 
-		return new HealthPage( $health, $acceptance );
+		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore() );
 	}
 
 	private static function knowledge_command(): KnowledgeCommand {
@@ -127,10 +128,10 @@ final class ServiceFactory {
 	}
 
 	private static function database(): WpdbAdapter {
-		return new WpdbAdapter( self::wordpress_database() );
+		return new WpdbAdapter( self::native_database() );
 	}
 
-	private static function wordpress_database(): wpdb {
+	private static function native_database(): wpdb {
 		global $wpdb;
 
 		if ( ! $wpdb instanceof wpdb ) {
