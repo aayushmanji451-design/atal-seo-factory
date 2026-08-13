@@ -51,6 +51,10 @@ final class CanonicalKnowledgeImporter {
 		$records  = $prepared['records'];
 		$plan     = $prepared['plan'];
 		$writes   = 0;
+		$step     = 'begin_transaction';
+		if ( 0 === $plan->writes() ) {
+			return new ImportResult( $plan, 0 );
+		}
 
 		$this->transactions->begin();
 		try {
@@ -58,6 +62,7 @@ final class CanonicalKnowledgeImporter {
 				if ( ImportChange::UNCHANGED === $plan->action_for( 'course', $course->course_key() ) ) {
 					continue;
 				}
+				$step = 'upsert_course:' . $course->course_key();
 				$this->repository->upsert_course( $course );
 				++$writes;
 			}
@@ -66,15 +71,18 @@ final class CanonicalKnowledgeImporter {
 				if ( ImportChange::UNCHANGED === $plan->action_for( 'topic', $topic->topic_key() ) ) {
 					continue;
 				}
+				$step = 'upsert_topic:' . $topic->topic_key();
 				$this->repository->upsert_topic( $topic );
 				++$writes;
 			}
 
+			$step = 'record_knowledge_fingerprint';
 			$this->state_store->record_knowledge_import( $records->fingerprint() );
+			$step = 'commit_transaction';
 			$this->transactions->commit();
 		} catch ( Throwable $throwable ) {
 			$this->transactions->rollback();
-			throw $throwable;
+			throw new ImportPersistenceException( $step, $throwable );
 		}
 
 		return new ImportResult( $plan, $writes );

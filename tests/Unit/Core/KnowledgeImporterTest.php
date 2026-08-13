@@ -13,7 +13,9 @@ use Atal\Contracts\Data\KnowledgePackage;
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Application\Import\CanonicalKnowledgeImporter;
 use Atal\SeoFactory\Application\Import\InvalidKnowledgeException;
+use Atal\SeoFactory\Application\Import\ImportPersistenceException;
 use Atal\SeoFactory\Application\Import\KnowledgeRecordFactory;
+use Atal\SeoFactory\Domain\Knowledge\CourseRecord;
 use Atal\Tests\Fixtures\KnowledgePackageFixture;
 use Atal\Tests\Support\InMemoryCoreStateStore;
 use Atal\Tests\Support\InMemoryKnowledgeRepository;
@@ -56,6 +58,10 @@ final class KnowledgeImporterTest extends TestCase {
 		$second_plan = $importer->dry_run( $this->package(), $this->schema_directory() );
 		self::assertSame( 0, $second_plan->writes() );
 		self::assertSame( count( $second_plan->changes() ), $second_plan->unchanged() );
+		$second_result = $importer->import( $this->package(), $this->schema_directory() );
+		self::assertSame( 0, $second_result->writes() );
+		self::assertSame( 1, $transactions->begins() );
+		self::assertSame( 1, $transactions->commits() );
 	}
 
 	public function test_invalid_canonical_knowledge_is_rejected_before_transaction(): void {
@@ -79,19 +85,25 @@ final class KnowledgeImporterTest extends TestCase {
 		$repository   = new InMemoryKnowledgeRepository();
 		$transactions = new InMemoryTransactionManager();
 		$state        = new InMemoryCoreStateStore();
-		$repository->fail_on_write( 2 );
+		$existing     = new CourseRecord( 'existing_valid', 'atal_institute', 'Existing Valid', '{}', hash( 'sha256', '{}' ), '1.0' );
+		$repository->upsert_course( $existing );
+		$transactions->attach_repository( $repository );
+		$repository->fail_on_write( 3 );
 
 		try {
 			$this->importer( $repository, $transactions, $state )->import( $this->package(), $this->schema_directory() );
 			self::fail( 'Injected persistence failure did not occur.' );
-		} catch ( RuntimeException $exception ) {
-			self::assertSame( 'Injected canonical storage failure.', $exception->getMessage() );
+		} catch ( ImportPersistenceException $exception ) {
+			self::assertStringStartsWith( 'upsert_course:', $exception->failed_step() );
+			self::assertInstanceOf( RuntimeException::class, $exception->getPrevious() );
 		}
 
 		self::assertSame( 1, $transactions->begins() );
 		self::assertSame( 0, $transactions->commits() );
 		self::assertSame( 1, $transactions->rollbacks() );
 		self::assertNull( $state->knowledge_fingerprint() );
+		self::assertSame( 1, $repository->course_count() );
+		self::assertSame( $existing->source_hash(), $repository->course_hash( 'existing_valid' ) );
 	}
 
 	private function importer(
@@ -99,6 +111,7 @@ final class KnowledgeImporterTest extends TestCase {
 		InMemoryTransactionManager $transactions,
 		InMemoryCoreStateStore $state
 	): CanonicalKnowledgeImporter {
+		$transactions->attach_repository( $repository );
 		return new CanonicalKnowledgeImporter(
 			KnowledgeValidator::create_default(),
 			new KnowledgeRecordFactory(),

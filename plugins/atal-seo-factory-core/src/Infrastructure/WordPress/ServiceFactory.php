@@ -11,6 +11,8 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Admin\HealthPage;
+use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
+use Atal\SeoFactory\Application\Acceptance\KnowledgePackageInspector;
 use Atal\SeoFactory\Application\Health\HealthDataProvider;
 use Atal\SeoFactory\Application\Import\CanonicalKnowledgeImporter;
 use Atal\SeoFactory\Application\Import\KnowledgeRecordFactory;
@@ -47,18 +49,37 @@ final class ServiceFactory {
 	}
 
 	public static function plugin(): Plugin {
-		$database = self::database();
-		$state    = new WordPressCoreStateStore();
-		$tables   = new TableNames( $database->table_prefix() );
-		$health   = new HealthPage( new HealthDataProvider( $database, $state, $tables, new WordPressRuntimeEnvironment() ) );
-		$paths    = self::knowledge_paths();
-		$importer = new CanonicalKnowledgeImporter(
+		$native_database = self::native_database();
+		$database        = new WpdbAdapter( $native_database );
+		$state           = new WordPressCoreStateStore();
+		$tables          = new TableNames( $database->table_prefix() );
+		$runtime         = new WordPressRuntimeEnvironment();
+		$health_provider = new HealthDataProvider( $database, $state, $tables, $runtime );
+		$paths           = self::knowledge_paths();
+		$importer        = new CanonicalKnowledgeImporter(
 			KnowledgeValidator::create_default(),
 			new KnowledgeRecordFactory(),
 			new WpdbKnowledgeRepository( $database, $tables ),
 			$database,
 			$state
 		);
+		$migrations      = new MigrationRunner(
+			array( new CoreTablesMigration( $database, $tables, new CoreTableDefinitions() ) ),
+			$state
+		);
+		$acceptance      = new AcceptanceRunner(
+			$health_provider,
+			$runtime,
+			$state,
+			$tables,
+			$migrations,
+			$importer,
+			new KnowledgePackageInspector(),
+			new WpdbAcceptanceProbe( $native_database ),
+			$paths['master'],
+			$paths['schemas']
+		);
+		$health          = new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore() );
 
 		return new Plugin( $health, new KnowledgeCommand( $importer, $paths['master'], $paths['schemas'] ) );
 	}
@@ -85,13 +106,17 @@ final class ServiceFactory {
 	}
 
 	private static function database(): WpdbAdapter {
+		return new WpdbAdapter( self::native_database() );
+	}
+
+	private static function native_database(): wpdb {
 		global $wpdb;
 
 		if ( ! $wpdb instanceof wpdb ) {
 			throw new RuntimeException( 'WordPress database is unavailable.' );
 		}
 
-		return new WpdbAdapter( $wpdb );
+		return $wpdb;
 	}
 
 	private function __construct() {

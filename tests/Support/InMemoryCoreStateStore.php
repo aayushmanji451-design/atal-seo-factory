@@ -22,6 +22,10 @@ final class InMemoryCoreStateStore implements CoreStateStoreInterface {
 
 	private ?string $knowledge_fingerprint = null;
 
+	private int $activation_sequence = 0;
+
+	private ?int $import_activation_sequence = null;
+
 	public function database_version(): int {
 		return $this->database_version;
 	}
@@ -32,10 +36,12 @@ final class InMemoryCoreStateStore implements CoreStateStoreInterface {
 
 	public function record_plugin_version( string $version ): void {
 		$this->plugin_version = $version;
+		++$this->activation_sequence;
 	}
 
 	public function record_knowledge_import( string $fingerprint ): void {
-		$this->knowledge_fingerprint = $fingerprint;
+		$this->knowledge_fingerprint      = $fingerprint;
+		$this->import_activation_sequence = $this->activation_sequence;
 	}
 
 	public function plugin_version(): ?string {
@@ -44,5 +50,20 @@ final class InMemoryCoreStateStore implements CoreStateStoreInterface {
 
 	public function knowledge_fingerprint(): ?string {
 		return $this->knowledge_fingerprint;
+	}
+
+	public function post_reactivation_persistence_verified(): bool {
+		return null !== $this->import_activation_sequence && $this->activation_sequence > $this->import_activation_sequence;
+	}
+
+	public function ensure_reactivation_baseline(): void {
+		if ( null !== $this->knowledge_fingerprint && null === $this->import_activation_sequence ) {
+			$this->import_activation_sequence = $this->activation_sequence;
+		}
+	}
+
+	public function seed_legacy_knowledge_fingerprint( string $fingerprint ): void {
+		$this->knowledge_fingerprint      = $fingerprint;
+		$this->import_activation_sequence = null;
 	}
 }

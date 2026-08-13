@@ -17,7 +17,11 @@ use Atal\SeoFactory\Cli\KnowledgeCommand;
  */
 final class Plugin {
 
-	public const VERSION = '0.2.0-dev';
+	public const VERSION = '0.2.1-dev';
+
+	public static function is_development_build(): bool {
+		return str_ends_with( self::VERSION, '-dev' );
+	}
 
 	/**
 	 * Create the runtime registrar.
@@ -35,7 +39,7 @@ final class Plugin {
 	 * Register runtime hooks without performing migrations or imports.
 	 */
 	public function boot(): void {
-		add_action( 'admin_menu', array( $this->health_page, 'register' ) );
+		$this->health_page->boot();
 
 		if ( class_exists( '\\WP_CLI' ) ) {
 			\WP_CLI::add_command( 'atal-seo-factory knowledge', $this->knowledge_command );

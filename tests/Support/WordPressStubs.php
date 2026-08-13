@@ -20,6 +20,8 @@ if ( ! class_exists( 'wpdb' ) ) {
 
 		public string $prefix = 'wp_';
 
+		public string $posts = 'wp_posts';
+
 		public function get_charset_collate(): string {
 			return 'DEFAULT CHARACTER SET utf8mb4';
 		}
@@ -41,6 +43,14 @@ if ( ! class_exists( 'wpdb' ) ) {
 		public function get_var( string $query ): mixed {
 			unset( $query );
 			return null;
+		}
+
+		/**
+		 * @return list<array<string,mixed>>
+		 */
+		public function get_results( string $query, string $output = 'OBJECT' ): array|object|null {
+			unset( $query, $output );
+			return array();
 		}
 
 		/**
@@ -124,6 +134,22 @@ if ( ! function_exists( 'add_action' ) ) {
 	}
 }
 
+if ( ! function_exists( 'add_filter' ) ) {
+	/** @phpstan-impure */
+	function add_filter( string $hook, callable $callback, int $priority = 10, int $accepted_args = 1 ): bool {
+		AtalWordPressStubState::$calls[] = array( 'add_filter', $hook, $callback, $priority, $accepted_args );
+		return true;
+	}
+}
+
+if ( ! function_exists( 'remove_filter' ) ) {
+	/** @phpstan-impure */
+	function remove_filter( string $hook, callable $callback, int $priority = 10 ): bool {
+		AtalWordPressStubState::$calls[] = array( 'remove_filter', $hook, $callback, $priority );
+		return true;
+	}
+}
+
 if ( ! function_exists( 'register_activation_hook' ) ) {
 	/** @phpstan-impure */
 	function register_activation_hook( string $file, callable $callback ): void {
@@ -189,4 +215,78 @@ if ( ! function_exists( 'get_bloginfo' ) ) {
 		unset( $show );
 		return '6.9';
 	}
+}
+
+if ( ! function_exists( 'wp_raise_memory_limit' ) ) {
+	function wp_raise_memory_limit( string $context = 'admin' ): string|false {
+		if ( 'invalid' === $context ) {
+			return false;
+		}
+		return '256M';
+	}
+}
+
+if ( ! function_exists( 'check_admin_referer' ) ) {
+	function check_admin_referer( string $action = '-1', string $query_arg = '_wpnonce' ): int|false {
+		unset( $query_arg );
+		if ( 'invalid' === $action ) {
+			return false;
+		}
+		return 1;
+	}
+}
+
+if ( ! function_exists( 'admin_url' ) ) {
+	function admin_url( string $path = '' ): string {
+		return 'https://example.test/wp-admin/' . ltrim( $path, '/' );
+	}
+}
+
+if ( ! function_exists( 'add_query_arg' ) ) {
+	function add_query_arg( mixed ...$args ): string {
+		$last = end( $args );
+		return is_string( $last ) ? $last : '';
+	}
+}
+
+if ( ! function_exists( 'wp_safe_redirect' ) ) {
+	function wp_safe_redirect( string $location, int $status = 302, string $x_redirect_by = 'WordPress' ): bool {
+		unset( $location, $status, $x_redirect_by );
+		return true;
+	}
+}
+
+if ( ! function_exists( 'wp_nonce_field' ) ) {
+	function wp_nonce_field( string $action = '-1', string $name = '_wpnonce', bool $referer = true, bool $display = true ): string {
+		unset( $action, $name, $referer, $display );
+		return '';
+	}
+}
+
+if ( ! function_exists( 'submit_button' ) ) {
+	function submit_button( string $text = 'Save Changes', string $type = 'primary', string $name = 'submit', bool $wrap = true ): void {
+		AtalWordPressStubState::$calls[] = array( 'submit_button', $text, $type, $name, $wrap );
+	}
+}
+
+if ( ! function_exists( 'wp_nonce_url' ) ) {
+	function wp_nonce_url( string $action_url, int|string $action = -1, string $name = '_wpnonce' ): string {
+		unset( $action, $name );
+		return $action_url;
+	}
+}
+
+if ( ! function_exists( 'nocache_headers' ) ) {
+	function nocache_headers(): void {
+	}
+}
+
+if ( ! function_exists( 'wp_json_encode' ) ) {
+	function wp_json_encode( mixed $value, int $flags = 0, int $depth = 512 ): string|false {
+		return json_encode( $value, $flags, max( 1, $depth ) );
+	}
+}
+
+if ( ! defined( 'ARRAY_A' ) ) {
+	define( 'ARRAY_A', 'ARRAY_A' );
 }
