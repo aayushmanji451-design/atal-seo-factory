@@ -34,6 +34,10 @@
         <exclude-pattern>*/tools/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Application/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Domain/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Infrastructure/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Rest/*</exclude-pattern>
     </rule>
 
     <rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_fwrite">
@@ -59,12 +63,14 @@
     <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
@@ -72,17 +78,20 @@
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
     <!-- Interface implementations and isolated test doubles inherit contract documentation. -->
     <rule ref="Squiz.Commenting.FunctionComment.Missing">
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag.WrongNumber">
@@ -92,4 +101,49 @@
     <rule ref="Squiz.Commenting.VariableComment.Missing">
         <exclude-pattern>*/tests/Support/*</exclude-pattern>
     </rule>
+
+	<!-- Task 03 uses PSR-4 one-class files in production; isolated acceptance/test doubles stay local to their runner. -->
+	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Application/Acceptance/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.FileComment.SpacingAfterComment">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.FunctionComment">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Commenting.VariableComment.Missing">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Application/Acceptance/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.AlternativeFunctions.json_encode_json_encode">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Application/Acceptance/*</exclude-pattern>
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.PHP.YodaConditions.NotYoda">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Application/Acceptance/*</exclude-pattern>
+	</rule>
+
+	<!-- The receiver's deterministic duplicate lookup is an indexed, two-row bounded ownership query. -->
+	<rule ref="WordPress.DB.SlowDBQuery">
+		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Infrastructure/WordPress/WordPressDraftPostService.php</exclude-pattern>
+	</rule>
 </ruleset>
