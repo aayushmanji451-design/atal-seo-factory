@@ -17,7 +17,8 @@
             "Atal\\SeoFactory\\": "plugins/atal-seo-factory-core/src/",
             "Atal\\DiplomaReceiver\\": "plugins/atal-diploma-receiver/src/",
             "Atal\\Contracts\\": "packages/contracts/src/",
-            "Atal\\SeoImages\\": "packages/seo-images/src/"
+            "Atal\\SeoImages\\": "packages/seo-images/src/",
+            "Atal\\Topics\\": "packages/topics/src/"
         }
     },
     "autoload-dev": {

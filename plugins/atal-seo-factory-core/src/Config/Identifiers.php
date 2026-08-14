@@ -34,6 +34,12 @@ final class Identifiers {
 
 	public const OPTION_TASK05_REPORT = 'atal_seo_factory_core_task_05_report';
 
+	public const OPTION_TASK06_REPORT = 'atal_seo_factory_core_task_06_report';
+
+	public const OPTION_TOPIC_CURSOR_INSTITUTE = 'atal_seo_factory_core_topic_cursor_institute';
+
+	public const OPTION_TOPIC_CURSOR_DIPLOMA = 'atal_seo_factory_core_topic_cursor_diploma';
+
 	public const OPTION_DIPLOMA_HMAC_SECRET = 'atal_seo_factory_core_diploma_hmac_secret';
 
 	public const OPTION_ACTIVATION_SEQUENCE = 'atal_seo_factory_core_activation_sequence';

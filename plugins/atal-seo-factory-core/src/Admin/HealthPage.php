@@ -34,7 +34,8 @@ final class HealthPage {
 		private readonly AcceptanceRunner $acceptance,
 		private readonly AcceptanceReportStoreInterface $reports,
 		private readonly CanaryPanel $canary,
-		private readonly Task05Panel $task05
+		private readonly Task05Panel $task05,
+		private readonly Task06Panel $task06
 	) {
 	}
 
@@ -85,6 +86,7 @@ final class HealthPage {
 			<?php $this->render_acceptance_section( $latest ); ?>
 			<?php $this->canary->render(); ?>
 			<?php $this->task05->render(); ?>
+			<?php $this->task06->render(); ?>
 		</div>
 		<?php
 	}
@@ -113,6 +115,10 @@ final class HealthPage {
 		$this->task05->rollback(); }
 	public function download_task05(): void {
 		$this->task05->download(); }
+	public function preview_task06(): void {
+		$this->task06->preview(); }
+	public function validate_task06(): void {
+		$this->task06->validate(); }
 
 	public function run_acceptance(): void {
 		$this->authorize_action( self::RUN_NONCE );
