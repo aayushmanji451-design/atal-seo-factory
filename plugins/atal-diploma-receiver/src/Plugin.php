@@ -7,7 +7,7 @@ use Atal\DiplomaReceiver\Admin\HealthPage;
 use Atal\DiplomaReceiver\Rest\ReceiverController;
 use Closure;
 final class Plugin {
-	public const VERSION = '0.4.1-dev';
+	public const VERSION = '0.5.0-dev';
 	/**
 	 * @param Closure():ReceiverController $controller_factory REST controller factory.
 	 * @param Closure():HealthPage         $health_factory     Health page factory.

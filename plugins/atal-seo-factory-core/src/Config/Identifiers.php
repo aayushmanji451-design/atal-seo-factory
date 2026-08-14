@@ -30,6 +30,10 @@ final class Identifiers {
 
 	public const OPTION_CANARY_REPORT = 'atal_seo_factory_core_task_04_canary_report';
 
+	public const OPTION_TASK05_STATE = 'atal_seo_factory_core_task_05_state';
+
+	public const OPTION_TASK05_REPORT = 'atal_seo_factory_core_task_05_report';
+
 	public const OPTION_DIPLOMA_HMAC_SECRET = 'atal_seo_factory_core_diploma_hmac_secret';
 
 	public const OPTION_ACTIVATION_SEQUENCE = 'atal_seo_factory_core_activation_sequence';

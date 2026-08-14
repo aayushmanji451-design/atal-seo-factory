@@ -5,15 +5,18 @@ namespace Atal\DiplomaReceiver\Infrastructure\WordPress;
 
 use Atal\DiplomaReceiver\Domain\Receiver\AuditLoggerInterface;
 use Atal\DiplomaReceiver\Infrastructure\Database\TableNames;
+use Atal\SeoImages\Contract\AuditLoggerInterface as Task05AuditLoggerInterface;
 use wpdb;
-final class WpdbAuditLogger implements AuditLoggerInterface {
+final class WpdbAuditLogger implements AuditLoggerInterface, Task05AuditLoggerInterface {
 	public function __construct( private readonly wpdb $database, private readonly TableNames $tables ) {}
 	public function record( string $event, string $outcome, array $context = array() ): void {
 		$safe    = array_intersect_key(
 			$context,
 			array(
-				'article_key' => true,
-				'post_id'     => true,
+				'article_key'   => true,
+				'post_id'       => true,
+				'attachment_id' => true,
+				'reused'        => true,
 			)
 		);
 		$encoded = wp_json_encode( $safe, JSON_UNESCAPED_SLASHES );

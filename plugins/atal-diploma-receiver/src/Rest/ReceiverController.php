@@ -8,13 +8,14 @@ use Atal\DiplomaReceiver\Application\Health\HealthDataProvider;
 use Atal\DiplomaReceiver\Application\Receiver\ArticleReceiver;
 use Atal\DiplomaReceiver\Application\Receiver\RollbackReceiver;
 use Atal\DiplomaReceiver\Application\Security\HmacAuthenticator;
+use Atal\DiplomaReceiver\Application\SeoImages\Task05RemoteService;
 use Atal\DiplomaReceiver\Config\Identifiers;
 use Atal\DiplomaReceiver\Domain\Security\RequestEnvelope;
 use Throwable;
 use WP_REST_Request;
 use WP_REST_Response;
 final class ReceiverController {
-	public function __construct( private readonly ArticleReceiver $articles, private readonly RollbackReceiver $rollbacks, private readonly HmacAuthenticator $authenticator, private readonly JsonPayloadDecoder $decoder, private readonly HealthDataProvider $health ) {}
+	public function __construct( private readonly ArticleReceiver $articles, private readonly RollbackReceiver $rollbacks, private readonly HmacAuthenticator $authenticator, private readonly JsonPayloadDecoder $decoder, private readonly HealthDataProvider $health, private readonly ?Task05RemoteService $task05 = null ) {}
 	public function register(): void {
 		register_rest_route(
 			Identifiers::REST_NAMESPACE,
@@ -52,6 +53,18 @@ final class ReceiverController {
 				'permission_callback' => '__return_true',
 			)
 		);
+		if ( null !== $this->task05 ) {
+			foreach ( array( 'run', 'verify', 'rollback' ) as $action ) {
+				register_rest_route(
+					Identifiers::REST_NAMESPACE,
+					'/task-05/' . $action,
+					array(
+						'methods'             => 'POST',
+						'callback'            => fn( WP_REST_Request $request ): WP_REST_Response => $this->task05( $request, $action ),
+						'permission_callback' => '__return_true',
+					)
+				); }
+		}
 	}
 	public function health( WP_REST_Request $request ): WP_REST_Response {
 		unset( $request );
@@ -60,6 +73,16 @@ final class ReceiverController {
 		return $this->execute( $request, array( $this, 'receive_payload' ) ); }
 	public function rollback( WP_REST_Request $request ): WP_REST_Response {
 		return $this->execute( $request, array( $this, 'rollback_payload' ) ); }
+	public function task05( WP_REST_Request $request, string $action ): WP_REST_Response {
+		if ( null === $this->task05 ) {
+			return $this->error( new ReceiverException( 'receiver_task05_unavailable', 'Task 05 is unavailable.', 503 ) ); }
+		/**
+		 * @param array<string,mixed> $payload Task 05 request payload.
+		 * @return array<string,mixed>
+		 */
+		$operation = fn( RequestEnvelope $envelope, array $payload ): array => $this->task05->execute( $envelope, $this->payload_object( $payload ), $action );
+		return $this->execute( $request, $operation );
+	}
 	public function contract_test( WP_REST_Request $request ): WP_REST_Response {
 		try {
 			$payload  = $this->decoder->decode( $request->get_body() );
@@ -120,4 +143,15 @@ final class ReceiverController {
 			),
 			$exception->http_status()
 		); }
+	/**
+	 * @param array<mixed> $payload Decoded payload.
+	 * @return array<string,mixed>
+	 */
+	private function payload_object( array $payload ): array {
+		$result = array();
+		foreach ( $payload as $key => $value ) {
+			if ( ! is_string( $key ) ) {
+				throw new ReceiverException( 'receiver_invalid_payload', 'The payload contains an invalid key.', 422 );
+			} $result[ $key ] = $value;
+		} return $result; }
 }

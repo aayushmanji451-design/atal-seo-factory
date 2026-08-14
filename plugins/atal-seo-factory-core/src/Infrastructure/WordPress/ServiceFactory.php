@@ -12,6 +12,7 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
+use Atal\SeoFactory\Admin\Task05Panel;
 use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
 use Atal\SeoFactory\Application\Acceptance\KnowledgePackageInspector;
 use Atal\SeoFactory\Application\Canary\CanaryContentValidator;
@@ -34,7 +35,16 @@ use Atal\SeoFactory\Infrastructure\WordPress\Canary\WordPressCanaryRuntimeGuard;
 use Atal\SeoFactory\Infrastructure\WordPress\Canary\WordPressDiplomaReceiverClient;
 use Atal\SeoFactory\Infrastructure\WordPress\Canary\WpdbCanaryAuditLogger;
 use Atal\SeoFactory\Infrastructure\WordPress\Canary\WpdbCanaryStateRepository;
+use Atal\SeoFactory\Infrastructure\WordPress\Seo\RankMathAdapter;
+use Atal\SeoFactory\Infrastructure\WordPress\SeoImages\DiplomaTask05Client;
 use Atal\SeoFactory\Plugin;
+use Atal\SeoImages\Application\AcceptanceCoordinator as Task05Coordinator;
+use Atal\SeoImages\Application\CanonicalAssetResolver;
+use Atal\SeoImages\Domain\AcceptanceFixture;
+use Atal\SeoImages\Infrastructure\WordPress\LocalImageManager;
+use Atal\SeoImages\Infrastructure\WordPress\WordPressFixtureRepository;
+use Atal\SeoImages\Infrastructure\WordPress\WordPressOptionStateStore;
+use Atal\SeoImages\Infrastructure\WordPress\WordPressRuntimeGuard;
 use RuntimeException;
 use wpdb;
 
@@ -111,7 +121,20 @@ final class ServiceFactory {
 			$database
 		);
 
-		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore(), new CanaryPanel( $canary, $canary_importer ) );
+		$task05 = new Task05Coordinator(
+			new AcceptanceFixture( 'atal_institute', 'liveup2.atalinstitute.com', 14557, CanonicalCanaryArticleBuilder::INSTITUTE_ARTICLE_KEY, 'institute_general_duty_assistant', 'course_overview', 'General Duty Assistant Course: Duration and Fees | ATAL Institute', 'Explore the General Duty Assistant (GDA) course at ATAL Institute, with verified duration, fee, learning focus, and approved course information.', 'General Duty Assistant course' ),
+			new CanonicalAssetResolver( $paths['master'], $paths['schemas'], KnowledgeValidator::create_default() ),
+			new WordPressRuntimeGuard( array( 'atal-seo-connector' ) ),
+			new WordPressFixtureRepository( WordPressCanaryPostService::OWNER_META, WordPressCanaryPostService::COURSE_META ),
+			new RankMathAdapter(),
+			new LocalImageManager(),
+			new WordPressOptionStateStore( \Atal\SeoFactory\Config\Identifiers::OPTION_TASK05_STATE ),
+			new WpdbCanaryAuditLogger( $native_database, $tables ),
+			Plugin::VERSION,
+			array( 14556 )
+		);
+
+		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore(), new CanaryPanel( $canary, $canary_importer ), new Task05Panel( $task05, new DiplomaTask05Client( new HmacRequestSigner() ) ) );
 	}
 
 	private static function knowledge_command(): KnowledgeCommand {
