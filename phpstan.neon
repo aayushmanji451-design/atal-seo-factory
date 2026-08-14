@@ -4,6 +4,7 @@ parameters:
     paths:
         - packages/contracts/src
         - packages/seo-images/src
+        - packages/topics/src
         - plugins/atal-seo-factory-core/src
         - plugins/atal-diploma-receiver/src
         - tests

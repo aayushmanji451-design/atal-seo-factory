@@ -12,6 +12,7 @@ namespace Atal\Tests\Unit\Core;
 use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Admin\Task05Panel;
+use Atal\SeoFactory\Admin\Task06Panel;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Atal\SeoFactory\Plugin;
 use AtalWordPressStubState;
@@ -48,7 +49,7 @@ final class PluginTest extends TestCase {
 
 		self::assertSame( 0, $health_calls );
 		self::assertSame( 0, $command_calls );
-		self::assertCount( 13, AtalWordPressStubState::$calls );
+		self::assertCount( 15, AtalWordPressStubState::$calls );
 		$hooks = array_map(
 			static function ( mixed $call ): string {
 				if ( ! is_array( $call ) || ! isset( $call[1] ) || ! is_string( $call[1] ) ) {
@@ -74,6 +75,8 @@ final class PluginTest extends TestCase {
 				'admin_post_' . Task05Panel::VERIFY_ACTION,
 				'admin_post_' . Task05Panel::ROLLBACK_ACTION,
 				'admin_post_' . Task05Panel::DOWNLOAD_ACTION,
+				'admin_post_' . Task06Panel::PREVIEW_ACTION,
+				'admin_post_' . Task06Panel::VALIDATE_ACTION,
 			),
 			$hooks
 		);

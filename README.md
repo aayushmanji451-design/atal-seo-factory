@@ -36,6 +36,18 @@ No WordPress installation or production credentials are required for the Task 00
 | `Atal\SeoFactory\` | `plugins/atal-seo-factory-core/src/` |
 | `Atal\DiplomaReceiver\` | `plugins/atal-diploma-receiver/src/` |
 | `Atal\Contracts\` | `packages/contracts/src/` |
+| `Atal\Topics\` | `packages/topics/src/` |
+
+## Task 06 deterministic topic validation
+
+Task 06 defines one immutable identity from target site, canonical course key,
+approved intent, normalized primary keyword, and year. Its sequential weighted
+rotation keeps independent persistent site cursors and reports every skipped
+course. Local quality gates validate canonical facts, site identity, blocked
+claims, missing-syllabus scope, links, conclusion position, keyword and URL
+registries, filler, semantic duplication, and cannibalization. The development
+admin panel is preview/validate only and registers no publishing, scheduler,
+AI, or paid-API operation.
 
 ## Validation levels
 

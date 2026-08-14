@@ -27,6 +27,12 @@ if ( ! class_exists( 'AtalWordPressStubState' ) ) {
 
 		/** @var array<int,string> */
 		public static array $post_types = array();
+
+		/** Whether the current synthetic user has the requested capability. */
+		public static bool $current_user_can = true;
+
+		/** Whether the synthetic admin nonce is valid. */
+		public static bool $nonce_valid = true;
 	}
 }
 
@@ -252,7 +258,7 @@ if ( ! function_exists( '__return_true' ) ) {
 if ( ! function_exists( 'current_user_can' ) ) {
 	function current_user_can( string $capability ): bool {
 		unset( $capability );
-		return true;
+		return AtalWordPressStubState::$current_user_can;
 	}
 }
 
@@ -335,7 +341,7 @@ if ( ! function_exists( 'wp_raise_memory_limit' ) ) {
 if ( ! function_exists( 'check_admin_referer' ) ) {
 	function check_admin_referer( string $action = '-1', string $query_arg = '_wpnonce' ): int|false {
 		unset( $query_arg );
-		if ( 'invalid' === $action ) {
+		if ( 'invalid' === $action || ! AtalWordPressStubState::$nonce_valid ) {
 			return false;
 		}
 		return 1;
