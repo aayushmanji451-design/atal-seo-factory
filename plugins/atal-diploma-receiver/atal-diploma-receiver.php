@@ -3,7 +3,7 @@
  * Plugin Name: Atal Diploma Receiver
  * Plugin URI: https://diplomanext.ataldiploma.com/
  * Description: Secure, staging-first receiver for authenticated Atal Diploma draft payloads.
- * Version: 0.4.0-dev
+ * Version: 0.4.1-dev
  * Requires at least: 6.9
  * Requires PHP: 8.1
  * Author: ATAL Institute

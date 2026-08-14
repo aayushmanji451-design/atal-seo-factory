@@ -60,8 +60,8 @@ function build_task04_plugin( string $project_root, string $release_dir, string 
 }
 
 $builds = array(
-	build_task04_plugin( $project_root, $release_dir, 'atal-seo-factory-core', 'atal-seo-factory-core-0.4.0-dev-task-04.zip' ),
-	build_task04_plugin( $project_root, $release_dir, 'atal-diploma-receiver', 'atal-diploma-receiver-0.4.0-dev-task-04.zip' ),
+	build_task04_plugin( $project_root, $release_dir, 'atal-seo-factory-core', 'atal-seo-factory-core-0.4.1-dev-task-04.zip' ),
+	build_task04_plugin( $project_root, $release_dir, 'atal-diploma-receiver', 'atal-diploma-receiver-0.4.1-dev-task-04.zip' ),
 );
 foreach ( $builds as $build ) {
 	echo 'ZIP=' . $build['zip'] . PHP_EOL;

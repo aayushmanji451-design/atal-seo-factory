@@ -37,10 +37,12 @@ final class CanaryCoordinator {
 		$article = $this->article( $json, TargetSite::INSTITUTE );
 		$stored  = $this->states->find( $article->article_key() );
 		if ( null !== $stored ) {
-			if ( self::ACTIVE_LOCAL !== $stored['status'] ) {
-				throw new CanaryException( 'The deterministic Institute canary was already rolled back; Task 04 will not silently recreate it.' );
+			if ( self::ACTIVE_LOCAL === $stored['status'] ) {
+				return $this->result( 'PASS', $article, true, $stored['payload'] );
 			}
-			return $this->result( 'PASS', $article, true, $stored['payload'] );
+			if ( self::ROLLED_BACK !== $stored['status'] ) {
+				throw new CanaryException( 'The deterministic Institute canary is in an unsupported state.' );
+			}
 		}
 		$this->transactions->begin();
 		try {
@@ -77,10 +79,12 @@ final class CanaryCoordinator {
 		$article = $this->article( $json, TargetSite::DIPLOMA );
 		$stored  = $this->states->find( $article->article_key() );
 		if ( null !== $stored ) {
-			if ( self::ACTIVE_REMOTE !== $stored['status'] ) {
-				throw new CanaryException( 'The deterministic Diploma canary was already rolled back; Task 04 will not silently recreate it.' );
+			if ( self::ACTIVE_REMOTE === $stored['status'] ) {
+				return $this->result( 'PASS', $article, true, $this->public_payload( $stored['payload'] ) );
 			}
-			return $this->result( 'PASS', $article, true, $this->public_payload( $stored['payload'] ) );
+			if ( self::ROLLED_BACK !== $stored['status'] ) {
+				throw new CanaryException( 'The deterministic Diploma canary is in an unsupported state.' );
+			}
 		}
 		$response = $this->diploma->send( $article );
 		$this->assert_remote_acceptance( $article, $response );

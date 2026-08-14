@@ -11,9 +11,8 @@ final class NativeAioseoModelStub {
 	public static array $records = array();
 	/** @param array<string,mixed> $data */
 	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid -- Mirrors the verified AIOSEO 4.9.8 model contract.
-	public static function savePost( int $post_id, array $data ): null {
+	public static function savePost( int $post_id, array $data ): void {
 		self::$records[ $post_id ] = array_replace( self::$records[ $post_id ] ?? array(), $data );
-		return null;
 	}
 	// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid -- Mirrors the verified AIOSEO 4.9.8 model contract.
 	public static function getPost( int $post_id ): object {

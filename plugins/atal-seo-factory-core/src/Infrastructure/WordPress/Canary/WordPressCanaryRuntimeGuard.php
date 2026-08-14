@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Atal\SeoFactory\Infrastructure\WordPress\Canary;
 
 use Atal\SeoFactory\Application\Canary\CanaryException;
+use Atal\SeoFactory\Config\Identifiers;
 use Atal\SeoFactory\Domain\Canary\CanaryRuntimeGuardInterface;
 
 final class WordPressCanaryRuntimeGuard implements CanaryRuntimeGuardInterface {
@@ -28,10 +29,14 @@ final class WordPressCanaryRuntimeGuard implements CanaryRuntimeGuardInterface {
 
 	public function assert_diploma_send_ready(): void {
 		$this->assert_institute_ready();
-		$value = defined( self::SECRET_CONSTANT ) ? constant( self::SECRET_CONSTANT ) : null;
-		if ( ! is_string( $value ) || 32 > strlen( $value ) ) {
-			throw new CanaryException( 'Define ATAL_SEO_FACTORY_DIPLOMA_HMAC_SECRET manually on Institute staging before the Diploma canary.' );
+		if ( 32 > strlen( self::shared_secret() ) ) {
+			throw new CanaryException( 'Configure the Task 04 Diploma HMAC secret on Institute staging before the Diploma canary.' );
 		}
+	}
+
+	public static function shared_secret(): string {
+		$value = defined( self::SECRET_CONSTANT ) ? constant( self::SECRET_CONSTANT ) : get_option( Identifiers::OPTION_DIPLOMA_HMAC_SECRET, '' );
+		return is_string( $value ) ? $value : '';
 	}
 
 	private function rank_math_active(): bool {

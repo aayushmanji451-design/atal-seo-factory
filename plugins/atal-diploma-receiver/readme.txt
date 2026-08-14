@@ -2,7 +2,7 @@
 Contributors: atal-institute
 Requires at least: 6.9
 Requires PHP: 8.1
-Stable tag: 0.4.0-dev
+Stable tag: 0.4.1-dev
 
 DEVELOPMENT build for Task 04. It retains the versioned authenticated receiver,
 uses HMAC SHA-256 with timestamp and replay checks, enforces idempotency, validates

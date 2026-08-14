@@ -99,6 +99,9 @@ final class HealthPage {
 	public function rollback_canary(): void {
 		$this->canary->rollback(); }
 
+	public function configure_canary_hmac(): void {
+		$this->canary->configure_hmac(); }
+
 	public function run_acceptance(): void {
 		$this->authorize_action( self::RUN_NONCE );
 		if ( ! Plugin::is_development_build() ) {

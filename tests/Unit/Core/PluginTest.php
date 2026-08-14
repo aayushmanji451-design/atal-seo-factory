@@ -44,7 +44,7 @@ final class PluginTest extends TestCase {
 
 		self::assertSame( 0, $health_calls );
 		self::assertSame( 0, $command_calls );
-		self::assertCount( 7, AtalWordPressStubState::$calls );
+		self::assertCount( 8, AtalWordPressStubState::$calls );
 		$hooks = array_map(
 			static function ( mixed $call ): string {
 				if ( ! is_array( $call ) || ! isset( $call[1] ) || ! is_string( $call[1] ) ) {
@@ -64,6 +64,7 @@ final class PluginTest extends TestCase {
 				'admin_post_' . CanaryPanel::RUN_DIPLOMA_ACTION,
 				'admin_post_' . CanaryPanel::VERIFY_ACTION,
 				'admin_post_' . CanaryPanel::ROLLBACK_ACTION,
+				'admin_post_' . CanaryPanel::CONFIGURE_HMAC_ACTION,
 			),
 			$hooks
 		);

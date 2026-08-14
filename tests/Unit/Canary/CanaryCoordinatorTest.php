@@ -54,6 +54,21 @@ final class CanaryCoordinatorTest extends CanaryTestCase {
 		self::assertSame( 1, $fixture['client']->rollbacks );
 	}
 
+	public function test_explicit_run_recreates_both_drafts_after_rollback(): void {
+		$fixture = $this->coordinator();
+		$fixture['coordinator']->run_institute( $this->json( TargetSite::INSTITUTE ) );
+		$fixture['coordinator']->run_diploma( $this->json( TargetSite::DIPLOMA, 601 ) );
+		$fixture['coordinator']->rollback();
+		$institute = $fixture['coordinator']->run_institute( $this->json( TargetSite::INSTITUTE ) );
+		$diploma   = $fixture['coordinator']->run_diploma( $this->json( TargetSite::DIPLOMA, 601 ) );
+		self::assertFalse( $institute['idempotent'] );
+		self::assertFalse( $diploma['idempotent'] );
+		self::assertCount( 1, $fixture['posts']->posts );
+		self::assertCount( 1, $fixture['client']->posts );
+		self::assertSame( 2, $fixture['posts']->writes );
+		self::assertSame( 2, $fixture['client']->sends );
+	}
+
 	public function test_audit_never_contains_hmac_or_recovery_secret(): void {
 		$fixture = $this->coordinator();
 		$fixture['coordinator']->run_institute( $this->json( TargetSite::INSTITUTE ) );

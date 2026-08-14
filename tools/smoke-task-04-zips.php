@@ -6,14 +6,14 @@ $root  = dirname( __DIR__ );
 $specs = array(
 	array(
 		'slug'     => 'atal-seo-factory-core',
-		'zip'      => $root . '/release/atal-seo-factory-core-0.4.0-dev-task-04.zip',
+		'zip'      => $root . '/release/atal-seo-factory-core-0.4.1-dev-task-04.zip',
 		'main'     => 'atal-seo-factory-core.php',
 		'class'    => 'Atal\\SeoFactory\\Plugin',
 		'required' => 'src/Application/Canary/CanaryCoordinator.php',
 	),
 	array(
 		'slug'     => 'atal-diploma-receiver',
-		'zip'      => $root . '/release/atal-diploma-receiver-0.4.0-dev-task-04.zip',
+		'zip'      => $root . '/release/atal-diploma-receiver-0.4.1-dev-task-04.zip',
 		'main'     => 'atal-diploma-receiver.php',
 		'class'    => 'Atal\\DiplomaReceiver\\Plugin',
 		'required' => 'src/Application/Receiver/ArticleReceiver.php',
@@ -63,7 +63,7 @@ foreach ( $specs as $spec ) {
 		function add_action( string $hook, callable $callback ): void {
 			unset( $hook, $callback ); } }
 	require $temporary . '/' . $spec['slug'] . '/' . $spec['main'];
-	if ( ! class_exists( $spec['class'] ) || '0.4.0-dev' !== constant( $spec['class'] . '::VERSION' ) ) {
+	if ( ! class_exists( $spec['class'] ) || '0.4.1-dev' !== constant( $spec['class'] . '::VERSION' ) ) {
 		throw new RuntimeException( 'Task 04 standalone version smoke failed.' ); }
 	$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $temporary, RecursiveDirectoryIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
 	foreach ( $iterator as $extracted_path ) {

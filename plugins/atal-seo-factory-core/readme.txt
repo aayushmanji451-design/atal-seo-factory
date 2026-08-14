@@ -2,7 +2,7 @@
 Contributors: atal-institute
 Requires at least: 6.9
 Requires PHP: 8.1
-Stable tag: 0.4.0-dev
+Stable tag: 0.4.1-dev
 
 Development-only Task 04 build. It retains the Task 02 storage/knowledge health
 checks and adds an administrator-triggered, deterministic one-draft canary for

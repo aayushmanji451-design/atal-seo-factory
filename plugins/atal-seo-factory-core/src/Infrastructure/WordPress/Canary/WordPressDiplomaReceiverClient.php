@@ -21,7 +21,8 @@ final class WordPressDiplomaReceiverClient implements DiplomaReceiverClientInter
 
 	public function send( CanaryArticle $article ): array {
 		$this->assert_health();
-		return $this->post( self::ARTICLE_ROUTE, $article->receiver_payload(), 'task04-send-' . hash( 'sha256', $article->article_key() ) );
+		$attempt = bin2hex( random_bytes( 8 ) );
+		return $this->post( self::ARTICLE_ROUTE, $article->receiver_payload(), 'task04-send-' . hash( 'sha256', $article->article_key() . ':' . $attempt ) );
 	}
 
 	public function rollback( string $article_key, string $recovery_token ): array {
@@ -33,7 +34,7 @@ final class WordPressDiplomaReceiverClient implements DiplomaReceiverClientInter
 				'schema_version' => '1.0',
 				'target_site'    => 'atal_diploma',
 			),
-			'task04-rollback-' . hash( 'sha256', $article_key )
+			'task04-rollback-' . hash( 'sha256', $article_key . ':' . $recovery_token )
 		);
 	}
 
@@ -67,8 +68,8 @@ final class WordPressDiplomaReceiverClient implements DiplomaReceiverClientInter
 		if ( false === $body ) {
 			throw new CanaryException( 'Unable to encode the bounded Diploma request.' );
 		}
-		$secret = defined( WordPressCanaryRuntimeGuard::SECRET_CONSTANT ) ? constant( WordPressCanaryRuntimeGuard::SECRET_CONSTANT ) : null;
-		if ( ! is_string( $secret ) ) {
+		$secret = WordPressCanaryRuntimeGuard::shared_secret();
+		if ( 32 > strlen( $secret ) ) {
 			throw new CanaryException( 'Diploma receiver authentication is not configured.' );
 		}
 		$timestamp = (string) time();
