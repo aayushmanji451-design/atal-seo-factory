@@ -13,6 +13,7 @@ use Atal\DiplomaReceiver\Config\Identifiers;
 use Atal\DiplomaReceiver\Domain\Receiver\{AioseoAdapterInterface, ArticlePayload, AuditLoggerInterface, FeaturedImageVerifierInterface, MutationResult, PostServiceInterface, Receipt, ReceiptStoreInterface, TransactionManagerInterface};
 use Atal\DiplomaReceiver\Domain\Security\RequestEnvelope;
 use Atal\DiplomaReceiver\Rest\JsonPayloadDecoder;
+use Atal\DiplomaReceiver\Plugin;
 use RuntimeException;
 use Throwable;
 final class AcceptanceRunner {
@@ -118,7 +119,7 @@ final class AcceptanceRunner {
 			'report_version'      => '1.0',
 			'scope'               => 'task-03-staging-acceptance',
 			'development_fixture' => true,
-			'plugin_version'      => '0.3.0-dev',
+			'plugin_version'      => Plugin::VERSION,
 			'status'              => $status,
 			'started_at'          => $started,
 			'completed_at'        => gmdate( 'c' ),
@@ -230,6 +231,19 @@ final class AcceptanceAioseo implements AioseoAdapterInterface {
 		return true;
 	} public function version(): string {
 		return '4.9.8'; }
+	public function write_and_verify( int $post_id, array $payload ): array {
+		unset( $post_id );
+		return array(
+			'status'          => 'accepted',
+			'title'           => $payload['title'],
+			'description'     => $payload['description'],
+			'focus_keyphrase' => $payload['focus_keyphrase'],
+		); }
+	public function snapshot( int $post_id ): array {
+		unset( $post_id );
+		return array(); }
+	public function restore( int $post_id, array $snapshot ): void {
+		unset( $post_id, $snapshot ); }
 }
 final class AcceptanceImages implements FeaturedImageVerifierInterface {
 	public function verify( ?int $attachment_id ): void {

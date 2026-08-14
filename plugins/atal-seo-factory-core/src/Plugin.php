@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Atal\SeoFactory;
 
 use Atal\SeoFactory\Admin\HealthPage;
+use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Closure;
 use Throwable;
@@ -19,7 +20,7 @@ use Throwable;
  */
 final class Plugin {
 
-	public const VERSION = '0.2.1-dev';
+	public const VERSION = '0.4.1-dev';
 
 	public static function is_development_build(): bool {
 		return str_ends_with( self::VERSION, '-dev' );
@@ -45,6 +46,11 @@ final class Plugin {
 		if ( self::is_development_build() ) {
 			add_action( 'admin_post_' . HealthPage::RUN_ACTION, array( $this, 'run_acceptance' ) );
 			add_action( 'admin_post_' . HealthPage::DOWNLOAD_ACTION, array( $this, 'download_acceptance_report' ) );
+			add_action( 'admin_post_' . CanaryPanel::RUN_INSTITUTE_ACTION, array( $this, 'run_institute_canary' ) );
+			add_action( 'admin_post_' . CanaryPanel::RUN_DIPLOMA_ACTION, array( $this, 'run_diploma_canary' ) );
+			add_action( 'admin_post_' . CanaryPanel::VERIFY_ACTION, array( $this, 'verify_canary' ) );
+			add_action( 'admin_post_' . CanaryPanel::ROLLBACK_ACTION, array( $this, 'rollback_canary' ) );
+			add_action( 'admin_post_' . CanaryPanel::CONFIGURE_HMAC_ACTION, array( $this, 'configure_canary_hmac' ) );
 		}
 
 		if ( defined( 'WP_CLI' ) && WP_CLI && class_exists( '\\WP_CLI' ) ) {
@@ -102,6 +108,21 @@ final class Plugin {
 			wp_die( esc_html( $this->runtime_error_message( $throwable ) ) );
 		}
 	}
+
+	public function run_institute_canary(): void {
+		$this->health_page()->run_institute_canary(); }
+
+	public function run_diploma_canary(): void {
+		$this->health_page()->run_diploma_canary(); }
+
+	public function verify_canary(): void {
+		$this->health_page()->verify_canary(); }
+
+	public function rollback_canary(): void {
+		$this->health_page()->rollback_canary(); }
+
+	public function configure_canary_hmac(): void {
+		$this->health_page()->configure_canary_hmac(); }
 
 	private function health_page(): HealthPage {
 		$factory = $this->health_page_factory;

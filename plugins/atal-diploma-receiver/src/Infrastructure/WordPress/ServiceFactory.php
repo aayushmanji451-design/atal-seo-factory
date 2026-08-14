@@ -49,7 +49,7 @@ final class ServiceFactory {
 		$aioseo        = new AioseoEnvironmentAdapter();
 		$authenticator = new HmacAuthenticator( new WordPressSecretProvider(), new SystemClock() );
 		$receipts      = new WpdbReceiptStore( $native, $tables );
-		$posts         = new WordPressDraftPostService();
+		$posts         = new WordPressDraftPostService( $aioseo );
 		$audit         = new WpdbAuditLogger( $native, $tables );
 		$validator     = new PayloadValidator( self::catalog() );
 		return array(

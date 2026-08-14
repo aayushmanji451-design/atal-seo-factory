@@ -7,11 +7,13 @@ use Atal\DiplomaReceiver\Application\Acceptance\AcceptanceRunner;
 use Atal\DiplomaReceiver\Application\Health\HealthDataProvider;
 use Atal\DiplomaReceiver\Config\Identifiers;
 final class HealthPage {
-	public const PAGE_SLUG       = 'atal-diploma-receiver-health';
-	public const RUN_ACTION      = 'atal_diploma_receiver_task_03_acceptance';
-	public const DOWNLOAD_ACTION = 'atal_diploma_receiver_task_03_download';
-	private const RUN_NONCE      = 'atal_diploma_receiver_task_03_run';
-	private const DOWNLOAD_NONCE = 'atal_diploma_receiver_task_03_download';
+	public const PAGE_SLUG             = 'atal-diploma-receiver-health';
+	public const RUN_ACTION            = 'atal_diploma_receiver_task_03_acceptance';
+	public const DOWNLOAD_ACTION       = 'atal_diploma_receiver_task_03_download';
+	public const CONFIGURE_HMAC_ACTION = 'atal_diploma_receiver_task_04_configure_hmac';
+	private const RUN_NONCE            = 'atal_diploma_receiver_task_03_run';
+	private const DOWNLOAD_NONCE       = 'atal_diploma_receiver_task_03_download';
+	private const CONFIGURE_HMAC_NONCE = 'atal_diploma_receiver_task_04_configure_hmac';
 	public function __construct( private readonly HealthDataProvider $health, private readonly AcceptanceRunner $acceptance ) {}
 	public function register(): void {
 		add_management_page( esc_html__( 'Atal Diploma Receiver Health', 'atal-diploma-receiver' ), esc_html__( 'Diploma Receiver Health', 'atal-diploma-receiver' ), 'manage_options', self::PAGE_SLUG, array( $this, 'render' ) ); }
@@ -23,7 +25,7 @@ final class HealthPage {
 		<?php
 		foreach ( $this->rows( $snapshot ) as $label => $value ) :
 			?>
-			<tr><th scope="row"><?php echo esc_html( $label ); ?></th><td><?php echo esc_html( $value ); ?></td></tr><?php endforeach; ?></tbody></table><h2><?php echo esc_html__( 'Task 03 browser acceptance', 'atal-diploma-receiver' ); ?></h2><form method="post" action="<?php echo esc_html( admin_url( 'admin-post.php' ) ); ?>"><input type="hidden" name="action" value="<?php echo esc_html( self::RUN_ACTION ); ?>"><?php echo wp_nonce_field( self::RUN_NONCE, '_wpnonce', true, false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress-generated nonce markup. ?><?php submit_button( esc_html__( 'Run isolated Task 03 acceptance', 'atal-diploma-receiver' ), 'primary', 'submit', false ); ?></form>
+			<tr><th scope="row"><?php echo esc_html( $label ); ?></th><td><?php echo esc_html( $value ); ?></td></tr><?php endforeach; ?></tbody></table><h2><?php echo esc_html__( 'Task 04 HMAC pairing', 'atal-diploma-receiver' ); ?></h2><p><?php echo esc_html__( 'The secret is write-only and is never displayed or logged.', 'atal-diploma-receiver' ); ?></p><form method="post" action="<?php echo esc_html( admin_url( 'admin-post.php' ) ); ?>"><input type="hidden" name="action" value="<?php echo esc_html( self::CONFIGURE_HMAC_ACTION ); ?>"><?php echo wp_nonce_field( self::CONFIGURE_HMAC_NONCE, '_wpnonce', true, false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress-generated nonce markup. ?><label><?php echo esc_html__( 'Task 04 shared secret', 'atal-diploma-receiver' ); ?> <input type="password" name="task04_hmac_secret" minlength="64" maxlength="64" autocomplete="new-password" required></label> <?php submit_button( esc_html__( 'Save development HMAC secret', 'atal-diploma-receiver' ), 'secondary', 'submit', false ); ?></form><h2><?php echo esc_html__( 'Task 03 browser acceptance', 'atal-diploma-receiver' ); ?></h2><form method="post" action="<?php echo esc_html( admin_url( 'admin-post.php' ) ); ?>"><input type="hidden" name="action" value="<?php echo esc_html( self::RUN_ACTION ); ?>"><?php echo wp_nonce_field( self::RUN_NONCE, '_wpnonce', true, false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WordPress-generated nonce markup. ?><?php submit_button( esc_html__( 'Run isolated Task 03 acceptance', 'atal-diploma-receiver' ), 'primary', 'submit', false ); ?></form>
 			<?php
 			if ( is_array( $report ) ) :
 				?>
@@ -48,6 +50,18 @@ final class HealthPage {
 		header( 'Content-Disposition: attachment; filename="atal-diploma-receiver-task-03-acceptance.json"' );
 		echo wp_json_encode( $report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional authenticated JSON download.
 		exit; }
+	public function configure_hmac(): void {
+		$this->authorize_action( self::CONFIGURE_HMAC_NONCE );
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce checked above; exact hexadecimal validation follows.
+		$secret = isset( $_POST['task04_hmac_secret'] ) && is_string( $_POST['task04_hmac_secret'] ) ? wp_unslash( $_POST['task04_hmac_secret'] ) : '';
+		if ( 1 !== preg_match( '/^[a-f0-9]{64}$/', $secret ) ) {
+			wp_die( esc_html__( 'Task 04 HMAC secret must be exactly 64 lowercase hexadecimal characters.', 'atal-diploma-receiver' ) );
+		}
+		update_option( Identifiers::OPTION_HMAC_SECRET, $secret, false );
+		$url = add_query_arg( 'page', self::PAGE_SLUG, admin_url( 'tools.php' ) );
+		if ( ! wp_safe_redirect( $url ) ) {
+			wp_die( esc_html__( 'Unable to return to receiver health.', 'atal-diploma-receiver' ) );
+		} exit; }
 	/**
 	 * @param array<string,mixed> $snapshot Health snapshot.
 	 * @return array<string,string>

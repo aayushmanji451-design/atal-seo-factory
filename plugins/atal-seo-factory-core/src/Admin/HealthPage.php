@@ -32,7 +32,8 @@ final class HealthPage {
 	public function __construct(
 		private readonly HealthDataProvider $health,
 		private readonly AcceptanceRunner $acceptance,
-		private readonly AcceptanceReportStoreInterface $reports
+		private readonly AcceptanceReportStoreInterface $reports,
+		private readonly CanaryPanel $canary
 	) {
 	}
 
@@ -81,9 +82,25 @@ final class HealthPage {
 				</tbody>
 			</table>
 			<?php $this->render_acceptance_section( $latest ); ?>
+			<?php $this->canary->render(); ?>
 		</div>
 		<?php
 	}
+
+	public function run_institute_canary(): void {
+		$this->canary->run_institute(); }
+
+	public function run_diploma_canary(): void {
+		$this->canary->run_diploma(); }
+
+	public function verify_canary(): void {
+		$this->canary->verify(); }
+
+	public function rollback_canary(): void {
+		$this->canary->rollback(); }
+
+	public function configure_canary_hmac(): void {
+		$this->canary->configure_hmac(); }
 
 	public function run_acceptance(): void {
 		$this->authorize_action( self::RUN_NONCE );

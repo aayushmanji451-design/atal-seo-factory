@@ -79,6 +79,19 @@ final class TestAioseo implements AioseoAdapterInterface {
 		return $this->active;
 	} public function version(): ?string {
 		return $this->active ? '4.9.8' : null; }
+	public function write_and_verify( int $post_id, array $payload ): array {
+		unset( $post_id );
+		return array(
+			'status'          => 'accepted',
+			'title'           => $payload['title'],
+			'description'     => $payload['description'],
+			'focus_keyphrase' => $payload['focus_keyphrase'],
+		); }
+	public function snapshot( int $post_id ): array {
+		unset( $post_id );
+		return array(); }
+	public function restore( int $post_id, array $snapshot ): void {
+		unset( $post_id, $snapshot ); }
 }
 final class TestImages implements FeaturedImageVerifierInterface {
 	public bool $fail = false;

@@ -110,21 +110,32 @@
 
 	<rule ref="Squiz.Commenting.ClassComment.Missing">
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FileComment.SpacingAfterComment">
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FunctionComment">
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
@@ -145,5 +156,6 @@
 	<!-- The receiver's deterministic duplicate lookup is an indexed, two-row bounded ownership query. -->
 	<rule ref="WordPress.DB.SlowDBQuery">
 		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Infrastructure/WordPress/WordPressDraftPostService.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Canary/WordPressCanaryPostService.php</exclude-pattern>
 	</rule>
 </ruleset>

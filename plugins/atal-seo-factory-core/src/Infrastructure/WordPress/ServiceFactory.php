@@ -11,8 +11,14 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 
 use Atal\Contracts\Validation\KnowledgeValidator;
 use Atal\SeoFactory\Admin\HealthPage;
+use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
 use Atal\SeoFactory\Application\Acceptance\KnowledgePackageInspector;
+use Atal\SeoFactory\Application\Canary\CanaryContentValidator;
+use Atal\SeoFactory\Application\Canary\CanaryCoordinator;
+use Atal\SeoFactory\Application\Canary\CanaryJsonImporter;
+use Atal\SeoFactory\Application\Canary\CanonicalCanaryArticleBuilder;
+use Atal\SeoFactory\Application\Canary\HmacRequestSigner;
 use Atal\SeoFactory\Application\Health\HealthDataProvider;
 use Atal\SeoFactory\Application\Import\CanonicalKnowledgeImporter;
 use Atal\SeoFactory\Application\Import\KnowledgeRecordFactory;
@@ -23,6 +29,11 @@ use Atal\SeoFactory\Application\Migration\MigrationRunner;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Atal\SeoFactory\Infrastructure\Database\CoreTableDefinitions;
 use Atal\SeoFactory\Infrastructure\Database\TableNames;
+use Atal\SeoFactory\Infrastructure\WordPress\Canary\WordPressCanaryPostService;
+use Atal\SeoFactory\Infrastructure\WordPress\Canary\WordPressCanaryRuntimeGuard;
+use Atal\SeoFactory\Infrastructure\WordPress\Canary\WordPressDiplomaReceiverClient;
+use Atal\SeoFactory\Infrastructure\WordPress\Canary\WpdbCanaryAuditLogger;
+use Atal\SeoFactory\Infrastructure\WordPress\Canary\WpdbCanaryStateRepository;
 use Atal\SeoFactory\Plugin;
 use RuntimeException;
 use wpdb;
@@ -87,7 +98,20 @@ final class ServiceFactory {
 			$paths['schemas']
 		);
 
-		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore() );
+		$canary_importer = new CanaryJsonImporter();
+		$canary          = new CanaryCoordinator(
+			$canary_importer,
+			new CanonicalCanaryArticleBuilder( $paths['master'], $paths['schemas'], KnowledgeValidator::create_default() ),
+			new CanaryContentValidator(),
+			new WordPressCanaryRuntimeGuard(),
+			new WordPressCanaryPostService(),
+			new WpdbCanaryStateRepository( $native_database, $tables ),
+			new WpdbCanaryAuditLogger( $native_database, $tables ),
+			new WordPressDiplomaReceiverClient( new HmacRequestSigner() ),
+			$database
+		);
+
+		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore(), new CanaryPanel( $canary, $canary_importer ) );
 	}
 
 	private static function knowledge_command(): KnowledgeCommand {
