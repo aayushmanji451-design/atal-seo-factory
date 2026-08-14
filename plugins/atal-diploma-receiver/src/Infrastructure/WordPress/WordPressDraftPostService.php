@@ -11,9 +11,9 @@ use Atal\DiplomaReceiver\Domain\Receiver\PostServiceInterface;
 use WP_Error;
 use WP_Post;
 final class WordPressDraftPostService implements PostServiceInterface {
-	private const OWNER_META          = '_atal_diploma_receiver_article_key';
+	public const OWNER_META           = '_atal_diploma_receiver_article_key';
 	private const AIOSEO_PAYLOAD_META = '_atal_diploma_receiver_aioseo_payload';
-	private const COURSE_META         = '_atal_diploma_receiver_course_key';
+	public const COURSE_META          = '_atal_diploma_receiver_course_key';
 	private const TARGET_META         = '_atal_diploma_receiver_target_site';
 	public function __construct( private readonly AioseoAdapterInterface $aioseo ) {}
 	public function upsert_draft( ArticlePayload $payload ): MutationResult {

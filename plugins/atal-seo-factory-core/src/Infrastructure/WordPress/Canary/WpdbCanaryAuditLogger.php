@@ -6,17 +6,20 @@ namespace Atal\SeoFactory\Infrastructure\WordPress\Canary;
 use Atal\SeoFactory\Application\Canary\CanaryException;
 use Atal\SeoFactory\Domain\Canary\CanaryAuditLoggerInterface;
 use Atal\SeoFactory\Infrastructure\Database\TableNames;
+use Atal\SeoImages\Contract\AuditLoggerInterface as Task05AuditLoggerInterface;
 use wpdb;
 
-final class WpdbCanaryAuditLogger implements CanaryAuditLoggerInterface {
+final class WpdbCanaryAuditLogger implements CanaryAuditLoggerInterface, Task05AuditLoggerInterface {
 	public function __construct( private readonly wpdb $database, private readonly TableNames $tables ) {}
 	public function record( string $event, string $outcome, array $context = array() ): void {
 		$safe    = array_intersect_key(
 			$context,
 			array(
-				'article_key' => true,
-				'post_id'     => true,
-				'target_site' => true,
+				'article_key'   => true,
+				'post_id'       => true,
+				'target_site'   => true,
+				'attachment_id' => true,
+				'reused'        => true,
 			)
 		);
 		$encoded = wp_json_encode( $safe, JSON_UNESCAPED_SLASHES );

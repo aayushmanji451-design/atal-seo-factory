@@ -14,6 +14,8 @@ final class Identifiers {
 	public const OPTION_PLUGIN_VERSION    = 'atal_diploma_receiver_version';
 	public const OPTION_HMAC_SECRET       = 'atal_diploma_receiver_hmac_secret';
 	public const OPTION_ACCEPTANCE_REPORT = 'atal_diploma_receiver_task_03_acceptance';
+	public const OPTION_TASK05_STATE      = 'atal_diploma_receiver_task_05_state';
+	public const OPTION_TASK05_REPORT     = 'atal_diploma_receiver_task_05_report';
 	public const TABLE_PREFIX             = 'atal_diploma_receiver_';
 	public const DATABASE_VERSION         = 1;
 

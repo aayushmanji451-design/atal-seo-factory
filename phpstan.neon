@@ -3,6 +3,7 @@ parameters:
     phpVersion: 80100
     paths:
         - packages/contracts/src
+        - packages/seo-images/src
         - plugins/atal-seo-factory-core/src
         - plugins/atal-diploma-receiver/src
         - tests

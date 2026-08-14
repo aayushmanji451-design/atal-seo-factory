@@ -31,6 +31,7 @@
     <!-- Runtime-neutral contracts and CLI tools do not execute inside WordPress. -->
     <rule ref="WordPress.Security.EscapeOutput">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/tools/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/*</exclude-pattern>
@@ -47,10 +48,17 @@
 
     <rule ref="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
     </rule>
+
+	<!-- The shared Task 05 package is bundled into both plugins and performs bounded local temp/upload file work. -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+	</rule>
 
     <rule ref="WordPress.WP.AlternativeFunctions.json_encode_json_encode">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/Import/*</exclude-pattern>
     </rule>
 
@@ -62,6 +70,7 @@
     <!-- PHPCS does not understand PHPStan list/shape annotations on array parameters. -->
     <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -69,6 +78,7 @@
 
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -77,6 +87,7 @@
     <!-- Inline PHPStan @var assertions are intentionally one-line docblocks. -->
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -84,12 +95,14 @@
 
     <!-- Interface implementations and isolated test doubles inherit contract documentation. -->
     <rule ref="Squiz.Commenting.FunctionComment.Missing">
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
+        <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
     </rule>
@@ -109,32 +122,48 @@
 	</rule>
 
 	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/Task05Panel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Seo/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/SeoImages/*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
+		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/Task05Panel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Seo/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/SeoImages/*</exclude-pattern>
 		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FileComment.SpacingAfterComment">
+		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/Task05Panel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Seo/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/SeoImages/*</exclude-pattern>
 		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 
 	<rule ref="Squiz.Commenting.FunctionComment">
+		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/Task05Panel.php</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Seo/*</exclude-pattern>
+		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/SeoImages/*</exclude-pattern>
 		<exclude-pattern>*/tools/*task-04*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
@@ -155,6 +184,7 @@
 
 	<!-- The receiver's deterministic duplicate lookup is an indexed, two-row bounded ownership query. -->
 	<rule ref="WordPress.DB.SlowDBQuery">
+		<exclude-pattern>*/packages/seo-images/src/Infrastructure/WordPress/LocalImageManager.php</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/src/Infrastructure/WordPress/WordPressDraftPostService.php</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/WordPress/Canary/WordPressCanaryPostService.php</exclude-pattern>
 	</rule>

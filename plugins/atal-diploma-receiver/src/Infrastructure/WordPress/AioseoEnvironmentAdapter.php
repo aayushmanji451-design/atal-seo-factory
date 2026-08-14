@@ -5,9 +5,14 @@ namespace Atal\DiplomaReceiver\Infrastructure\WordPress;
 
 use Atal\DiplomaReceiver\Application\Error\ReceiverException;
 use Atal\DiplomaReceiver\Domain\Receiver\AioseoAdapterInterface;
-final class AioseoEnvironmentAdapter implements AioseoAdapterInterface {
+use Atal\SeoImages\Contract\SeoAdapterInterface;
+use Atal\SeoImages\Domain\SeoMetadata;
+use Atal\SeoImages\Exception\PipelineException;
+final class AioseoEnvironmentAdapter implements AioseoAdapterInterface, SeoAdapterInterface {
 	private const MODEL = 'AIOSEO\\Plugin\\Common\\Models\\Post';
 	public function __construct( private readonly string $model_class = self::MODEL ) {}
+	public function name(): string {
+		return 'aioseo'; }
 	public function detected(): bool {
 		return class_exists( $this->model_class ) && ( function_exists( 'aioseo' ) || defined( 'AIOSEO_VERSION' ) || ( function_exists( 'is_plugin_active' ) && is_plugin_active( 'all-in-one-seo-pack/all_in_one_seo_pack.php' ) ) ); }
 	public function version(): ?string {
@@ -56,9 +61,14 @@ final class AioseoEnvironmentAdapter implements AioseoAdapterInterface {
 		$model = $this->model( $post_id );
 		$data  = get_object_vars( $model );
 		return array(
-			'title'       => $this->nullable_string( $data['title'] ?? null ),
-			'description' => $this->nullable_string( $data['description'] ?? null ),
-			'keyphrases'  => $this->json_object_or_null( $data['keyphrases'] ?? null, 'AIOSEO keyphrases' ),
+			'title'               => $this->nullable_string( $data['title'] ?? null ),
+			'description'         => $this->nullable_string( $data['description'] ?? null ),
+			'keyphrases'          => $this->json_object_or_null( $data['keyphrases'] ?? null, 'AIOSEO keyphrases' ),
+			'og_title'            => $this->nullable_string( $data['og_title'] ?? null ),
+			'og_description'      => $this->nullable_string( $data['og_description'] ?? null ),
+			'og_image_type'       => $this->nullable_string( $data['og_image_type'] ?? null ),
+			'og_image_custom_url' => $this->nullable_string( $data['og_image_custom_url'] ?? null ),
+			'canonical_url'       => $this->nullable_string( $data['canonical_url'] ?? null ),
 		);
 	}
 
@@ -66,10 +76,66 @@ final class AioseoEnvironmentAdapter implements AioseoAdapterInterface {
 		$this->save(
 			$post_id,
 			array(
-				'title'       => $this->nullable_string( $snapshot['title'] ?? null ),
-				'description' => $this->nullable_string( $snapshot['description'] ?? null ),
-				'keyphrases'  => $this->json_object_or_null( $snapshot['keyphrases'] ?? null, 'AIOSEO recovery keyphrases' ),
+				'title'               => $this->nullable_string( $snapshot['title'] ?? null ),
+				'description'         => $this->nullable_string( $snapshot['description'] ?? null ),
+				'keyphrases'          => $this->json_object_or_null( $snapshot['keyphrases'] ?? null, 'AIOSEO recovery keyphrases' ),
+				'og_title'            => $this->nullable_string( $snapshot['og_title'] ?? null ),
+				'og_description'      => $this->nullable_string( $snapshot['og_description'] ?? null ),
+				'og_image_type'       => $this->nullable_string( $snapshot['og_image_type'] ?? null ),
+				'og_image_custom_url' => $this->nullable_string( $snapshot['og_image_custom_url'] ?? null ),
+				'canonical_url'       => $this->nullable_string( $snapshot['canonical_url'] ?? null ),
 			)
+		);
+	}
+
+	public function apply_and_verify( int $post_id, SeoMetadata $metadata ): array {
+		if ( ! $this->detected() ) {
+			throw new PipelineException( 'AIOSEO is inactive.' ); }
+		$current             = $this->snapshot( $post_id );
+		$keyphrases          = $this->json_object_or_null( $current['keyphrases'] ?? null, 'AIOSEO keyphrases' ) ?? array();
+		$keyphrases['focus'] = array(
+			'keyphrase' => $metadata->focus_keyword(),
+			'score'     => 0,
+			'analysis'  => array(),
+		);
+		if ( ! isset( $keyphrases['additional'] ) ) {
+			$keyphrases['additional'] = array(); }
+		$data = array(
+			'title'               => $metadata->title(),
+			'description'         => $metadata->description(),
+			'keyphrases'          => $keyphrases,
+			'og_title'            => $metadata->og_title(),
+			'og_description'      => $metadata->og_description(),
+			'og_image_type'       => 'custom',
+			'og_image_custom_url' => $metadata->og_image_url(),
+		);
+		if ( null !== $metadata->canonical_url() ) {
+			$data['canonical_url'] = $metadata->canonical_url(); }
+		$this->save( $post_id, $data );
+		return $this->verify( $post_id, $metadata );
+	}
+
+	public function verify( int $post_id, SeoMetadata $metadata ): array {
+		$state  = $this->snapshot( $post_id );
+		$checks = array(
+			'title'          => $metadata->title() === ( $state['title'] ?? null ),
+			'description'    => $metadata->description() === ( $state['description'] ?? null ),
+			'focus_keyword'  => $metadata->focus_keyword() === $this->focus_keyphrase( $state['keyphrases'] ?? null ),
+			'og_title'       => $metadata->og_title() === ( $state['og_title'] ?? null ),
+			'og_description' => $metadata->og_description() === ( $state['og_description'] ?? null ),
+			'og_image'       => 'custom' === ( $state['og_image_type'] ?? null ) && $metadata->og_image_url() === ( $state['og_image_custom_url'] ?? null ),
+		);
+		if ( in_array( false, $checks, true ) ) {
+			throw new PipelineException( 'AIOSEO native metadata verification failed.' ); }
+		return array(
+			'status'        => 'PASS',
+			'adapter'       => $this->name(),
+			'version'       => $this->version(),
+			'checks'        => $checks,
+			'title'         => $metadata->title(),
+			'description'   => $metadata->description(),
+			'focus_keyword' => $metadata->focus_keyword(),
+			'og_image_url'  => $metadata->og_image_url(),
 		);
 	}
 

@@ -12,6 +12,15 @@ if ( ! class_exists( 'AtalWordPressStubState' ) ) {
 
 		/** @var list<mixed> */
 		public static array $calls = array();
+
+		/** @var array<string,mixed> */
+		public static array $options = array();
+
+		/** @var array<int,array<string,mixed>> */
+		public static array $post_meta = array();
+
+		/** @var array<int,int> */
+		public static array $thumbnails = array();
 	}
 }
 
@@ -164,8 +173,7 @@ if ( ! function_exists( 'dbDelta' ) ) {
 
 if ( ! function_exists( 'get_option' ) ) {
 	function get_option( string $name, mixed $default = false ): mixed {
-		unset( $name );
-		return $default;
+		return AtalWordPressStubState::$options[ $name ] ?? $default;
 	}
 }
 
@@ -173,6 +181,7 @@ if ( ! function_exists( 'update_option' ) ) {
 	/** @phpstan-impure */
 	function update_option( string $name, mixed $value, bool $autoload = false ): bool {
 		AtalWordPressStubState::$calls[] = array( 'update_option', $name, $value, $autoload );
+		AtalWordPressStubState::$options[ $name ] = $value;
 		return true;
 	}
 }
@@ -250,6 +259,18 @@ if ( ! function_exists( 'wp_die' ) ) {
 if ( ! function_exists( 'esc_html' ) ) {
 	function esc_html( string $text ): string {
 		return htmlspecialchars( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+	}
+}
+
+if ( ! function_exists( 'esc_attr' ) ) {
+	function esc_attr( string $text ): string {
+		return htmlspecialchars( $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+	}
+}
+
+if ( ! function_exists( 'esc_url' ) ) {
+	function esc_url( string $url ): string {
+		return filter_var( $url, FILTER_SANITIZE_URL ) ?: '';
 	}
 }
 
@@ -414,23 +435,31 @@ if ( ! function_exists( 'wp_update_post' ) ) {
 }
 
 if ( ! function_exists( 'update_post_meta' ) ) {
-	function update_post_meta( int $post_id, string $meta_key, mixed $meta_value, mixed $prev_value = '' ): int|bool { AtalWordPressStubState::$calls[]=array('update_post_meta',$post_id,$meta_key,$meta_value); return 'return-int'===$prev_value?1:true; }
+	function update_post_meta( int $post_id, string $meta_key, mixed $meta_value, mixed $prev_value = '' ): int|bool { AtalWordPressStubState::$calls[]=array('update_post_meta',$post_id,$meta_key,$meta_value); AtalWordPressStubState::$post_meta[ $post_id ][ $meta_key ] = $meta_value; return 'return-int'===$prev_value?1:true; }
 }
 
 if ( ! function_exists( 'get_post_meta' ) ) {
-	function get_post_meta( int $post_id, string $key = '', bool $single = false ): mixed { unset( $post_id, $key, $single ); return ''; }
+	function get_post_meta( int $post_id, string $key = '', bool $single = false ): mixed { unset( $single ); if ( '' === $key ) { return AtalWordPressStubState::$post_meta[ $post_id ] ?? array(); } return AtalWordPressStubState::$post_meta[ $post_id ][ $key ] ?? ''; }
+}
+
+if ( ! function_exists( 'metadata_exists' ) ) {
+	function metadata_exists( string $meta_type, int $object_id, string $meta_key ): bool { unset( $meta_type ); return array_key_exists( $meta_key, AtalWordPressStubState::$post_meta[ $object_id ] ?? array() ); }
+}
+
+if ( ! function_exists( 'delete_post_meta' ) ) {
+	function delete_post_meta( int $post_id, string $meta_key, mixed $meta_value = '' ): bool { unset( $meta_value ); if ( ! isset( AtalWordPressStubState::$post_meta[ $post_id ] ) || ! array_key_exists( $meta_key, AtalWordPressStubState::$post_meta[ $post_id ] ) ) { return false; } unset( AtalWordPressStubState::$post_meta[ $post_id ][ $meta_key ] ); return true; }
 }
 
 if ( ! function_exists( 'set_post_thumbnail' ) ) {
-	function set_post_thumbnail( int $post_id, int $thumbnail_id ): int|bool { AtalWordPressStubState::$calls[]=array('set_post_thumbnail',$post_id,$thumbnail_id); return PHP_INT_MAX===$thumbnail_id?1:true; }
+	function set_post_thumbnail( int $post_id, int $thumbnail_id ): int|bool { AtalWordPressStubState::$calls[]=array('set_post_thumbnail',$post_id,$thumbnail_id); AtalWordPressStubState::$thumbnails[ $post_id ] = $thumbnail_id; return PHP_INT_MAX===$thumbnail_id?1:true; }
 }
 
 if ( ! function_exists( 'delete_post_thumbnail' ) ) {
-	function delete_post_thumbnail( int $post_id ): bool { AtalWordPressStubState::$calls[]=array('delete_post_thumbnail',$post_id); return 0 <= $post_id; }
+	function delete_post_thumbnail( int $post_id ): bool { AtalWordPressStubState::$calls[]=array('delete_post_thumbnail',$post_id); unset( AtalWordPressStubState::$thumbnails[ $post_id ] ); return 0 <= $post_id; }
 }
 
 if ( ! function_exists( 'get_post_thumbnail_id' ) ) {
-	function get_post_thumbnail_id( int $post_id = 0 ): int|false { return 0 > $post_id?false:0; }
+	function get_post_thumbnail_id( int $post_id = 0 ): int|false { return 0 > $post_id ? false : ( AtalWordPressStubState::$thumbnails[ $post_id ] ?? 0 ); }
 }
 
 if ( ! function_exists( 'get_post' ) ) {
@@ -482,6 +511,55 @@ if ( ! function_exists( 'wp_remote_retrieve_body' ) ) {
 
 if ( ! function_exists( 'wp_delete_post' ) ) {
 	function wp_delete_post( int $post_id = 0, bool $force_delete = false ): WP_Post|false|null { unset( $force_delete ); if ( 0 > $post_id ) { return false; } return 0===$post_id?null:new WP_Post(); }
+}
+
+if ( ! function_exists( 'wp_delete_attachment' ) ) {
+	function wp_delete_attachment( int $post_id, bool $force_delete = false ): WP_Post|false|null { return wp_delete_post( $post_id, $force_delete ); }
+}
+
+if ( ! function_exists( 'wp_tempnam' ) ) {
+	function wp_tempnam( string $filename = '', string $dir = '' ): string|false { unset( $filename ); return tempnam( '' === $dir ? sys_get_temp_dir() : $dir, 'atal-' ); }
+}
+
+if ( ! function_exists( 'wp_upload_dir' ) ) {
+	/** @return array{path:string,url:string,subdir:string,basedir:string,baseurl:string,error:false|string} */
+	function wp_upload_dir(): array { $path = sys_get_temp_dir(); return array( 'path' => $path, 'url' => 'https://example.test/wp-content/uploads', 'subdir' => '', 'basedir' => $path, 'baseurl' => 'https://example.test/wp-content/uploads', 'error' => false ); }
+}
+
+if ( ! function_exists( 'wp_upload_bits' ) ) {
+	/** @return array{file:string,url:string,type:string,error:false|string} */
+	function wp_upload_bits( string $name, ?string $deprecated, string $bits, ?string $time = null ): array { unset( $deprecated, $bits, $time ); return array( 'file' => sys_get_temp_dir() . DIRECTORY_SEPARATOR . $name, 'url' => 'https://example.test/wp-content/uploads/' . $name, 'type' => 'image/webp', 'error' => false ); }
+}
+
+if ( ! function_exists( 'wp_insert_attachment' ) ) {
+	/** @param array<string,mixed> $args */
+	function wp_insert_attachment( array $args, string|false $file = false, int $parent_post_id = 0, bool $wp_error = false, bool $fire_after_hooks = true ): int|WP_Error { unset( $file, $parent_post_id, $fire_after_hooks ); return wp_insert_post( $args, $wp_error ); }
+}
+
+if ( ! function_exists( 'wp_delete_file' ) ) {
+	/** @phpstan-impure */ function wp_delete_file( string $file ): void { AtalWordPressStubState::$calls[] = array( 'wp_delete_file', $file ); if ( is_file( $file ) ) { unlink( $file ); } }
+}
+
+if ( ! function_exists( 'get_post_mime_type' ) ) {
+	function get_post_mime_type( int|WP_Post|null $post = null ): string|false { return is_int( $post ) && 0 > $post ? false : 'image/webp'; }
+}
+
+if ( ! function_exists( 'get_attached_file' ) ) {
+	function get_attached_file( int $attachment_id, bool $unfiltered = false ): string|false { unset( $unfiltered ); return 0 > $attachment_id ? false : sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'image.webp'; }
+}
+
+if ( ! function_exists( 'wp_get_attachment_url' ) ) {
+	function wp_get_attachment_url( int $attachment_id = 0 ): string|false { return 0 < $attachment_id ? 'https://example.test/wp-content/uploads/image.webp' : false; }
+}
+
+if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
+	/** @return array<string,mixed> */
+	function wp_generate_attachment_metadata( int $attachment_id, string $file ): array { unset( $attachment_id, $file ); return array( 'width' => 1200, 'height' => 630, 'file' => 'image.webp' ); }
+}
+
+if ( ! function_exists( 'wp_update_attachment_metadata' ) ) {
+	/** @param array<string,mixed> $data */
+	function wp_update_attachment_metadata( int $attachment_id, array $data ): int|bool { unset( $attachment_id ); return true === ( $data['return_int'] ?? false ) ? 1 : true; }
 }
 
 if ( ! function_exists( 'wp_count_posts' ) ) {

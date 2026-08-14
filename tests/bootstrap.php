@@ -18,3 +18,4 @@ if ( ! is_readable( $autoload_path ) ) {
 require_once $autoload_path;
 require_once __DIR__ . '/Support/Receiver/ReceiverFakes.php';
 require_once __DIR__ . '/Support/Canary/CanaryFakes.php';
+require_once __DIR__ . '/Support/SeoImages/SeoImageFakes.php';

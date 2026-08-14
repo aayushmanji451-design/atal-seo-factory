@@ -11,6 +11,7 @@ namespace Atal\Tests\Unit\Core;
 
 use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
+use Atal\SeoFactory\Admin\Task05Panel;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Atal\SeoFactory\Plugin;
 use AtalWordPressStubState;
@@ -23,7 +24,10 @@ use RuntimeException;
 final class PluginTest extends TestCase {
 
 	protected function setUp(): void {
-		AtalWordPressStubState::$calls = array();
+		AtalWordPressStubState::$calls      = array();
+		AtalWordPressStubState::$options    = array();
+		AtalWordPressStubState::$post_meta  = array();
+		AtalWordPressStubState::$thumbnails = array();
 	}
 
 	public function test_boot_defers_health_and_cli_service_construction(): void {
@@ -44,7 +48,7 @@ final class PluginTest extends TestCase {
 
 		self::assertSame( 0, $health_calls );
 		self::assertSame( 0, $command_calls );
-		self::assertCount( 8, AtalWordPressStubState::$calls );
+		self::assertCount( 13, AtalWordPressStubState::$calls );
 		$hooks = array_map(
 			static function ( mixed $call ): string {
 				if ( ! is_array( $call ) || ! isset( $call[1] ) || ! is_string( $call[1] ) ) {
@@ -65,6 +69,11 @@ final class PluginTest extends TestCase {
 				'admin_post_' . CanaryPanel::VERIFY_ACTION,
 				'admin_post_' . CanaryPanel::ROLLBACK_ACTION,
 				'admin_post_' . CanaryPanel::CONFIGURE_HMAC_ACTION,
+				'admin_post_' . Task05Panel::RUN_INSTITUTE_ACTION,
+				'admin_post_' . Task05Panel::RUN_DIPLOMA_ACTION,
+				'admin_post_' . Task05Panel::VERIFY_ACTION,
+				'admin_post_' . Task05Panel::ROLLBACK_ACTION,
+				'admin_post_' . Task05Panel::DOWNLOAD_ACTION,
 			),
 			$hooks
 		);
@@ -84,7 +93,7 @@ final class PluginTest extends TestCase {
 		$plugin->render_health_page();
 		$output = (string) ob_get_clean();
 
-		self::assertStringContainsString( 'Task 02 staging acceptance could not start', $output );
+		self::assertStringContainsString( 'Staging acceptance could not start', $output );
 		self::assertStringContainsString( 'bounded staging failure', $output );
 	}
 }
