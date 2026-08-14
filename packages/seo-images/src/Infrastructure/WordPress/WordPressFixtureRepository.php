@@ -29,6 +29,9 @@ final class WordPressFixtureRepository implements FixtureRepositoryInterface {
 	}
 	public function assign_featured_image( AcceptanceFixture $fixture, int $attachment_id ): void {
 		$this->snapshot( $fixture );
+		if ( (int) get_post_thumbnail_id( $fixture->post_id() ) === $attachment_id ) {
+			return;
+		}
 		if ( false === set_post_thumbnail( $fixture->post_id(), $attachment_id ) ) {
 			throw new PipelineException( 'The Task 05 generated image could not be assigned.' ); } }
 	public function verify_featured_image( AcceptanceFixture $fixture, int $attachment_id ): void {

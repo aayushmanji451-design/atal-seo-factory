@@ -31,4 +31,29 @@ final class LocalRendererTest extends TestCase {
 		} finally {
 			wp_delete_file( $path ); }
 	}
+
+	public function test_wordpress_metadata_already_persisted_during_generation_is_accepted(): void {
+		$metadata = array(
+			'width'  => 1200,
+			'height' => 630,
+			'file'   => 'image.webp',
+		);
+		\AtalWordPressStubState::$attachment_metadata[14559] = $metadata;
+
+		$method = new ReflectionMethod( LocalImageManager::class, 'store_attachment_metadata' );
+		$method->invoke( new LocalImageManager(), 14559, $metadata );
+
+		self::assertSame( $metadata, \AtalWordPressStubState::$attachment_metadata[14559] );
+	}
+
+	public function test_identical_unreferenced_orphan_is_removed_before_regeneration(): void {
+		$path = tempnam( sys_get_temp_dir(), 'atal-task05-orphan-' );
+		self::assertIsString( $path );
+		$bytes = '';
+
+		$method = new ReflectionMethod( LocalImageManager::class, 'remove_identical_orphan' );
+		$method->invoke( new LocalImageManager(), $path, '2026/08/task05.webp', $bytes );
+
+		self::assertFileDoesNotExist( $path );
+	}
 }

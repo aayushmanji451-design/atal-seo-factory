@@ -21,6 +21,12 @@ if ( ! class_exists( 'AtalWordPressStubState' ) ) {
 
 		/** @var array<int,int> */
 		public static array $thumbnails = array();
+
+		/** @var array<int,array<string,mixed>> */
+		public static array $attachment_metadata = array();
+
+		/** @var array<int,string> */
+		public static array $post_types = array();
 	}
 }
 
@@ -411,7 +417,7 @@ if ( ! function_exists( 'get_plugin_data' ) ) {
 }
 
 if ( ! function_exists( 'get_post_type' ) ) {
-	function get_post_type( int $post_id ): string|false { return 0 < $post_id ? 'attachment' : false; }
+	function get_post_type( int $post_id ): string|false { return 0 < $post_id ? ( AtalWordPressStubState::$post_types[ $post_id ] ?? 'attachment' ) : false; }
 }
 
 if ( ! function_exists( 'wp_attachment_is_image' ) ) {
@@ -451,7 +457,14 @@ if ( ! function_exists( 'delete_post_meta' ) ) {
 }
 
 if ( ! function_exists( 'set_post_thumbnail' ) ) {
-	function set_post_thumbnail( int $post_id, int $thumbnail_id ): int|bool { AtalWordPressStubState::$calls[]=array('set_post_thumbnail',$post_id,$thumbnail_id); AtalWordPressStubState::$thumbnails[ $post_id ] = $thumbnail_id; return PHP_INT_MAX===$thumbnail_id?1:true; }
+	function set_post_thumbnail( int $post_id, int $thumbnail_id ): int|bool {
+		AtalWordPressStubState::$calls[] = array( 'set_post_thumbnail', $post_id, $thumbnail_id );
+		if ( $thumbnail_id === ( AtalWordPressStubState::$thumbnails[ $post_id ] ?? 0 ) ) {
+			return false;
+		}
+		AtalWordPressStubState::$thumbnails[ $post_id ] = $thumbnail_id;
+		return PHP_INT_MAX === $thumbnail_id ? 1 : true;
+	}
 }
 
 if ( ! function_exists( 'delete_post_thumbnail' ) ) {
@@ -521,6 +534,10 @@ if ( ! function_exists( 'wp_tempnam' ) ) {
 	function wp_tempnam( string $filename = '', string $dir = '' ): string|false { unset( $filename ); return tempnam( '' === $dir ? sys_get_temp_dir() : $dir, 'atal-' ); }
 }
 
+if ( ! function_exists( 'WP_Filesystem' ) ) {
+	function WP_Filesystem( mixed $args = false, mixed $context = false, bool $allow_relaxed_file_ownership = false ): bool { unset( $args, $context, $allow_relaxed_file_ownership ); return true; }
+}
+
 if ( ! function_exists( 'wp_upload_dir' ) ) {
 	/** @return array{path:string,url:string,subdir:string,basedir:string,baseurl:string,error:false|string} */
 	function wp_upload_dir(): array { $path = sys_get_temp_dir(); return array( 'path' => $path, 'url' => 'https://example.test/wp-content/uploads', 'subdir' => '', 'basedir' => $path, 'baseurl' => 'https://example.test/wp-content/uploads', 'error' => false ); }
@@ -560,6 +577,11 @@ if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
 if ( ! function_exists( 'wp_update_attachment_metadata' ) ) {
 	/** @param array<string,mixed> $data */
 	function wp_update_attachment_metadata( int $attachment_id, array $data ): int|bool { unset( $attachment_id ); return true === ( $data['return_int'] ?? false ) ? 1 : true; }
+}
+
+if ( ! function_exists( 'wp_get_attachment_metadata' ) ) {
+	/** @return array<string,mixed>|false */
+	function wp_get_attachment_metadata( int $attachment_id = 0, bool $unfiltered = false ): array|false { unset( $unfiltered ); return AtalWordPressStubState::$attachment_metadata[ $attachment_id ] ?? false; }
 }
 
 if ( ! function_exists( 'wp_count_posts' ) ) {

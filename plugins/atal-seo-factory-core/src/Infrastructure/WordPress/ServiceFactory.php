@@ -122,7 +122,7 @@ final class ServiceFactory {
 		);
 
 		$task05 = new Task05Coordinator(
-			new AcceptanceFixture( 'atal_institute', 'liveup2.atalinstitute.com', 41, CanonicalCanaryArticleBuilder::INSTITUTE_ARTICLE_KEY, 'institute_general_duty_assistant', 'course_overview', 'General Duty Assistant Course: Duration and Fees | ATAL Institute', 'Explore the General Duty Assistant (GDA) course at ATAL Institute, with verified duration, fee, learning focus, and approved course information.', 'General Duty Assistant course' ),
+			new AcceptanceFixture( 'atal_institute', 'liveup2.atalinstitute.com', 14557, CanonicalCanaryArticleBuilder::INSTITUTE_ARTICLE_KEY, 'institute_general_duty_assistant', 'course_overview', 'General Duty Assistant Course: Duration and Fees | ATAL Institute', 'Explore the General Duty Assistant (GDA) course at ATAL Institute, with verified duration, fee, learning focus, and approved course information.', 'General Duty Assistant course' ),
 			new CanonicalAssetResolver( $paths['master'], $paths['schemas'], KnowledgeValidator::create_default() ),
 			new WordPressRuntimeGuard( array( 'atal-seo-connector' ) ),
 			new WordPressFixtureRepository( WordPressCanaryPostService::OWNER_META, WordPressCanaryPostService::COURSE_META ),
@@ -131,7 +131,7 @@ final class ServiceFactory {
 			new WordPressOptionStateStore( \Atal\SeoFactory\Config\Identifiers::OPTION_TASK05_STATE ),
 			new WpdbCanaryAuditLogger( $native_database, $tables ),
 			Plugin::VERSION,
-			array( 37 )
+			array( 14556 )
 		);
 
 		return new HealthPage( $health_provider, $acceptance, new WordPressAcceptanceReportStore(), new CanaryPanel( $canary, $canary_importer ), new Task05Panel( $task05, new DiplomaTask05Client( new HmacRequestSigner() ) ) );

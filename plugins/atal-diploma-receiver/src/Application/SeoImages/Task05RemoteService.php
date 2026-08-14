@@ -52,7 +52,33 @@ final class Task05RemoteService {
 			throw $exception;
 		} catch ( Throwable $throwable ) {
 			$this->transactions->rollback();
-			throw new ReceiverException( 'receiver_task05_failed', 'The Task 05 receiver operation rolled back safely.', 500, array( 'exception' => $throwable::class ) );
+			throw new ReceiverException(
+				'receiver_task05_failed',
+				'The Task 05 receiver operation rolled back safely.',
+				500,
+				array(
+					'exception'    => $throwable::class,
+					'message_hash' => hash( 'sha256', $throwable->getMessage() ),
+					'reason'       => self::failure_reason( $throwable ),
+				)
+			);
 		}
+	}
+
+	private static function failure_reason( Throwable $throwable ): string {
+		return match ( $throwable->getMessage() ) {
+			'Task 05 blocked a non-approved hostname.' => 'runtime_hostname',
+			'Search indexing must remain disabled for Task 05.' => 'runtime_indexing',
+			'A legacy ATAL connector is active.' => 'runtime_legacy_connector',
+			'Task 05 can modify only the exact controlled staging draft.' => 'fixture_draft_guard',
+			'The controlled staging draft identity does not match Task 05.' => 'fixture_identity',
+			'The expected native SEO plugin is inactive.' => 'seo_inactive',
+			'AIOSEO native metadata verification failed.' => 'aioseo_verification',
+			'WordPress could not generate attachment metadata.' => 'image_metadata_generation',
+			'WordPress could not store attachment metadata.' => 'image_metadata_storage',
+			'WordPress could not store the deterministic WebP file.' => 'image_upload_error',
+			'The Task 05 generated image could not be assigned.' => 'featured_image_assignment',
+			default => 'unclassified',
+		};
 	}
 }

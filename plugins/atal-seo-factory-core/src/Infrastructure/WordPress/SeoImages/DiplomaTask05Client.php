@@ -94,8 +94,12 @@ final class DiplomaTask05Client {
 		if ( ! is_array( $decoded ) || array_is_list( $decoded ) ) {
 			throw new PipelineException( 'The Diploma Task 05 response is malformed.' );
 		} if ( 200 > $status || 299 < $status ) {
-			$code = is_string( $decoded['code'] ?? null ) ? $decoded['code'] : 'receiver_error';
-			throw new PipelineException( 'Diploma Task 05 was rejected: ' . $code );
+			$code    = is_string( $decoded['code'] ?? null ) ? $decoded['code'] : 'receiver_error';
+			$data    = is_array( $decoded['data'] ?? null ) && ! array_is_list( $decoded['data'] ) ? $decoded['data'] : array();
+			$details = is_array( $data['details'] ?? null ) && ! array_is_list( $data['details'] ) ? $data['details'] : array();
+			$reason  = is_string( $details['reason'] ?? null ) && 1 === preg_match( '/^[a-z_]+$/', $details['reason'] ) ? $details['reason'] : '';
+			$hash    = is_string( $details['message_hash'] ?? null ) && 1 === preg_match( '/^[a-f0-9]{64}$/', $details['message_hash'] ) ? $details['message_hash'] : '';
+			throw new PipelineException( 'Diploma Task 05 was rejected: ' . $code . ( '' !== $reason ? ' (' . $reason . ')' : '' ) . ( '' !== $hash ? ' [' . $hash . ']' : '' ) );
 		} $result = array();
 		foreach ( $decoded as $key => $item ) {
 			if ( ! is_string( $key ) ) {

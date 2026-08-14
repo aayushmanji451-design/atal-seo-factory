@@ -21,7 +21,7 @@ final class Task05Panel {
 		$latest = get_option( Identifiers::OPTION_TASK05_REPORT, null );
 		?>
 		<hr><h2><?php echo esc_html__( 'Task 05 — Native SEO and Image Acceptance', 'atal-seo-factory-core' ); ?></h2>
-		<p><?php echo esc_html__( 'Development/staging only. Operates only on Institute draft 41 and Diploma draft 5704, uses local WebP rendering, and makes no paid API request.', 'atal-seo-factory-core' ); ?></p>
+		<p><?php echo esc_html__( 'Development/staging only. Operates only on Institute draft 14557 and Diploma draft 5704, uses local WebP rendering, and makes no paid API request.', 'atal-seo-factory-core' ); ?></p>
 		<div style="display:flex;gap:8px;flex-wrap:wrap"><?php $this->form( self::RUN_INSTITUTE_ACTION, 'Run Institute SEO/Image Acceptance' ); ?><?php $this->form( self::RUN_DIPLOMA_ACTION, 'Run Diploma SEO/Image Acceptance' ); ?><?php $this->form( self::VERIFY_ACTION, 'Verify Task 05' ); ?><?php $this->form( self::ROLLBACK_ACTION, 'Roll Back Task 05' ); ?></div>
 		<?php
 		if ( is_array( $latest ) ) :

@@ -53,12 +53,20 @@ final class LocalImageManager implements ImageManagerInterface {
 			$upload = wp_upload_dir();
 			if ( false !== $upload['error'] ) {
 				throw new PipelineException( 'The WordPress upload directory is unavailable.' ); }
-			$path = $upload['path'];
-			if ( '' === $path || file_exists( rtrim( $path, '/\\' ) . DIRECTORY_SEPARATOR . $specification->filename() ) ) {
-				throw new PipelineException( 'The deterministic image filename is already occupied without a valid owned attachment.' ); }
-			$uploaded = wp_upload_bits( $specification->filename(), null, $bytes );
-			if ( false !== $uploaded['error'] || $specification->filename() !== basename( $uploaded['file'] ) ) {
-				throw new PipelineException( 'WordPress could not store the deterministic WebP filename.' ); }
+			$path   = $upload['path'];
+			$subdir = $upload['subdir'];
+			if ( '' === $path ) {
+				throw new PipelineException( 'The WordPress upload directory is unavailable.' ); }
+			$target = rtrim( $path, '/\\' ) . DIRECTORY_SEPARATOR . $specification->filename();
+			if ( file_exists( $target ) ) {
+				$relative = ltrim( $subdir, '/\\' ) . '/' . $specification->filename();
+				$this->remove_identical_orphan( $target, $relative, $bytes );
+			}
+			$this->store_deterministic_file( $target, $bytes );
+			$uploaded   = array(
+				'file' => $target,
+				'url'  => rtrim( $upload['url'], '/' ) . '/' . $specification->filename(),
+			);
 			$attachment = wp_insert_attachment(
 				array(
 					'post_mime_type' => ImageSpecification::MIME,
@@ -78,6 +86,46 @@ final class LocalImageManager implements ImageManagerInterface {
 			return $this->result( $attachment, $specification, false, true );
 		} finally {
 			wp_delete_file( $temp ); }
+	}
+
+	private function remove_identical_orphan( string $path, string $relative_path, string $expected_bytes ): void {
+		$attachments   = get_posts(
+			array(
+				'post_type'        => 'attachment',
+				'post_status'      => 'inherit',
+				'numberposts'      => 1,
+				'fields'           => 'ids',
+				'meta_key'         => '_wp_attached_file',
+				'meta_value'       => $relative_path,
+				'suppress_filters' => true,
+			)
+		);
+		$actual_hash   = is_readable( $path ) ? hash_file( 'sha256', $path ) : false;
+		$expected_hash = hash( 'sha256', $expected_bytes );
+		if ( array() !== $attachments || ! is_string( $actual_hash ) || ! hash_equals( $expected_hash, $actual_hash ) ) {
+			throw new PipelineException( 'The deterministic image filename is already occupied without a valid owned attachment.' );
+		}
+		wp_delete_file( $path );
+		clearstatcache( true, $path );
+		if ( file_exists( $path ) ) {
+			throw new PipelineException( 'The verified orphaned Task 05 image could not be removed.' );
+		}
+	}
+
+	private function store_deterministic_file( string $path, string $bytes ): void {
+		if ( ! function_exists( 'WP_Filesystem' ) && defined( 'ABSPATH' ) ) {
+			$root = constant( 'ABSPATH' );
+			if ( is_string( $root ) ) {
+				require_once $root . 'wp-admin/includes/file.php';
+			}
+		}
+		$initialized = function_exists( 'WP_Filesystem' ) && WP_Filesystem();
+		$filesystem  = $GLOBALS['wp_filesystem'] ?? null;
+		$writer      = is_object( $filesystem ) ? array( $filesystem, 'put_contents' ) : null;
+		$permissions = defined( 'FS_CHMOD_FILE' ) ? constant( 'FS_CHMOD_FILE' ) : 0644;
+		if ( ! $initialized || ! is_callable( $writer ) || ! is_int( $permissions ) || true !== call_user_func( $writer, $path, $bytes, $permissions ) ) {
+			throw new PipelineException( 'WordPress could not store the deterministic WebP file.' );
+		}
 	}
 
 	public function verify( ImageResult $result ): void {
@@ -113,6 +161,16 @@ final class LocalImageManager implements ImageManagerInterface {
 		if ( array() !== $uses ) {
 			return false; }
 		return false !== wp_delete_attachment( $result->attachment_id(), true );
+	}
+
+	/** @param array<string,mixed> $metadata Generated WordPress attachment metadata. */
+	private function store_attachment_metadata( int $attachment_id, array $metadata ): void {
+		if ( wp_get_attachment_metadata( $attachment_id ) === $metadata ) {
+			return;
+		}
+		if ( false === wp_update_attachment_metadata( $attachment_id, $metadata ) ) {
+			throw new PipelineException( 'WordPress could not store attachment metadata.' );
+		}
 	}
 
 	private function render_webp( ImageSpecification $specification, string $path ): void {
@@ -155,8 +213,9 @@ final class LocalImageManager implements ImageManagerInterface {
 				require_once $root . 'wp-admin/includes/image.php'; }
 		}
 		$metadata = wp_generate_attachment_metadata( $attachment_id, $path );
-		if ( false === wp_update_attachment_metadata( $attachment_id, $metadata ) ) {
+		if ( array() === $metadata ) {
 			throw new PipelineException( 'WordPress could not generate attachment metadata.' ); }
+		$this->store_attachment_metadata( $attachment_id, $metadata );
 		$values = array(
 			'_wp_attachment_image_alt' => $specification->alt_text(),
 			self::FINGERPRINT_META     => $specification->fingerprint(),
