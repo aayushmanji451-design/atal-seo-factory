@@ -35,7 +35,8 @@ final class HealthPage {
 		private readonly AcceptanceReportStoreInterface $reports,
 		private readonly CanaryPanel $canary,
 		private readonly Task05Panel $task05,
-		private readonly Task06Panel $task06
+		private readonly Task06Panel $task06,
+		private readonly Task07Panel $task07
 	) {
 	}
 
@@ -87,6 +88,7 @@ final class HealthPage {
 			<?php $this->canary->render(); ?>
 			<?php $this->task05->render(); ?>
 			<?php $this->task06->render(); ?>
+			<?php $this->task07->render(); ?>
 		</div>
 		<?php
 	}
@@ -119,6 +121,24 @@ final class HealthPage {
 		$this->task06->preview(); }
 	public function validate_task06(): void {
 		$this->task06->validate(); }
+	public function save_task07_config(): void {
+		$this->task07->save_config(); }
+	public function prepare_task07_batch(): void {
+		$this->task07->prepare_batch(); }
+	public function approve_task07_batch(): void {
+		$this->task07->approve_batch(); }
+	public function skip_task07_batch(): void {
+		$this->task07->skip_batch(); }
+	public function pause_task07(): void {
+		$this->task07->pause(); }
+	public function resume_task07(): void {
+		$this->task07->resume(); }
+	public function emergency_stop_task07(): void {
+		$this->task07->emergency_stop(); }
+	public function reset_emergency_task07(): void {
+		$this->task07->reset_emergency(); }
+	public function run_worker_step_task07(): void {
+		$this->task07->run_worker_step(); }
 
 	public function run_acceptance(): void {
 		$this->authorize_action( self::RUN_NONCE );

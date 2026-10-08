@@ -36,6 +36,16 @@ final class Identifiers {
 
 	public const OPTION_TASK06_REPORT = 'atal_seo_factory_core_task_06_report';
 
+	public const OPTION_TASK07_REPORT = 'atal_seo_factory_core_task_07_report';
+
+	public const OPTION_QUEUE_CONFIG = 'atal_seo_factory_core_queue_config';
+
+	public const OPTION_QUEUE_CONTROL_STATE = 'atal_seo_factory_core_queue_control_state';
+
+	public const OPTION_DAILY_BATCH = 'atal_seo_factory_core_daily_batch';
+
+	public const OPTION_QUEUE_JOBS = 'atal_seo_factory_core_queue_jobs';
+
 	public const OPTION_TOPIC_CURSOR_INSTITUTE = 'atal_seo_factory_core_topic_cursor_institute';
 
 	public const OPTION_TOPIC_CURSOR_DIPLOMA = 'atal_seo_factory_core_topic_cursor_diploma';

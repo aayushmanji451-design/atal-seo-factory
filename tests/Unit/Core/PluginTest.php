@@ -13,6 +13,7 @@ use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Admin\Task05Panel;
 use Atal\SeoFactory\Admin\Task06Panel;
+use Atal\SeoFactory\Admin\Task07Panel;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Atal\SeoFactory\Plugin;
 use AtalWordPressStubState;
@@ -49,7 +50,7 @@ final class PluginTest extends TestCase {
 
 		self::assertSame( 0, $health_calls );
 		self::assertSame( 0, $command_calls );
-		self::assertCount( 15, AtalWordPressStubState::$calls );
+		self::assertCount( 24, AtalWordPressStubState::$calls );
 		$hooks = array_map(
 			static function ( mixed $call ): string {
 				if ( ! is_array( $call ) || ! isset( $call[1] ) || ! is_string( $call[1] ) ) {
@@ -77,6 +78,15 @@ final class PluginTest extends TestCase {
 				'admin_post_' . Task05Panel::DOWNLOAD_ACTION,
 				'admin_post_' . Task06Panel::PREVIEW_ACTION,
 				'admin_post_' . Task06Panel::VALIDATE_ACTION,
+				'admin_post_' . Task07Panel::SAVE_CONFIG_ACTION,
+				'admin_post_' . Task07Panel::PREPARE_BATCH_ACTION,
+				'admin_post_' . Task07Panel::APPROVE_BATCH_ACTION,
+				'admin_post_' . Task07Panel::SKIP_BATCH_ACTION,
+				'admin_post_' . Task07Panel::PAUSE_ACTION,
+				'admin_post_' . Task07Panel::RESUME_ACTION,
+				'admin_post_' . Task07Panel::EMERGENCY_STOP_ACTION,
+				'admin_post_' . Task07Panel::RESET_EMERGENCY_ACTION,
+				'admin_post_' . Task07Panel::RUN_WORKER_STEP_ACTION,
 			),
 			$hooks
 		);

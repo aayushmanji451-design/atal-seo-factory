@@ -32,6 +32,7 @@
     <rule ref="WordPress.Security.EscapeOutput">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/tools/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Infrastructure/*</exclude-pattern>
@@ -49,16 +50,19 @@
     <rule ref="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
     </rule>
 
 	<!-- The shared Task 05 package is bundled into both plugins and performs bounded local temp/upload file work. -->
 	<rule ref="WordPress.WP.AlternativeFunctions">
 		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+		<exclude-pattern>*/packages/queue/*</exclude-pattern>
 	</rule>
 
     <rule ref="WordPress.WP.AlternativeFunctions.json_encode_json_encode">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/src/Application/Import/*</exclude-pattern>
     </rule>
 
@@ -71,6 +75,7 @@
     <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -79,6 +84,7 @@
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -88,6 +94,7 @@
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <exclude-pattern>*/packages/contracts/*</exclude-pattern>
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -96,6 +103,7 @@
     <!-- Interface implementations and isolated test doubles inherit contract documentation. -->
     <rule ref="Squiz.Commenting.FunctionComment.Missing">
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
         <exclude-pattern>*/tests/*</exclude-pattern>
@@ -103,6 +111,7 @@
 
     <rule ref="Squiz.Commenting.FunctionComment.MissingParamTag">
         <exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+        <exclude-pattern>*/packages/queue/*</exclude-pattern>
         <exclude-pattern>*/plugins/atal-seo-factory-core/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
     </rule>
@@ -123,6 +132,7 @@
 
 	<rule ref="Squiz.Commenting.ClassComment.Missing">
 		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+		<exclude-pattern>*/packages/queue/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
@@ -134,6 +144,7 @@
 
 	<rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
 		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+		<exclude-pattern>*/packages/queue/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
@@ -146,6 +157,7 @@
 
 	<rule ref="Squiz.Commenting.FileComment.SpacingAfterComment">
 		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+		<exclude-pattern>*/packages/queue/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>
@@ -158,6 +170,7 @@
 
 	<rule ref="Squiz.Commenting.FunctionComment">
 		<exclude-pattern>*/packages/seo-images/*</exclude-pattern>
+		<exclude-pattern>*/packages/queue/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-diploma-receiver/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/*/Canary/*</exclude-pattern>
 		<exclude-pattern>*/plugins/atal-seo-factory-core/src/Admin/CanaryPanel.php</exclude-pattern>

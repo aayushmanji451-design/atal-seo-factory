@@ -11,10 +11,25 @@ namespace Atal\SeoFactory\Infrastructure\WordPress;
 
 use Atal\Contracts\Data\KnowledgePackage;
 use Atal\Contracts\Validation\KnowledgeValidator;
+use Atal\Queue\Application\DailyBatchCoordinator;
+use Atal\Queue\Application\Handler\DeliverDraftHandler;
+use Atal\Queue\Application\Handler\PublishHandler;
+use Atal\Queue\Application\Handler\RenderImageHandler;
+use Atal\Queue\Application\Handler\RollbackHandler;
+use Atal\Queue\Application\Handler\SaveSeoHandler;
+use Atal\Queue\Application\Handler\ValidationHandler;
+use Atal\Queue\Application\Handler\VerifyHandler;
+use Atal\Queue\Application\QueueWorker;
+use Atal\Queue\Domain\JobStage;
+use Atal\Queue\Domain\RetryPolicy;
 use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Admin\Task05Panel;
 use Atal\SeoFactory\Admin\Task06Panel;
+use Atal\SeoFactory\Admin\Task07Panel;
+use Atal\SeoFactory\Infrastructure\WordPress\Queue\WordPressBatchRepository;
+use Atal\SeoFactory\Infrastructure\WordPress\Queue\WordPressJobRepository;
+use Atal\SeoFactory\Infrastructure\WordPress\Queue\WordPressQueueControlStore;
 use Atal\SeoFactory\Application\Acceptance\AcceptanceRunner;
 use Atal\SeoFactory\Application\Acceptance\KnowledgePackageInspector;
 use Atal\SeoFactory\Application\Canary\CanaryContentValidator;
@@ -129,7 +144,7 @@ final class ServiceFactory {
 			$database
 		);
 
-		$task05         = new Task05Coordinator(
+		$task05          = new Task05Coordinator(
 			new AcceptanceFixture( 'atal_institute', 'liveup2.atalinstitute.com', 14557, CanonicalCanaryArticleBuilder::INSTITUTE_ARTICLE_KEY, 'institute_general_duty_assistant', 'course_overview', 'General Duty Assistant Course: Duration and Fees | ATAL Institute', 'Explore the General Duty Assistant (GDA) course at ATAL Institute, with verified duration, fee, learning focus, and approved course information.', 'General Duty Assistant course' ),
 			new CanonicalAssetResolver( $paths['master'], $paths['schemas'], KnowledgeValidator::create_default() ),
 			new WordPressRuntimeGuard( array( 'atal-seo-connector' ) ),
@@ -141,19 +156,56 @@ final class ServiceFactory {
 			Plugin::VERSION,
 			array( 14556 )
 		);
-		$topic_policy   = new CanonicalTopicPolicy( KnowledgePackage::from_directory( $paths['master'] ) );
-		$topic_registry = new WpdbTopicRegistry( $native_database, $tables->topics() );
-		$task06         = new Task06Panel(
-			new DeterministicRotation( new WordPressRotationStateStore() ),
+		$topic_policy    = new CanonicalTopicPolicy( KnowledgePackage::from_directory( $paths['master'] ) );
+		$topic_registry  = new WpdbTopicRegistry( $native_database, $tables->topics() );
+		$topic_rotation  = new DeterministicRotation( new WordPressRotationStateStore() );
+		$topic_validator = new TopicValidator(
 			$topic_policy,
-			new TopicValidator(
-				$topic_policy,
-				KnowledgeValidator::create_default(),
-				$topic_registry,
-				new Similarity(),
-				$paths['master'],
-				$paths['schemas']
-			)
+			KnowledgeValidator::create_default(),
+			$topic_registry,
+			new Similarity(),
+			$paths['master'],
+			$paths['schemas']
+		);
+		$task06          = new Task06Panel(
+			$topic_rotation,
+			$topic_policy,
+			$topic_validator
+		);
+
+		$queue_controls    = new WordPressQueueControlStore();
+		$queue_batches     = new WordPressBatchRepository();
+		$queue_jobs        = new WordPressJobRepository();
+		$batch_coordinator = new DailyBatchCoordinator(
+			$topic_policy,
+			$topic_rotation,
+			$topic_validator,
+			$queue_jobs,
+			$queue_batches,
+			$queue_controls
+		);
+		$queue_handlers    = array(
+			new ValidationHandler( $topic_validator ),
+			new RenderImageHandler(),
+			new SaveSeoHandler(),
+			new DeliverDraftHandler(),
+			new VerifyHandler(),
+			new PublishHandler(),
+			new RollbackHandler(),
+		);
+		$queue_worker      = new QueueWorker(
+			$queue_jobs,
+			$queue_controls,
+			$queue_batches,
+			new RetryPolicy(),
+			$queue_handlers
+		);
+		$task07            = new Task07Panel(
+			$batch_coordinator,
+			$queue_worker,
+			$queue_controls,
+			$queue_batches,
+			$queue_jobs
 		);
 
 		return new HealthPage(
@@ -162,7 +214,8 @@ final class ServiceFactory {
 			new WordPressAcceptanceReportStore(),
 			new CanaryPanel( $canary, $canary_importer ),
 			new Task05Panel( $task05, new DiplomaTask05Client( new HmacRequestSigner() ) ),
-			$task06
+			$task06,
+			$task07
 		);
 	}
 
