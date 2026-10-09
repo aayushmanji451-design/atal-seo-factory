@@ -31,6 +31,7 @@ spl_autoload_register(
 		$prefixes = array(
 			'Atal\\SeoFactory\\' => __DIR__ . '/src/',
 			'Atal\\Contracts\\'  => __DIR__ . '/dependencies/contracts/',
+			'Atal\\Queue\\'      => __DIR__ . '/dependencies/queue/',
 			'Atal\\SeoImages\\'  => __DIR__ . '/dependencies/seo-images/',
 			'Atal\\Topics\\'     => __DIR__ . '/dependencies/topics/',
 		);

@@ -18,7 +18,8 @@
             "Atal\\DiplomaReceiver\\": "plugins/atal-diploma-receiver/src/",
             "Atal\\Contracts\\": "packages/contracts/src/",
             "Atal\\SeoImages\\": "packages/seo-images/src/",
-            "Atal\\Topics\\": "packages/topics/src/"
+            "Atal\\Topics\\": "packages/topics/src/",
+            "Atal\\Queue\\": "packages/queue/src/"
         }
     },
     "autoload-dev": {

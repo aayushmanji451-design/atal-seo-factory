@@ -13,6 +13,7 @@ use Atal\SeoFactory\Admin\HealthPage;
 use Atal\SeoFactory\Admin\CanaryPanel;
 use Atal\SeoFactory\Admin\Task05Panel;
 use Atal\SeoFactory\Admin\Task06Panel;
+use Atal\SeoFactory\Admin\Task07Panel;
 use Atal\SeoFactory\Cli\KnowledgeCommand;
 use Closure;
 use Throwable;
@@ -22,7 +23,7 @@ use Throwable;
  */
 final class Plugin {
 
-	public const VERSION = '0.6.0-dev';
+	public const VERSION = '0.7.0-dev';
 
 	public static function is_development_build(): bool {
 		return str_ends_with( self::VERSION, '-dev' );
@@ -60,6 +61,15 @@ final class Plugin {
 			add_action( 'admin_post_' . Task05Panel::DOWNLOAD_ACTION, array( $this, 'download_task05' ) );
 			add_action( 'admin_post_' . Task06Panel::PREVIEW_ACTION, array( $this, 'preview_task06' ) );
 			add_action( 'admin_post_' . Task06Panel::VALIDATE_ACTION, array( $this, 'validate_task06' ) );
+			add_action( 'admin_post_' . Task07Panel::SAVE_CONFIG_ACTION, array( $this, 'save_task07_config' ) );
+			add_action( 'admin_post_' . Task07Panel::PREPARE_BATCH_ACTION, array( $this, 'prepare_task07_batch' ) );
+			add_action( 'admin_post_' . Task07Panel::APPROVE_BATCH_ACTION, array( $this, 'approve_task07_batch' ) );
+			add_action( 'admin_post_' . Task07Panel::SKIP_BATCH_ACTION, array( $this, 'skip_task07_batch' ) );
+			add_action( 'admin_post_' . Task07Panel::PAUSE_ACTION, array( $this, 'pause_task07' ) );
+			add_action( 'admin_post_' . Task07Panel::RESUME_ACTION, array( $this, 'resume_task07' ) );
+			add_action( 'admin_post_' . Task07Panel::EMERGENCY_STOP_ACTION, array( $this, 'emergency_stop_task07' ) );
+			add_action( 'admin_post_' . Task07Panel::RESET_EMERGENCY_ACTION, array( $this, 'reset_emergency_task07' ) );
+			add_action( 'admin_post_' . Task07Panel::RUN_WORKER_STEP_ACTION, array( $this, 'run_worker_step_task07' ) );
 		}
 
 		if ( defined( 'WP_CLI' ) && WP_CLI && class_exists( '\\WP_CLI' ) ) {
@@ -146,6 +156,24 @@ final class Plugin {
 		$this->health_page()->preview_task06(); }
 	public function validate_task06(): void {
 		$this->health_page()->validate_task06(); }
+	public function save_task07_config(): void {
+		$this->health_page()->save_task07_config(); }
+	public function prepare_task07_batch(): void {
+		$this->health_page()->prepare_task07_batch(); }
+	public function approve_task07_batch(): void {
+		$this->health_page()->approve_task07_batch(); }
+	public function skip_task07_batch(): void {
+		$this->health_page()->skip_task07_batch(); }
+	public function pause_task07(): void {
+		$this->health_page()->pause_task07(); }
+	public function resume_task07(): void {
+		$this->health_page()->resume_task07(); }
+	public function emergency_stop_task07(): void {
+		$this->health_page()->emergency_stop_task07(); }
+	public function reset_emergency_task07(): void {
+		$this->health_page()->reset_emergency_task07(); }
+	public function run_worker_step_task07(): void {
+		$this->health_page()->run_worker_step_task07(); }
 
 	private function health_page(): HealthPage {
 		$factory = $this->health_page_factory;

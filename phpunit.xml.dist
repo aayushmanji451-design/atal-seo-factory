@@ -15,6 +15,7 @@
         <include>
             <directory suffix=".php">packages/contracts/src</directory>
             <directory suffix=".php">packages/topics/src</directory>
+            <directory suffix=".php">packages/queue/src</directory>
             <directory suffix=".php">plugins/atal-seo-factory-core/src</directory>
             <directory suffix=".php">plugins/atal-diploma-receiver/src</directory>
         </include>
